@@ -360,7 +360,7 @@ function App() {
 
           <div className="feature6">
             <div className="showcase-container">
-              <img src="mockups/meal prep.webp" alt="App mockup" className="mockup-image" />
+              <img src="mockups/mealprep.webp" alt="App mockup" className="mockup-image" />
               <div className="showcase-content">
                 <h2>Meal Prep</h2>
               </div>
