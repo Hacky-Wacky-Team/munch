@@ -273,7 +273,7 @@ function App() {
               </span>
             </div>
           </div>
-          <img src="mockups/cameramockup2.webp" alt="Camera Mockup" className="big-feature-mockup" />
+          <img src="mockups/cameramockup2.png" alt="Camera Mockup" className="big-feature-mockup" />
         </div>
       </div>
       <div className='big-feature'>
@@ -306,7 +306,7 @@ function App() {
             </div>
           </div>
           </div>
-          <img src="mockups/homemockup2.webp" alt="Camera Mockup" className="big-feature-mockup" />
+          <img src="mockups/homemockup2.png" alt="Camera Mockup" className="big-feature-mockup" />
         </div>
       </div>
 
@@ -316,7 +316,7 @@ function App() {
         <div className="features-track" ref={featuresTrackRef}>
           <div className="feature1">
             <div className="showcase-container">
-              <img src="mockups/profile.webp" alt="App mockup" className="mockup-image" />
+              <img src="mockups/profile.png" alt="App mockup" className="mockup-image" />
               <div className="showcase-content">
                 <h2>Connect with Foodies</h2>
               </div>
@@ -325,7 +325,7 @@ function App() {
 
           <div className="feature2">
             <div className="showcase-container">
-              <img src="mockups/home.webp" alt="App mockup" className="mockup-image" />
+              <img src="mockups/home.png" alt="App mockup" className="mockup-image" />
               <div className="showcase-content">
                 <h2>Scroll through your Feed</h2>
               </div>
@@ -337,12 +337,12 @@ function App() {
               <div className="showcase-content">
                 <h2>Share your Recipes</h2>
               </div>
-              <img src="mockups/post.webp" alt="App mockup" className="mockup-image" />
+              <img src="mockups/post.png" alt="App mockup" className="mockup-image" />
             </div>
           </div>
           <div className="feature4">
             <div className="showcase-container">
-              <img src="mockups/recipe.webp" alt="App mockup" className="mockup-image" />
+              <img src="mockups/recipe.png" alt="App mockup" className="mockup-image" />
               <div className="showcase-content">
                 <h2>Recipes Based off your Pantry</h2>
               </div>
