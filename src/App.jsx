@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import './App.css'
 import { db } from './firebase'
-import { collection, addDoc, query, where, getDocs } from 'firebase/firestore'
+import { collection, addDoc, query, where, getDocs, getCountFromServer } from 'firebase/firestore'
 import { FiClock, FiSearch } from 'react-icons/fi'
 import { FaApple, FaStar } from 'react-icons/fa'
 import { FaEarthAmericas } from 'react-icons/fa6'
@@ -21,6 +21,7 @@ function App() {
   const [activeFeature, setActiveFeature] = useState(0)
   const [isDarkSection, setIsDarkSection] = useState(false)
   const [carouselCursor, setCarouselCursor] = useState({ show: false, x: 0, y: 0, direction: 'right' })
+  const [waitlistCount, setWaitlistCount] = useState(0)
   const featuresTrackRef = useRef(null)
   const carouselRef = useRef(null)
 
@@ -34,6 +35,41 @@ function App() {
     }
   }, [showToast])
 
+  // Fetch waitlist count (cached for 10 minutes)
+  useEffect(() => {
+    const fetchWaitlistCount = async () => {
+      try {
+        // Check cache first
+        const cachedData = localStorage.getItem('waitlistCount')
+        const cacheExpiry = localStorage.getItem('waitlistCountExpiry')
+        
+        if (cachedData && cacheExpiry && Date.now() < parseInt(cacheExpiry)) {
+          // Use cached data if still valid
+          setWaitlistCount(parseInt(cachedData))
+          return
+        }
+
+        // Fetch count from Firebase using aggregation (only 1 read!)
+        const coll = collection(db, 'users')
+        const snapshot = await getCountFromServer(coll)
+        const count = Math.floor(snapshot.data().count / 5) * 5
+        
+        // Cache for 10 minutes
+        setWaitlistCount(count)
+        localStorage.setItem('waitlistCount', count.toString())
+        localStorage.setItem('waitlistCountExpiry', (Date.now() + 10 * 60 * 1000).toString())
+      } catch (error) {
+        console.error('Error fetching waitlist count: ', error)
+        // Fallback to cached data even if expired
+        const cachedData = localStorage.getItem('waitlistCount')
+        if (cachedData) {
+          setWaitlistCount(parseInt(cachedData))
+        }
+      }
+    }
+    fetchWaitlistCount()
+  }, [])
+
   // Detect when user is in dark section for navbar color change
   useEffect(() => {
     const handleScroll = () => {
@@ -43,6 +79,24 @@ function App() {
         const isInDarkSection = rect.top <= 100 && rect.bottom >= 100
         setIsDarkSection(isInDarkSection)
       }
+
+      // Trigger highlight animations on scroll
+      const triggerHighlight = (selector) => {
+        const element = document.querySelector(selector)
+        if (element && !element.classList.contains('highlight-active')) {
+          const rect = element.getBoundingClientRect()
+          const windowHeight = window.innerHeight
+          if (rect.top < windowHeight * 0.7) {
+            element.classList.add('highlight-active')
+          }
+        }
+      }
+
+      triggerHighlight('.community-highlight')
+      triggerHighlight('.camera-ai-highlight')
+      triggerHighlight('.feed-highlight')
+      triggerHighlight('.you-highlight')
+      triggerHighlight('.early-highlight')
     }
 
     window.addEventListener('scroll', handleScroll)
@@ -295,6 +349,9 @@ function App() {
         {/* WAITLIST SECTION */}
         <div id="waitlist" className="waitlist-container">
           <div className="titletext">
+            <div className="waitlist-pill">
+              <span className="waitlist-pill-text">{waitlistCount}+ waitlisted</span>
+            </div>
             <h1 className="title1">
               <span className="fall-text fall-delay-1">JOIN</span>{' '}
               <span className="fall-text fall-delay-2">THE</span>
@@ -321,7 +378,7 @@ function App() {
           </div>
           <div className="waitlist-box fade-rise-delay-2">
             <div className="waitlist-left-panel">
-              <h2 className="waitlist-header">Be the <span className="first-highlight">first</span> to know when we launch<PiPaperPlaneTiltFill className="waitlist-header-icon" /></h2>
+              <h2 className="waitlist-header">Be the <strong>first</strong> to know when we launch<PiPaperPlaneTiltFill className="waitlist-header-icon" /></h2>
               <form onSubmit={handleJoinWaitlist} noValidate>
                 <input
                   type="text"
@@ -421,7 +478,7 @@ function App() {
         <div className='big-feature-camera'>
           <div className='big-feature-content-camera'>
             <h2 className="big-feature-camera-upper-h2">CAPTURE</h2>
-            <h2><span className="ai-highlight">AI-Powered</span> Camera</h2>
+            <h2><span className="camera-ai-highlight">AI-Powered</span> Camera</h2>
             <p>Take a photo of your ingredients and let Munch do the rest. Discover recipes tailored to what you have on hand, making meal prep effortless and fun.</p>
             <div className="big-feature-badges">
               <div className="big-feature-badges-row">
@@ -455,7 +512,7 @@ function App() {
         <div className='big-feature-feed'>
           <div className='big-feature-content-feed'>
             <h2 className="big-feature-camera-upper-h2">DISCOVER</h2>
-            <h2><span className="ai-highlight">Personalized</span> Feed</h2>
+            <h2><span className="feed-highlight">Personalized</span> Feed</h2>
             <p>View what your friends are cooking and get real time inspiration! Share your food pics and discover new recipes together.</p>
             <div className="big-feature-badges">
               <div className="big-feature-badges-row">
@@ -616,12 +673,12 @@ function App() {
       {/* BOTTOM WAITLIST BOX */}
       <div className="main-content-bottom">
         <div className="section-header-bottom">
-          <h1 className='feature-title'>Get early access.</h1>
+          <h1 className='feature-title'>Get <span className="early-highlight">early</span> access.</h1>
         </div>
         <div id="waitlist" className="waitlist-container">
           <div className="waitlist-box">
             <div className="waitlist-left-panel">
-              <h2 className="waitlist-header">Be the <span className="first-highlight">first</span> to know when we launch<PiPaperPlaneTiltFill className="waitlist-header-icon" /></h2>
+              <h2 className="waitlist-header">Be the <strong>first</strong> to know when we launch<PiPaperPlaneTiltFill className="waitlist-header-icon" /></h2>
               <form onSubmit={handleJoinWaitlist} noValidate>
                 <input
                   type="text"
