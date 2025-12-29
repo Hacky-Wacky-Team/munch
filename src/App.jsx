@@ -22,8 +22,15 @@ function App() {
   const [isDarkSection, setIsDarkSection] = useState(false)
   const [carouselCursor, setCarouselCursor] = useState({ show: false, x: 0, y: 0, direction: 'right' })
   const [waitlistCount, setWaitlistCount] = useState(0)
+  const [digitOffsets, setDigitOffsets] = useState([])
+  const [isAnimating, setIsAnimating] = useState(false)
   const featuresTrackRef = useRef(null)
   const carouselRef = useRef(null)
+
+  // Helper function to split number into digits
+  const getDigits = (num) => {
+    return num.toString().split('').map(d => parseInt(d))
+  }
 
   // Toast auto-dismiss after 5 seconds
   useEffect(() => {
@@ -35,7 +42,7 @@ function App() {
     }
   }, [showToast])
 
-  // Fetch waitlist count (cached for 10 minutes)
+  // Fetch waitlist count (cached for 10 minutes of real time)
   useEffect(() => {
     const fetchWaitlistCount = async () => {
       try {
@@ -46,7 +53,7 @@ function App() {
         if (cachedData && cacheExpiry && Date.now() < parseInt(cacheExpiry)) {
           // Use cached data if still valid
           setWaitlistCount(parseInt(cachedData))
-          return
+          return false // Cache is still valid
         }
 
         // Fetch count from Firebase using aggregation (only 1 read!)
@@ -58,6 +65,7 @@ function App() {
         setWaitlistCount(count)
         localStorage.setItem('waitlistCount', count.toString())
         localStorage.setItem('waitlistCountExpiry', (Date.now() + 10 * 60 * 1000).toString())
+        return true // Fetched new data
       } catch (error) {
         console.error('Error fetching waitlist count: ', error)
         // Fallback to cached data even if expired
@@ -65,10 +73,52 @@ function App() {
         if (cachedData) {
           setWaitlistCount(parseInt(cachedData))
         }
+        return false
       }
     }
+    
+    // Initial fetch
     fetchWaitlistCount()
+    
+    // Check every minute if cache has expired and refetch if needed
+    const interval = setInterval(() => {
+      fetchWaitlistCount()
+    }, 60 * 1000) // Check every 60 seconds
+    
+    return () => clearInterval(interval)
   }, [])
+
+  // Animate waitlist count with slot machine effect
+  useEffect(() => {
+    if (waitlistCount === 0) return
+
+    const finalDigits = getDigits(waitlistCount)
+    const numDigits = finalDigits.length
+    
+    // Initialize at 0 position for all digits
+    setDigitOffsets(finalDigits.map(() => 0))
+    
+    // Trigger animation after a brief delay
+    setTimeout(() => {
+      // Each digit will scroll through multiple full cycles (0-9) before landing on final digit
+      const offsets = finalDigits.map((digit, index) => {
+        // Number of full 0-9 cycles to scroll through (stagger for visual effect)
+        // Keep it reasonable to not exceed array bounds
+        const numCycles = Math.min(3 + (numDigits - index - 1), 8)
+        // Position = (full cycles * 10) + final digit
+        // This ensures we land exactly on the target digit
+        return (numCycles * 10) + digit
+      })
+      
+      setIsAnimating(true)
+      setDigitOffsets(offsets)
+      
+      // Reset animation flag after animation completes
+      setTimeout(() => {
+        setIsAnimating(false)
+      }, 2000)
+    }, 100)
+  }, [waitlistCount])
 
   // Detect when user is in dark section for navbar color change
   useEffect(() => {
@@ -333,13 +383,13 @@ function App() {
           <a href="https://instagram.com/jointhemunch" target="_blank" rel="noopener noreferrer">
             <button className="nav-button">
               <PiPaperPlaneTiltFill className="button-icon" />
-              Instagram
+              <span>Instagram</span>
             </button>
           </a>
           <a href="#waitlist">
             <button className="nav-button">
               <FiClock className="button-icon" />
-              Join the Waitlist
+              <span>Join the Waitlist</span>
             </button>
           </a>
         </div>
@@ -350,7 +400,30 @@ function App() {
         <div id="waitlist" className="waitlist-container">
           <div className="titletext">
             <div className="waitlist-pill">
-              <span className="waitlist-pill-text">{waitlistCount}+ waitlisted</span>
+              <span className="waitlist-pill-text">
+                {getDigits(waitlistCount).map((digit, index) => {
+                  const offset = digitOffsets[index] !== undefined ? digitOffsets[index] : 0
+                  return (
+                    <div key={index} className="number-scroll-container">
+                      <div 
+                        className={`number-scroll ${isAnimating ? 'animating' : ''}`}
+                        style={{ 
+                          transform: `translateY(-${offset * 1.1}rem)`,
+                          transition: isAnimating 
+                            ? `transform ${1.5 + index * 0.2}s cubic-bezier(0.25, 0.46, 0.45, 0.94)` 
+                            : 'none'
+                        }}
+                      >
+                        {/* Create 100 digits (10 full cycles of 0-9) for smooth scrolling */}
+                        {Array.from({ length: 100 }, (_, i) => i % 10).map((num, i) => (
+                          <span key={i}>{num}</span>
+                        ))}
+                      </div>
+                    </div>
+                  )
+                })}
+                + waitlisted
+              </span>
             </div>
             <h1 className="title1">
               <span className="fall-text fall-delay-1">JOIN</span>{' '}
@@ -371,7 +444,7 @@ function App() {
                 <PiAndroidLogoFill className="title-button-icon" />
                 Android
               </button>
-              <button className="title-button">
+              <button className="title-button coming-soon-button">
                 Coming Soon
               </button>
             </div>
@@ -438,7 +511,9 @@ function App() {
         <div className="scrolling-section">
           <div className="scrolling-text">
             <h2 className="scrolling-title">Join a <span className="community-highlight">Community</span> of Foodies</h2>
-            <p className="scrolling-description">Connect, share, and discover recipes with fellow food enthusiasts. Munch brings food lovers together in one deliciously vibrant community.
+            <p className="scrolling-description">
+              <span className="desktop-text">Connect, share, and discover recipes with fellow food enthusiasts. Munch brings food lovers together in one deliciously vibrant community.</span>
+              <span className="mobile-text">Connect, share, and discover recipes. Munch brings food lovers together in one vibrant community.</span>
             </p>
           </div>
           <div className="scrolling-rows">
