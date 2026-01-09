@@ -37,7 +37,7 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #dfefdc;
+  background-color: #e6f5e3;
   margin-bottom: 0rem;
   padding-bottom: 0rem;
   align-items: center;
@@ -50,7 +50,7 @@ html {
   overscroll-behavior-x: none;
   margin-bottom: 0rem;
   padding-bottom: 0rem;
-  background-color: #dfefdc;
+  background-color: #e6f5e3;
   align-items: center;
 
 }
@@ -66,7 +66,7 @@ a {
   overflow-y: visible;
   margin-bottom: 0rem;
   padding-bottom: 0rem;
-  background-color: #dfefdc;
+  background-color: #e6f5e3;
   align-items: center;
 }
 
@@ -108,9 +108,10 @@ a {
   display: flex;
   align-items: center;
   gap: 0.9rem;
-  background: rgba(0, 0, 0, 0.04);
-  backdrop-filter: blur(0.625rem);
-  -webkit-backdrop-filter: blur(0.625rem);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(0.7rem);
+  -webkit-backdrop-filter: blur(0.7rem);
+  box-shadow: 0rem 0.2rem 0.2rem  rgba(0, 0, 0, 0.035);
   padding: 0.6rem 1.2rem;
   border-radius: 1rem;
 }
@@ -137,9 +138,10 @@ a {
 }
 
 .nav-button {
-  background: rgba(0, 0, 0, 0.04);
-  backdrop-filter: blur(0.625rem);
-  -webkit-backdrop-filter: blur(0.625rem);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(0.7rem);
+  -webkit-backdrop-filter: blur(0.7rem);
+  box-shadow: 0rem 0.2rem 0.4rem  rgba(0, 0, 0, 0.035);
   padding: 0.8rem 1.4rem;
   border-radius: 1rem;
   font-family: 'Nunito Sans', sans-serif;
@@ -163,16 +165,16 @@ a {
 
 .nav-button:hover {
   transform: translateY(-0.125rem);
-  border: 0.0625rem solid rgba(255, 255, 255, 0.3);
+  border: 0.0625rem solid rgba(0, 0, 0, 0.3);
 }
 
 /* Dark section navbar styles */
 .navbar-dark .nav-logo-container {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(47, 47, 47, 0.5);
 }
 
 .navbar-dark .nav-logo {
-  color: #dfefdc;
+  color: #e6f5e3;
 }
 
 .navbar-dark .nav-icon {
@@ -180,12 +182,12 @@ a {
 }
 
 .navbar-dark .nav-button {
-  background: rgba(255, 255, 255, 0.05);
-  color: #dfefdc;
+  background: rgba(47, 47, 47, 0.5);
+  color: #e6f5e3;
 }
 
 .navbar-dark .button-icon {
-  color: #dfefdc;
+  color: #e6f5e3;
 }
 
 .main-content {
@@ -249,7 +251,7 @@ a {
   font-family: 'Nunito Sans', sans-serif;
   font-weight: 500;
   font-size: 2rem;
-  color: #dfefdc;
+  color: #e6f5e3;
   margin-bottom: 2rem;
   text-align: left;
   margin-top: 0.1rem;
@@ -343,7 +345,7 @@ a {
 
 .waitlist-right-panel {
   flex: 1;
-  background: #dfefdc;
+  background: #e6f5e3;
   border-radius: 1.5rem;
   padding: 0;
   box-sizing: border-box;
@@ -389,7 +391,7 @@ a {
   border: none;
   font-size: 1.2em;
   width: 100%;
-  background: #dfefdc;
+  background: #e6f5e3;
   backdrop-filter: blur(0.625rem);
   box-sizing: border-box;
   -webkit-backdrop-filter: blur(0.625rem);
@@ -407,7 +409,7 @@ a {
   border: none;
   background-color: #3e974bff;
   width: 100%;
-  color: #dfefdc;
+  color: #e6f5e3;
   font-size: 1.3rem;
   font-family: 'Nunito Sans', sans-serif;
   font-weight: 700;
@@ -437,10 +439,11 @@ h1 {
 }
 
 .waitlist-pill {
-  background: rgba(36, 41, 36, 0.08);
+  background: rgba(255, 255, 255, 0.586);
+  box-shadow: 0rem 0.2rem 0.2rem  rgba(0, 0, 0, 0.035);
   border-radius: 50px;
   padding: 0.5rem 1.2rem;
-  margin-top: 6.5rem !important;
+  margin-top: 6.5rem;
   opacity: 0;
   animation: fallDown 0.4s ease-out forwards;
   overflow: hidden;
@@ -578,7 +581,7 @@ h1 {
 
 .title-button {
   background-color: #242924;
-  color: #dfefdc;
+  color: #e6f5e3;
   border: none;
   border-radius: 1rem;
   padding: 1rem 1.4rem;
@@ -695,7 +698,7 @@ h1 {
   top: 0;
   width: 7rem;
   height: 100%;
-  background: linear-gradient(to left, #dfefdc, #dfefdc63, rgba(255, 255, 255, 0));
+  background: linear-gradient(to left, #e6f5e3, #e6f5e363, rgba(255, 255, 255, 0));
   pointer-events: none;
   z-index: 2;
 }
@@ -707,7 +710,7 @@ h1 {
   top: 0;
   width: 7rem;
   height: 100%;
-  background: linear-gradient(to right, #dfefdc, #dfefdc63, rgba(255, 255, 255, 0));
+  background: linear-gradient(to right, #e6f5e3, #e6f5e363, rgba(255, 255, 255, 0));
   pointer-events: none;
   z-index: 2;
 }
@@ -817,7 +820,7 @@ h1 {
 }
 
 .cursor-arrow {
-  color: #dfefdc;
+  color: #e6f5e3;
   font-size: 1.5rem;
   font-weight: bold;
   display: flex;
@@ -1164,7 +1167,7 @@ BIG FEATURE SECTION */
   font-family: 'Nunito Sans', sans-serif;
   font-weight: 800;
   font-size: 3.5rem;
-  color: #dfefdc;
+  color: #e6f5e3;
   opacity: 1;
   margin: 0;
   text-align: center;
@@ -1178,7 +1181,7 @@ BIG FEATURE SECTION */
   font-family: 'Nunito Sans', sans-serif;
   font-weight: 800;
   font-size: 3.5rem;
-  color: #dfefdc;
+  color: #e6f5e3;
   opacity: 1;
   margin: 0;
   text-align: center;
@@ -1546,7 +1549,7 @@ BIG FEATURE SECTION */
   font-family: 'Nunito Sans', sans-serif;
   font-weight: 1000;
   font-size: 17.7rem;
-  background: linear-gradient(to bottom, #6fa2654c 15%, #dfefdc 75%);
+  background: linear-gradient(to bottom, #6fa2654c 15%, #e6f5e3 75%);
   background-size: 80% 90%;
   background-position: 0 0;
   -webkit-background-clip: text;
@@ -1570,7 +1573,7 @@ BIG FEATURE SECTION */
   left: 50%;
   transform: translateX(-50%);
   background-color: #242924;
-  color: #dfefdc;
+  color: #e6f5e3;
   padding: 1rem 2rem;
   border-radius: 50rem;
   font-family: 'Nunito Sans', sans-serif;
@@ -1653,7 +1656,7 @@ BIG FEATURE SECTION */
   /* NAV BAR */
   .navbar {
     position: fixed;
-    top: 1rem;
+    top: 0.5rem;
     left: 1rem;
     right: 1rem;
     transform: none;
@@ -1670,7 +1673,12 @@ BIG FEATURE SECTION */
   }
 
   .nav-logo {
-    font-size: 1.2rem;
+    font-size: 1.25rem;
+  }
+
+  .nav-icon {
+    height: 1.65rem;
+    margin-right: -0.5rem;
   }
 
   .nav-item {
@@ -1695,6 +1703,7 @@ BIG FEATURE SECTION */
   .waitlist-pill {
     padding: 0.3rem 0.8rem;
     font-size: 0.8rem;
+    margin-top: 5rem;
   }
 
   .waitlist-pill-text {
@@ -1875,12 +1884,12 @@ BIG FEATURE SECTION */
 
   .scrolling-rows::after {
     width: 2.5rem;
-    background: linear-gradient(to left, #dfefdc, rgba(255, 255, 255, 0));
+    background: linear-gradient(to left, #e6f5e3, rgba(255, 255, 255, 0));
   }
 
   .scrolling-rows::before {
     width: 2.5rem;
-    background: linear-gradient(to right, #dfefdc, rgba(255, 255, 255, 0));
+    background: linear-gradient(to right, #e6f5e3, rgba(255, 255, 255, 0));
   }
 
   .scroll-row {
@@ -1961,6 +1970,21 @@ BIG FEATURE SECTION */
     border-radius: 2.5rem;
     margin-bottom: 10rem;
     box-sizing: border-box;
+    position: relative;
+  }
+
+  .big-feature-camera::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 8rem;
+    background: linear-gradient(to bottom, #e6f5e3, #e6f5e3e6 30%, transparent);
+    border-radius: 2.5rem 2.5rem 0 0;
+    pointer-events: none;
+    z-index: 3;
   }
 
   .big-feature-content-camera {
@@ -2038,6 +2062,21 @@ BIG FEATURE SECTION */
     border-radius: 2.5rem;
     margin-bottom: 0rem;
     box-sizing: border-box;
+    position: relative;
+  }
+
+  .big-feature-feed::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 10rem;
+    background: linear-gradient(to bottom, transparent, #e6f5e3e6 70%, #e6f5e3);
+    border-radius: 0 0 2.5rem 2.5rem;
+    pointer-events: none;
+    z-index: 3;
   }
 
   .big-feature-content-feed {
