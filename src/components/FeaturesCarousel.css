@@ -263,14 +263,25 @@
 }
 
 @media (max-width: 768px) {
-  .features-subtitle {
-    font-size: 0.8rem;
-    padding: 0.4rem 1rem;
+  .feature-title {
+    font-size: 2.25rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-bottom: 2.5rem;
+    margin-top: 1rem;
   }
 
-  .feature-title {
-    font-size: 1.8rem;
-    margin-bottom: 2rem;
+  .feature-title-bottom {
+    font-size: 2.25rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-bottom: 3rem;
+    margin-top: 1rem;
+  }
+
+  .features-subtitle {
+    font-size: 0.7rem;
+    margin: -3rem auto -1rem auto;
   }
 
   .feature1,
@@ -280,30 +291,44 @@
   .feature5,
   .feature6,
   .feature7 {
-    flex: 0 0 80vw;
-    min-width: 80vw;
-    min-height: auto;
+    max-width: 26rem;
+    min-width: 23rem;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
   }
 
   .mockup-image {
-    width: 12rem;
-    margin-top: -1rem;
+    width: 20rem;
+    margin-top: -2rem;
+  }
+
+  .custom-carousel-cursor {
+    display: none;
+  }
+
+  .features-carousel {
+    cursor: default !important;
+  }
+
+  .features-track {
+    scroll-snap-type: x mandatory;
+    padding-left: calc((100vw - 23rem) / 2);
+    padding-right: calc((100vw - 23rem) / 2);
   }
 
   .showcase-content h2 {
-    font-size: 0.9rem;
-    max-width: 14rem;
+    font-size: 1rem;
   }
 
   .feature-label {
-    width: 85%;
-    padding: 0.8rem 1rem;
-    font-size: 0.85rem;
+    padding: 1rem 1.5rem;
+    font-size: 0.9rem;
   }
 
   .carousel-indicators {
-    gap: 0.7rem;
+    margin-top: 1rem;
     padding: 1rem 1.5rem;
+    gap: 0.8rem;
   }
 
   .carousel-dot {

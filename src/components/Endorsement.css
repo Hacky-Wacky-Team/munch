@@ -96,25 +96,32 @@
 }
 
 @media (max-width: 768px) {
-  .endorsement-section {
-    margin-top: 2rem;
-    padding: 0 1rem;
-  }
-
   .endorsement-header {
     font-size: 1.2rem;
-    margin-bottom: 0.8rem;
+  }
+
+  .endorsement-section {
+    padding: 0 0rem;
+    margin-top: 1rem;
+    width: 100%;
   }
 
   .university-logos-container {
-    height: 8rem;
-    padding: 1rem;
-    border-radius: 1.5rem;
+    height: 10.5rem;
+    width: 100%;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    max-width: none;
+    border-radius: 2rem;
+  }
+
+  .university-logos-row {
+    height: 5rem;
+    gap: 2rem;
   }
 
   .university-logo {
-    height: 6rem;
-    width: 6rem;
-    gap: 1.5rem;
+    height: 9rem;
+    width: 9rem;
   }
 }

@@ -39,13 +39,20 @@
 }
 
 @media (max-width: 768px) {
+  .footer {
+    margin-top: 4rem;
+  }
+
   .footer-text {
-    font-size: 5rem;
+    font-size: 5.75rem;
     margin-bottom: -1.5rem;
   }
 
   .wave-decoration-footer {
-    margin-bottom: -2rem;
-    margin-top: -2rem;
+    transform: scale(2);
+    transform-origin: center;
+    margin-top: 1rem;
+    margin-bottom: 0rem;
+    overflow: visible;
   }
 }
