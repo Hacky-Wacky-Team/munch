@@ -1,0 +1,386 @@
+.waitlist-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  color: black;
+  padding: 2rem;
+  margin: 0;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1070px;
+  margin-bottom: 2rem;
+  min-height: auto;
+}
+
+.waitlist-container h1 {
+  margin-bottom: 2rem;
+}
+
+.waitlist-box {
+  display: flex;
+  flex-direction: row;
+  gap: 0.2rem;
+  margin-top: 3rem;
+  padding: 2rem;
+  border-radius: 2.5rem;
+  background: #0f3a1e;
+  width: 100%;
+  box-sizing: border-box;
+  justify-content: space-between;
+  align-items: stretch;
+  margin-bottom: 0;
+  min-height: 350px;
+  opacity: 0;
+  animation: fadeRise 0.3s ease-out forwards;
+}
+
+.waitlist-header {
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 500;
+  font-size: 2rem;
+  color: #e6f5e3;
+  margin-bottom: 2rem;
+  text-align: left;
+  margin-top: 0.1rem;
+  position: relative;
+  line-height: 2.5rem;
+  z-index: 1;
+}
+
+.waitlist-header-icon {
+  color: white;
+  display: inline;
+  vertical-align: middle;
+  margin-left: 0.3rem;
+  font-size: 1.6rem;
+  margin-bottom: 0.2rem;
+}
+
+.waitlist-right-panel {
+  flex: 1;
+  background: #e6f5e3;
+  border-radius: 1.5rem;
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.waitlist-food-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 1.5rem;
+}
+
+.waitlist-left-panel {
+  flex: 1;
+  background: #0f3a1e;
+  border-radius: 2.5rem;
+  padding-right: 2rem;
+  padding-left: 1rem;
+  padding-bottom: 0.1rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.waitlist-left-panel form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: stretch;
+  width: 100%;
+  max-width: 500px;
+}
+
+.waitlist-left-panel input {
+  padding: 1.2rem 1.5rem;
+  border-radius: 1rem;
+  border: none;
+  font-size: 1.2em;
+  width: 100%;
+  background: #e6f5e3;
+  backdrop-filter: blur(0.625rem);
+  box-sizing: border-box;
+  -webkit-backdrop-filter: blur(0.625rem);
+  border: 0.0625rem solid rgba(255, 255, 255, 0.18);
+  outline: none;
+  color: rgb(0, 0, 0);
+  text-align: left;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 600;
+}
+
+.waitlist-left-panel button[type="submit"] {
+  padding: 1.2rem 2rem;
+  border-radius: 1rem;
+  border: none;
+  background-color: #3e974bff;
+  width: 100%;
+  color: #e6f5e3;
+  font-size: 1.3rem;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.waitlist-left-panel button[type="submit"]:hover {
+  background-color: rgb(68, 169, 83);
+}
+
+.waitlist-left-panel button[type="submit"]:active {
+  transform: scale(1);
+}
+
+.titletext {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.waitlist-pill {
+  background: rgba(255, 255, 255, 0.586);
+  box-shadow: 0rem 0.2rem 0.2rem rgba(0, 0, 0, 0.035);
+  border-radius: 50px;
+  padding: 0.5rem 1.2rem;
+  margin-top: 6.5rem;
+  opacity: 0;
+  animation: fallDown 0.4s ease-out forwards;
+  overflow: hidden;
+}
+
+.waitlist-pill-text {
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #242924;
+  letter-spacing: 0.02rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.1rem;
+}
+
+.number-scroll-container {
+  display: inline-block;
+  height: 1.1rem;
+  overflow: hidden;
+  position: relative;
+  vertical-align: middle;
+  mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
+}
+
+.number-scroll {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: none;
+}
+
+.number-scroll span {
+  height: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #242924;
+}
+
+.title1 {
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 850;
+  text-align: center;
+  font-size: 5.7rem;
+  color: #242924;
+  margin-bottom: -0.5rem !important;
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.fall-text {
+  display: inline-block;
+  opacity: 0;
+  animation: fallDown 0.4s ease-out forwards;
+}
+
+.fall-delay-1 {
+  animation-delay: 0.2s;
+}
+
+.fall-delay-2 {
+  animation-delay: 0.3s;
+}
+
+.fall-delay-3 {
+  animation-delay: 0.4s;
+}
+
+.fall-delay-4 {
+  animation-delay: 0.5s;
+}
+
+.title2 {
+  font-size: 6rem;
+  font-weight: 850;
+  margin-top: 0;
+  font-family: 'Nunito Sans', sans-serif;
+  text-align: center;
+  color: #242924;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  z-index: 1;
+}
+
+.title2 .ment-text {
+  font-size: 4.5rem;
+}
+
+.munch-highlight {
+  color: #242924;
+  position: relative;
+  display: inline-block;
+}
+
+.munch-highlight::before {
+  content: '';
+  position: absolute;
+  bottom: 5%;
+  left: -2.5%;
+  right: 0;
+  height: 55%;
+  width: 0%;
+  background-color: #8fd583;
+  z-index: -1;
+  border-radius: 0.5rem;
+  animation: highlightSweep 0.9s cubic-bezier(0.7, 0, 0.3, 1) 0.65s forwards;
+}
+
+.title-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 0.2rem;
+  opacity: 0;
+  animation: fadeRise 0.3s ease-out forwards;
+}
+
+.fade-rise-delay-1 {
+  animation-delay: 0.6s;
+}
+
+.fade-rise-delay-2 {
+  animation-delay: 0.7s;
+}
+
+.title-button {
+  background-color: #242924;
+  color: #e6f5e3;
+  border: none;
+  border-radius: 1rem;
+  padding: 1rem 1.4rem;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 700;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.title-button:hover {
+  transform: translateY(-0.125rem);
+  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.25);
+}
+
+.title-button-icon {
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: -0.3rem;
+  margin-bottom: 0.1rem;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .waitlist-container {
+    padding: 1rem;
+  }
+
+  .waitlist-pill {
+    margin-top: 1.5rem;
+  }
+
+  .waitlist-pill-text {
+    font-size: 0.75rem;
+  }
+
+  .number-scroll span {
+    font-size: 0.75rem;
+  }
+
+  .title1 {
+    font-size: 2.5rem;
+    margin-top: 0.5rem;
+    gap: 0.5rem;
+  }
+
+  .title2 {
+    font-size: 2.8rem;
+    gap: 0.5rem;
+  }
+
+  .title2 .ment-text {
+    font-size: 2rem;
+  }
+
+  .title-button {
+    padding: 0.8rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .title-button-icon {
+    font-size: 1rem;
+  }
+
+  /* WAITLIST BOX */
+  .waitlist-box {
+    flex-direction: column;
+    min-height: auto;
+    gap: 1rem;
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .waitlist-header {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+
+  .waitlist-left-panel {
+    padding: 1rem;
+  }
+
+  .waitlist-left-panel input {
+    padding: 1rem 1rem;
+    font-size: 1rem;
+  }
+}

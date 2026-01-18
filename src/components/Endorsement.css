@@ -1,0 +1,120 @@
+.endorsement-section {
+  margin-top: 3rem;
+  margin-bottom: 0rem;
+  text-align: center;
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  animation: fadeRise 0.3s ease-out 0.8s forwards;
+}
+
+.endorsement-header {
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 600;
+  font-size: 1.7rem;
+  color: #0f3a1e;
+  margin: 0 0 0rem 0;
+  margin-bottom: 1rem;
+}
+
+.university-logos-container {
+  width: 100%;
+  max-width: 1070px;
+  overflow: hidden;
+  position: relative;
+  height: 13rem;
+  border-radius: 2.5rem;
+  background: rgb(255, 255, 255);
+  padding: 2rem;
+  box-sizing: border-box;
+  border: 0.0625rem solid rgba(0, 0, 0, 0.08);
+}
+
+.university-logos-container::after {
+  content: '';
+  position: absolute;
+  right: 0rem;
+  top: 0rem;
+  width: 6rem;
+  height: 100%;
+  background: linear-gradient(to left, rgb(255, 255, 255), rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
+  pointer-events: none;
+  z-index: 2;
+  border-radius: 0 2.5rem 2.5rem 0;
+}
+
+.university-logos-container::before {
+  content: '';
+  position: absolute;
+  left: 0rem;
+  top: 0rem;
+  width: 6rem;
+  height: 100%;
+  background: linear-gradient(to right, rgb(255, 255, 255), rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
+  pointer-events: none;
+  z-index: 2;
+  border-radius: 2.5rem 0 0 2.5rem;
+}
+
+.university-logos-row {
+  display: flex;
+  gap: 3rem;
+  position: relative;
+  height: 6rem;
+  width: max-content;
+  align-items: center;
+  animation: scrollHorizontalLogos 30s linear infinite;
+  will-change: transform;
+}
+
+.university-logo {
+  height: 12rem;
+  width: 12rem;
+  object-fit: contain;
+  flex-shrink: 0;
+  filter: grayscale(0);
+  opacity: 0.6;
+  transition: all 0.3s ease;
+}
+
+.university-logo:hover {
+  filter: grayscale(0);
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+@keyframes scrollHorizontalLogos {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-33.333%);
+  }
+}
+
+@media (max-width: 768px) {
+  .endorsement-section {
+    margin-top: 2rem;
+    padding: 0 1rem;
+  }
+
+  .endorsement-header {
+    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .university-logos-container {
+    height: 8rem;
+    padding: 1rem;
+    border-radius: 1.5rem;
+  }
+
+  .university-logo {
+    height: 6rem;
+    width: 6rem;
+    gap: 1.5rem;
+  }
+}

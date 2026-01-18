@@ -1,0 +1,51 @@
+.footer {
+  background: transparent;
+  color: white;
+  margin-top: 7rem;
+  padding-bottom: 0rem;
+  margin-bottom: 0rem;
+  overflow: hidden;
+  opacity: 0;
+  animation: fadeRise 0.3s ease-out 1s forwards;
+}
+
+.footer-text {
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 1000;
+  font-size: 17.7rem;
+  background: linear-gradient(to bottom, #6fa2654c 15%, #e6f5e3 75%);
+  background-size: 80% 90%;
+  background-position: 0 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding: 0;
+  color: transparent;
+  margin-bottom: -4.5rem;
+  text-align: center;
+  padding-bottom: 0;
+  line-height: 1;
+  overflow: hidden;
+}
+
+.wave-decoration-footer {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0;
+  padding: 0;
+  margin-bottom: -6rem;
+  margin-top: -6.5rem;
+}
+
+@media (max-width: 768px) {
+  .footer-text {
+    font-size: 5rem;
+    margin-bottom: -1.5rem;
+  }
+
+  .wave-decoration-footer {
+    margin-bottom: -2rem;
+    margin-top: -2rem;
+  }
+}
