@@ -14,8 +14,14 @@ function FeaturesCarousel({
   return (
     <>
       <div className="section-header">
-        <h3 className="features-subtitle">More Features</h3>
-        <h1 className='feature-title'>Cook. Share. Plan.<br></br>Built for how <span className="you-highlight">you</span> munch.</h1>
+        <div className="carousel-title-container">
+          <div className="carousel-title-boxes">
+            <span className="carousel-title-box" style={{ transform: 'rotate(-2deg)', display: 'inline-block' }}>Cook.</span>
+            <span className="carousel-title-box" style={{ transform: 'rotate(2deg)', display: 'inline-block' }}>Share.</span>
+            <span className="carousel-title-box" style={{ transform: 'rotate(-1deg)', display: 'inline-block' }}>Plan.</span>
+          </div>
+          <h1 className='feature-title'>Built for how <span className="you-highlight">you</span> munch.</h1>
+        </div>
       </div>
       <div id="features" className="features-carousel" 
         ref={carouselRef}

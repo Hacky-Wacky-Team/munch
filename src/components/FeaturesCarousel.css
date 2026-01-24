@@ -4,7 +4,7 @@
   overflow-x: hidden;
   overflow-y: visible;
   padding: 2rem 0;
-  margin-top: -3rem;
+  margin-top: -2rem;
 }
 
 .custom-carousel-cursor {
@@ -160,24 +160,8 @@
   line-height: 1.5rem;
 }
 
-.features-subtitle {
-  font-family: 'Nunito Sans', sans-serif;
-  font-weight: 700;
-  font-size: 1.0rem;
-  color: #242924e8;
-  margin: 0 auto -2rem auto;
-  text-transform: uppercase;
-  letter-spacing: 0.1rem;
-  text-align: center;
-  background: #8fd5835c;
-  padding: 0.6rem 1.3rem;
-  border-radius: 50rem;
-  display: inline-block;
-  width: auto;
-}
-
 .feature-title {
-  font-size: 3.5rem;
+  font-size: 4rem;
   margin-bottom: 4rem;
   background: #242924;
   -webkit-background-clip: text;
@@ -187,6 +171,37 @@
   font-family: 'Nunito Sans', sans-serif !important;
   font-weight: 800 !important;
   z-index: 1;
+}
+
+.carousel-title-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+    margin-top: calc(103rem - 100vh);
+}
+
+.carousel-title-boxes {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: -2.7rem;
+}
+
+.carousel-title-box {
+  background-color: #ffffff;
+  color: #214221;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 700;
+  font-size: 3rem;
+  padding: 0.7rem 3rem;
+  border-radius: 2.3rem;
+  display: inline-block;
+  text-align: center;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .feature-title-bottom {
@@ -271,17 +286,26 @@
     margin-top: 1rem;
   }
 
+  .carousel-title-container {
+    margin-top: calc(68rem - 100vh);
+  }
+
+  .carousel-title-box {
+    font-size: 2rem;
+    padding: 0.6rem 2rem;
+    border-radius: 1.5rem;
+  }
+
+  .carousel-title-boxes {
+    gap: 1rem;
+  }
+
   .feature-title-bottom {
     font-size: 2.25rem;
     padding-left: 1rem;
     padding-right: 1rem;
     margin-bottom: 3rem;
     margin-top: 1rem;
-  }
-
-  .features-subtitle {
-    font-size: 0.7rem;
-    margin: -3rem auto -1rem auto;
   }
 
   .feature1,
@@ -334,5 +358,30 @@
   .carousel-dot {
     width: 0.6rem;
     height: 0.6rem;
+  }
+
+  .carousel-title-box {
+    font-size: 1.6rem;
+    padding: 0.5rem 1.3rem;
+    border-radius: 1.1rem;
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 426px) {
+    .carousel-title-container {
+    margin-top: calc(65rem - 100vh);
+  }
+}
+
+@media (max-width: 415px) {
+    .carousel-title-container {
+    margin-top: calc(60rem - 100vh);
+  }
+}
+
+@media (max-width: 400px) {
+    .carousel-title-container {
+    margin-top: calc(58rem - 100vh);
   }
 }

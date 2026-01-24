@@ -2,12 +2,17 @@
   margin-top: 3rem;
   margin-bottom: 0rem;
   text-align: center;
-  padding: 0 2rem;
+  padding: 0 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   opacity: 0;
   animation: fadeRise 0.3s ease-out 0.8s forwards;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .endorsement-header {
@@ -101,9 +106,13 @@
   }
 
   .endorsement-section {
-    padding: 0 0rem;
+    padding: 0 1rem;
     margin-top: 1rem;
     width: 100%;
+    box-sizing: border-box;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .university-logos-container {

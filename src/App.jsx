@@ -388,9 +388,6 @@ function App() {
           showBottomVersion={false}
         />
 
-        {/* ENDORSEMENT SECTION */}
-        <Endorsement />
-
         {/* SCROLLING FEATURE SECTION */}
         <ScrollingFeature />
       </div>
@@ -410,28 +407,18 @@ function App() {
         scrollToFeature={scrollToFeature}
       />
 
-      {/* BOTTOM WAITLIST BOX */}
-      <div className="main-content-bottom">
-        <div className="section-header-bottom">
-          <h1 className='feature-title-bottom'>Get <span className="early-highlight">early</span> access.</h1>
-        </div>
-        <Waitlist
-          name={name}
-          email={email}
-          isSubmitting={isSubmitting}
-          waitlistCount={waitlistCount}
-          digitOffsets={digitOffsets}
-          isAnimating={isAnimating}
-          getDigits={getDigits}
-          onNameChange={(e) => setName(e.target.value)}
-          onEmailChange={(e) => setEmail(e.target.value)}
-          onSubmit={handleJoinWaitlist}
-          showBottomVersion={true}
-        />
-      </div>
+              {/* ENDORSEMENT SECTION */}
+        <Endorsement />
 
       {/* FOOTER */}
-      <Footer />
+      <Footer 
+        name={name}
+        email={email}
+        isSubmitting={isSubmitting}
+        onNameChange={(e) => setName(e.target.value)}
+        onEmailChange={(e) => setEmail(e.target.value)}
+        onSubmit={handleJoinWaitlist}
+      />
 
       {/* Toast notification */}
       {showToast && (

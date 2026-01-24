@@ -1,3 +1,5 @@
+import { useState, useEffect, useRef } from 'react'
+import { gsap } from 'gsap'
 import { HiSparkles } from 'react-icons/hi'
 import { LuChefHat } from 'react-icons/lu'
 import { FiSearch } from 'react-icons/fi'
@@ -7,96 +9,317 @@ import { FaStar } from 'react-icons/fa'
 import { FaEarthAmericas } from 'react-icons/fa6'
 import { PiPaperPlaneTiltFill } from 'react-icons/pi'
 import './BigFeature.css'
+import ImmersiveFeature from './ImmersiveFeature'
+import BigFeatureFeed from './BigFeatureFeed'
+import CameraIcon from "@/components/ui/camera-icon";
+import BounceCards from './BounceCards';
 
 function BigFeature() {
-  return (
-    <>
-      {/* DARK BIG FEATURE SECTION (AI CAMERA) */}
-      <svg className="wave-decoration-top" width="100%" height="200" viewBox="0 0 1440 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-        <path d="M 0,200 L 0,100 C 18.463793598560997,63.257543268950175 36.927587197121994,26.515086537900353 63,12.75 C 89.072412802878,-1.0150865379003534 122.75344481007303,8.233947183848759 148,11.25 C 173.24655518992697,14.266052816151241 190.05863356258584,11.059124745704609 214,10.75 C 237.94136643741416,10.440875254295391 269.01202093958364,13.027553833332801 296,13.5 C 322.98797906041636,13.972446166667199 345.8932826790797,12.330159920964188 367,14 C 388.1067173209203,15.669840079035812 407.4148483440976,20.651806482810439 433,21.5 C 458.5851516559024,22.348193517189561 490.44732394453,19.062614147794048 514,19.5 C 537.55267605547,19.937385852205952 552.7958558777825,24.097736926013368 573,22.25 C 593.2041441222175,20.402263073986632 618.36925254434,12.546438148152481 645,12.25 C 671.63074745566,11.953561851847519 699.7271339448572,19.216510481376721 726,19.5 C 752.2728660551428,19.783489518623279 776.7222116762315,13.087519926340635 796,10.75 C 815.2777883237685,8.412480073659365 829.3840193502172,10.433409813260735 853,13.5 C 876.6159806497828,16.566590186739265 909.7417109228998,20.678840820616433 934,18.75 C 958.2582890771002,16.821159179383567 973.6491369581837,8.851226904273542 996,7.75 C 1018.3508630418163,6.648773095726458 1047.661741244365,12.416251562289403 1076,15 C 1104.338258755635,17.583748437710597 1131.7038980643551,16.983768465688863 1156,17.25 C 1180.2961019356449,17.516231534311137 1201.5226664982142,18.648681051435147 1221,17.25 C 1240.4773335017858,15.851318948564853 1258.2054359427887,11.921508947690538 1284,8.5 C 1309.7945640572113,5.078491052309462 1343.6555897306318,2.165283157802705 1371,17.5 C 1398.3444102693682,32.834716842197295 1419.1722051346842,66.41735842109864 1440,100 L 1440,200 L 0,200 Z" stroke="none" strokeWidth="0" fill="#181b18" fillOpacity="1"></path>
-      </svg>
-      <div className="dark-background-section">
-        
-        <div className="section-header">
-          <HiSparkles className="section-sparkle-icon" />
-          <h1 className="section-title">Just a snap away from delicious recipes.</h1>
-        </div>
-        <svg className="wave-decoration" width="100%" height="100%" viewBox="0 0 1440 390" xmlns="http://www.w3.org/2000/svg">
-          <path d="M 0,400 L 0,400 C 18.463793598560997,253.0091730378007 36.927587197121994,106.01834607560141 63,51 C 89.072412802878,-4.018346075601419 122.75344481007303,32.935788735395036 148,45 C 173.24655518992697,57.064211264604964 190.05863356258584,44.23849898281844 214,43 C 237.94136643741416,41.76150101718156 269.01202093958364,52.110215333331205 296,54 C 322.98797906041636,55.889784666668795 345.8932826790797,49.320639683856754 367,56 C 388.1067173209203,62.679360316143246 407.4148483440976,82.60722593124176 433,86 C 458.5851516559024,89.39277406875824 490.44732394453,76.25045659117619 514,78 C 537.55267605547,79.74954340882381 552.7958558777825,96.39094770405347 573,89 C 593.2041441222175,81.60905229594653 618.36925254434,50.18575259260992 645,49 C 671.63074745566,47.81424740739008 699.7271339448572,76.86604192550688 726,78 C 752.2728660551428,79.13395807449312 776.7222116762315,52.35007970536254 796,43 C 815.2777883237685,33.64992029463746 829.3840193502172,41.73363925304294 853,54 C 876.6159806497828,66.26636074695706 909.7417109228998,82.71536328246573 934,75 C 958.2582890771002,67.28463671753427 973.6491369581837,35.40490761709417 996,31 C 1018.3508630418163,26.595092382905836 1047.661741244365,49.665006249157614 1076,60 C 1104.338258755635,70.33499375084239 1131.7038980643551,67.93506738627545 1156,69 C 1180.2961019356449,70.06493261372455 1201.5226664982142,74.59472420574059 1221,69 C 1240.4773335017858,63.4052757942594 1258.2054359427887,47.68603579076215 1284,34 C 1309.7945640572113,20.313964209237856 1343.6555897306318,8.661132631210819 1371,70 C 1398.3444102693682,131.33886736878918 1419.1722051346842,265.66943368439456 1440,400 L 1440,400 L 0,400 Z" stroke="none" strokeWidth="0" fill="#00d084" fillOpacity="0.265" className="transition-all duration-300 ease-in-out delay-150 path-0"></path>
-          <path d="M 0,400 L 0,400 C 22.170799786982634,289.1886992235848 44.34159957396527,178.37739844716958 68,134 C 91.65840042603473,89.6226015528304 116.80440149112158,111.67910543490643 139,128 C 161.19559850887842,144.32089456509357 180.4407944615484,154.9061798132047 207,164 C 233.5592055384516,173.0938201867953 267.4324206626849,180.69617531227482 295,169 C 322.5675793373151,157.30382468772518 343.829522887712,126.30911893769597 363,123 C 382.170477112288,119.69088106230403 399.2494877864671,144.06734893694127 425,149 C 450.7505122135329,153.93265106305873 485.17252596641936,139.4214853145389 512,137 C 538.8274740335806,134.5785146854611 558.0604083478553,144.24670980490316 582,138 C 605.9395916521447,131.75329019509684 634.5858406421594,109.59167546584843 654,113 C 673.4141593578406,116.40832453415157 683.5962290835074,145.38658833170317 708,154 C 732.4037709164926,162.61341166829683 771.0292430238112,150.86197120733885 797,141 C 822.9707569761888,131.13802879266115 836.2867988212478,123.16552683894147 861,122 C 885.7132011787522,120.83447316105853 921.8235616911979,126.47592143689522 945,137 C 968.1764383088021,147.52407856310478 978.4189544139608,162.93078741347767 1003,167 C 1027.5810455860392,171.06921258652233 1066.5006206529579,163.800928909194 1093,156 C 1119.4993793470421,148.199071090806 1133.5785629742074,139.86549694974633 1152,141 C 1170.4214370257926,142.13450305025367 1193.1851274502123,152.73708329182054 1217,154 C 1240.8148725497877,155.26291670817946 1265.680927224943,147.1861698829714 1292,127 C 1318.319072775057,106.81383011702862 1346.0911636500164,74.5182371762939 1371,118 C 1395.9088363499836,161.4817628237061 1417.9544181749918,280.740881411853 1440,400 L 1440,400 L 0,400 Z" stroke="none" strokeWidth="0" fill="#00d084" fillOpacity="0.4" className="transition-all duration-300 ease-in-out delay-150 path-1"></path>
-          <path d="M 0,400 L 0,400 C 29.665605275156445,330.1310251798286 59.33121055031289,260.2620503596572 81,226 C 102.66878944968711,191.73794964034275 116.34076307390487,193.08282374119963 138,209 C 159.65923692609513,224.91717625880037 189.3057371540676,255.40665467554422 215,249 C 240.6942628459324,242.59334532445578 262.4362883098248,199.29055755662358 284,197 C 305.5637116901752,194.70944244337642 326.9491096066332,233.43111509796148 349,234 C 371.0508903933668,234.56888490203852 393.76727326364227,196.98498205153058 418,190 C 442.23272673635773,183.01501794846942 467.9817973387977,206.6289566959163 498,209 C 528.0182026612023,211.3710433040837 562.305537381167,192.4991911648043 588,199 C 613.694462618833,205.5008088351957 630.7960531365344,237.3742786448665 650,241 C 669.2039468634656,244.6257213551335 690.5102500726954,220.0036942557297 716,221 C 741.4897499273046,221.9963057442703 771.1629465726835,248.61094433221464 792,246 C 812.8370534273165,243.38905566778536 824.8379636365707,211.5525284154119 852,208 C 879.1620363634293,204.4474715845881 921.4851988810339,229.17894200613773 947,241 C 972.5148011189661,252.82105799386227 981.2212408392945,251.73170356003726 999,243 C 1016.7787591607055,234.26829643996274 1043.6298377617877,217.89424375371317 1073,219 C 1102.3701622382123,220.10575624628683 1134.2594081135542,238.69132142510998 1158,237 C 1181.7405918864458,235.30867857489002 1197.3325297839958,213.34047054584684 1223,216 C 1248.6674702160042,218.65952945415316 1284.4104727504628,245.94679639150277 1309,247 C 1333.5895272495372,248.05320360849723 1347.0255792141534,222.87234388814204 1367,244 C 1386.9744207858466,265.12765611185796 1413.4872103929233,332.563828055929 1440,400 L 1440,400 L 0,400 Z" stroke="none" strokeWidth="0" fill="#00d084" fillOpacity="0.53" className="transition-all duration-300 ease-in-out delay-150 path-2"></path>
-          <path d="M 0,400 L 0,400 C 25.269888349672257,368.05887768716656 50.539776699344515,336.1177553743331 72,323 C 93.46022330065549,309.8822446256669 111.11078155229421,315.5878561898342 134,311 C 156.8892184477058,306.4121438101658 185.01709709147863,291.5308198663299 211,292 C 236.98290290852137,292.4691801336701 260.8208300817912,308.28886434484616 286,316 C 311.1791699182088,323.71113565515384 337.69958258135654,323.3137227542854 360,324 C 382.30041741864346,324.6862772457146 400.38083959278254,326.45624463801227 422,316 C 443.61916040721746,305.54375536198773 468.7770590475135,282.8612986936654 494,283 C 519.2229409524865,283.1387013063346 544.5109242171638,306.098560587326 571,305 C 597.4890757828362,303.901439412674 625.1792440838307,278.74445895703064 651,276 C 676.8207559161693,273.25554104296936 700.7720994475137,292.92360358455153 721,292 C 741.2279005524863,291.07639641544847 757.7323581261143,269.56112670476324 781,275 C 804.2676418738857,280.43887329523676 834.2984680480293,312.8318895963955 862,324 C 889.7015319519707,335.1681104036045 915.0737696817686,325.11131490965477 941,312 C 966.9262303182314,298.88868509034523 993.406453224897,282.7228507649854 1015,277 C 1036.593546775103,271.2771492350146 1053.3004174186435,275.9972820304036 1078,289 C 1102.6995825813565,302.0027179695964 1135.3918771005292,323.28802111340013 1161,318 C 1186.6081228994708,312.71197888659987 1205.1320741792395,280.8506335159958 1226,277 C 1246.8679258207605,273.1493664840042 1270.0798261825125,297.3094448226165 1291,295 C 1311.9201738174875,292.6905551773835 1330.5486210907106,263.91158719353814 1355,277 C 1379.4513789092894,290.08841280646186 1409.7256894546447,345.04420640323093 1440,400 L 1440,400 L 0,400 Z" stroke="none" strokeWidth="0" fill="#00d084" fillOpacity="1" className="transition-all duration-300 ease-in-out delay-150 path-3"></path>
-        </svg>
-        <div className='big-feature-camera'>
-          <div className='big-feature-content-camera'>
-            <h2 className="big-feature-camera-upper-h2">CAPTURE</h2>
-            <h2><span className="camera-ai-highlight">AI-Powered</span> Camera</h2>
-            <p>Take a photo of your ingredients and let Munch do the rest. Discover recipes tailored to what you have on hand, making meal prep effortless and fun.</p>
-            <div className="big-feature-badges">
-              <div className="big-feature-badges-row">
-                <div className="big-feature-badge">
-                  <HiSparkles className="badge-icon" />
-                  <span className="badge-text">AI-Powered<br/></span>
-                </div>
-                <div className="big-feature-badge">
-                  <FiSearch className="badge-icon" />
-                  <span className="badge-text">Ingredient Recognition</span>
-                </div>
-              </div>
-              <div className="big-feature-badges-row">
-                <div className="big-feature-badge">
-                  <IoLeaf className="badge-icon" />
-                  <span className="badge-text">Zero-Waste Cooking</span>
-                </div>
-                <div className="big-feature-badge">
-                  <GiChefToque className="badge-icon" />
-                  <span className="badge-text">Personalized Recipes</span>
-                </div>
-              </div>
+    const [sparklesAnimated, setSparklesAnimated] = useState(false)
+    const cameraContainerRef = useRef(null)
+    const sparklesRef = useRef([])
+
+    const features = [
+        {
+            title: 'Ingredient Recognition',
+            description: 'Our AI model intelligently recognizes the ingredients in your image, allowing you to effortlessly determine recipes that work for you.',
+            image: 'images/ingredientrecognition.svg'
+        },
+        {
+            title: 'Personalized Recipes',
+            description: 'Using the recognized ingredients, we tailor your recipes to what you have at the moment. No more missing ingredients.',
+            image: 'images/findnewrecipes.png'
+        },
+        {
+            title: 'Zero-waste Cooking',
+            description: 'Got random ingredients at the end of the week? Munch can help you use them up in a single recipe so you can reduce food waste.',
+            image: 'images/zerowastecooking.svg'
+        },
+        {
+            title: 'AI-Powered Magic',
+            description: 'We use the latest AI vision models for the most accurate image recognition, powering a smarter recipe discovery.',
+            image: 'images/aipoweredmagic.svg'
+        }
+    ];
+
+    // Animate sparkles when section comes into view
+    useEffect(() => {
+        if (sparklesAnimated || !cameraContainerRef.current) return
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting && !sparklesAnimated) {
+                        setSparklesAnimated(true)
+                        observer.disconnect()
+
+                        // Animate each sparkle to its final position
+                        sparklesRef.current.forEach((sparkle, index) => {
+                            if (sparkle) {
+                                const isMobile = window.innerWidth <= 768
+                                let finalLeft, finalRight, finalTop, finalBottom, finalRotate, finalScale
+
+                                if (isMobile) {
+                                    const styles = getComputedStyle(sparkle)
+                                    finalLeft = styles.getPropertyValue('--mobile-final-left').trim() || sparkle.dataset.finalLeft
+                                    finalRight = styles.getPropertyValue('--mobile-final-right').trim() || sparkle.dataset.finalRight
+                                    finalTop = styles.getPropertyValue('--mobile-final-top').trim() || sparkle.dataset.finalTop
+                                    finalBottom = styles.getPropertyValue('--mobile-final-bottom').trim() || sparkle.dataset.finalBottom
+                                    const rotateStr = styles.getPropertyValue('--mobile-final-rotate').trim()
+                                    finalRotate = rotateStr ? rotateStr.replace('deg', '') : sparkle.dataset.finalRotate
+                                    finalScale = styles.getPropertyValue('--mobile-final-scale').trim() || sparkle.dataset.finalScale
+                                } else {
+                                    finalLeft = sparkle.dataset.finalLeft
+                                    finalRight = sparkle.dataset.finalRight
+                                    finalTop = sparkle.dataset.finalTop
+                                    finalBottom = sparkle.dataset.finalBottom
+                                    finalRotate = sparkle.dataset.finalRotate
+                                    finalScale = sparkle.dataset.finalScale
+                                }
+
+                                const animationProps = {
+                                    xPercent: 0,
+                                    yPercent: 0,
+                                    rotation: parseFloat(finalRotate),
+                                    scale: parseFloat(finalScale),
+                                    opacity: 1,
+                                    duration: 0.8,
+                                    delay: index * 0.08,
+                                    ease: 'back.out(1.7)'
+                                }
+
+                                // Set left or right
+                                if (finalLeft) animationProps.left = finalLeft
+                                if (finalRight) animationProps.right = finalRight
+
+                                // Set top or bottom
+                                if (finalTop) animationProps.top = finalTop
+                                if (finalBottom) animationProps.bottom = finalBottom
+
+                                gsap.fromTo(
+                                    sparkle,
+                                    {
+                                        left: '50%',
+                                        top: '50%',
+                                        xPercent: -50,
+                                        yPercent: -50,
+                                        rotation: 0,
+                                        scale: 0,
+                                        opacity: 0
+                                    },
+                                    animationProps
+                                )
+                            }
+                        })
+                    }
+                })
+            },
+            { threshold: 0.8 }
+        )
+
+        if (cameraContainerRef.current) {
+            observer.observe(cameraContainerRef.current)
+        }
+
+        return () => observer.disconnect()
+    }, [sparklesAnimated])
+
+    return (
+        <>
+            {/* AI CAMERA SECTION */}
+            <div className="section-header-dark-section-top">
+                {typeof window !== 'undefined' && window.innerWidth <= 768 ? (
+                    <h1 className="section-title-dark-section-top" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.2em' }}>
+                        <div style={{ display: 'flex', flexDirection: 'row', gap: '0.3em', justifyContent: 'center', width: '100%' }}>
+                            <span className="dark-section-title-box" style={{ transform: 'rotate(4deg)', display: 'inline-block', backgroundColor: '#ffffff' }}>your</span>
+                            <span className="dark-section-title-box" style={{ transform: 'rotate(-3deg)', display: 'inline-block', backgroundColor: '#ffffff' }}>camera</span>
+                        </div>
+                        <div style={{ display: 'flex', flexDirection: 'row', gap: '0.3em', justifyContent: 'center', width: '100%' }}>
+                            <CameraIcon size={55} color="#214221" className="mt-[-3px] ml-[0px] mr-[0px] " />
+                            <span className="dark-section-title-box" style={{ transform: 'rotate(3deg)', display: 'inline-block', color: '#ffffff', backgroundColor: '#6ed26e' }}>upgraded</span>
+                        </div>
+                    </h1>
+                ) : (
+                    <h1 className="section-title-dark-section-top">
+                        <span className="dark-section-title-box" style={{ transform: 'rotate(5deg)', display: 'inline-block', backgroundColor: '#ffffff' }}>your</span>
+                        {' '}
+                        <span className="dark-section-title-box" style={{ transform: 'rotate(-4deg)', display: 'inline-block', backgroundColor: '#ffffff' }}>camera,</span>
+                        <CameraIcon size={120} color="#214221" className="mb-[-24px] ml-[28px] mr-[5px] " />
+                        {' '}
+                        <span className="dark-section-title-box" style={{ transform: 'rotate(5deg)', display: 'inline-block', color: '#ffffff', backgroundColor: '#6ed26e' }}>upgraded</span>
+                    </h1>
+                )}
             </div>
-            <img src="mockups/cameramockup2.png" alt="Camera Mockup" className="big-feature-mockup-camera" />
-          </div>
-        </div>
-        <div className="section-header">
-          <LuChefHat className="section-chef-icon" />
-          <h1 className="section-title">Always one scroll away from your next meal.</h1>
-        </div>
-        <div className='big-feature-feed'>
-          <div className='big-feature-content-feed'>
-            <h2 className="big-feature-camera-upper-h2">DISCOVER</h2>
-            <h2><span className="feed-highlight">Personalized</span> Feed</h2>
-            <p>View what your friends are cooking and get real time inspiration! Share your food pics and discover new recipes together.</p>
-            <div className="big-feature-badges">
-              <div className="big-feature-badges-row">
-                <div className="big-feature-badge">
-                  <FaStar className="badge-icon" />
-                  <span className="badge-text">Cook up Inspiration</span>
+            {/* IMMERSIVE FEATURE SECTION */}
+            <ImmersiveFeature />
+
+            {/* RADIAL GRADIENT DECORATION */}
+            <svg className="radial-gradient-decoration" xmlns="http://www.w3.org/2000/svg" width="1568" height="1003" viewBox="0 0 1568 1003" fill="none">
+                <g filter="url(#filter0_n_809_35)">
+                    <g clipPath="url(#paint0_diamond_809_35_clip_path)" data-figma-skip-parse="true">
+                        <g transform="matrix(3.33275e-08 -0.5125 3.01975 1.96372e-07 784 531)">
+                            <rect x="0" y="0" width="1036.1" height="259.624" fill="url(#paint0_diamond_809_35)" opacity="1" shapeRendering="crispEdges" />
+                            <rect x="0" y="0" width="1036.1" height="259.624" transform="scale(1 -1)" fill="url(#paint0_diamond_809_35)" opacity="1" shapeRendering="crispEdges" />
+                            <rect x="0" y="0" width="1036.1" height="259.624" transform="scale(-1 1)" fill="url(#paint0_diamond_809_35)" opacity="1" shapeRendering="crispEdges" />
+                            <rect x="0" y="0" width="1036.1" height="259.624" transform="scale(-1)" fill="url(#paint0_diamond_809_35)" opacity="1" shapeRendering="crispEdges" />
+                        </g>
+                    </g>
+                    <rect width="1568" height="1003" data-figma-gradient-fill="{&quot;type&quot;:&quot;GRADIENT_DIAMOND&quot;,&quot;stops&quot;:[{&quot;color&quot;:{&quot;r&quot;:0.90489780902862549,&quot;g&quot;:0.88989263772964478,&quot;b&quot;:0.45474311709403992,&quot;a&quot;:0.87999999523162842},&quot;position&quot;:0.13942307233810425},{&quot;color&quot;:{&quot;r&quot;:0.014114090241491795,&quot;g&quot;:0.58259463310241699,&quot;b&quot;:0.080436833202838898,&quot;a&quot;:0.28999999165534973},&quot;position&quot;:0.67307692766189575},{&quot;color&quot;:{&quot;r&quot;:0.90196079015731812,&quot;g&quot;:0.96078431606292725,&quot;b&quot;:0.89019608497619629,&quot;a&quot;:0.31000000238418579},&quot;position&quot;:1.0}],&quot;stopsVar&quot;:[{&quot;color&quot;:{&quot;r&quot;:0.90489780902862549,&quot;g&quot;:0.88989263772964478,&quot;b&quot;:0.45474311709403992,&quot;a&quot;:0.87999999523162842},&quot;position&quot;:0.13942307233810425},{&quot;color&quot;:{&quot;r&quot;:0.014114090241491795,&quot;g&quot;:0.58259463310241699,&quot;b&quot;:0.080436833202838898,&quot;a&quot;:0.28999999165534973},&quot;position&quot;:0.67307692766189575},{&quot;color&quot;:{&quot;r&quot;:0.90196079015731812,&quot;g&quot;:0.96078431606292725,&quot;b&quot;:0.89019608497619629,&quot;a&quot;:0.31000000238418579},&quot;position&quot;:1.0}],&quot;transform&quot;:{&quot;m00&quot;:6.6654938564170152e-05,&quot;m01&quot;:6039.503906250,&quot;m02&quot;:-2235.7521972656250,&quot;m10&quot;:-1025.0,&quot;m11&quot;:0.00039274411392398179,&quot;m12&quot;:1043.4998779296875},&quot;opacity&quot;:1.0,&quot;blendMode&quot;:&quot;NORMAL&quot;,&quot;visible&quot;:true}" />
+                </g>
+                <defs>
+                    <filter id="filter0_n_809_35" x="0" y="0" width="1568" height="1003" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                        <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+                        <feTurbulence type="fractalNoise" baseFrequency="2 2" stitchTiles="stitch" numOctaves="3" result="noise" seed="4929" />
+                        <feColorMatrix in="noise" type="luminanceToAlpha" result="alphaNoise" />
+                        <feComponentTransfer in="alphaNoise" result="coloredNoise1">
+                            <feFuncA type="discrete" tableValues="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 " />
+                        </feComponentTransfer>
+                        <feComposite operator="in" in2="shape" in="coloredNoise1" result="noise1Clipped" />
+                        <feFlood floodColor="rgba(0, 0, 0, 0.04)" result="color1Flood" />
+                        <feComposite operator="in" in2="noise1Clipped" in="color1Flood" result="color1" />
+                        <feMerge result="effect1_noise_809_35">
+                            <feMergeNode in="shape" />
+                            <feMergeNode in="color1" />
+                        </feMerge>
+                    </filter>
+                    <clipPath id="paint0_diamond_809_35_clip_path">
+                        <rect width="1568" height="1003" />
+                    </clipPath>
+                    <linearGradient id="paint0_diamond_809_35" x1="0" y1="0" x2="500" y2="500" gradientUnits="userSpaceOnUse">
+                        <stop offset="0.139423" stopColor="#E7E374" stopOpacity="0.88" />
+                        <stop offset="0.673077" stopColor="#049515" stopOpacity="0.29" />
+                        <stop offset="1" stopColor="#E6F5E3" stopOpacity="0.31" />
+                    </linearGradient>
+                </defs>
+            </svg>
+
+            <div className="section-header-camera" ref={cameraContainerRef}>
+                {/* Sparkle SVGs */}
+                <svg
+                    ref={el => sparklesRef.current[0] = el}
+                    className="camera-sparkle camera-sparkle-0"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="131"
+                    height="131"
+                    viewBox="0 0 131 131"
+                    fill="none"
+                    style={{ opacity: 0 }}
+                    data-final-left="18%"
+                    data-final-top="37%"
+                    data-final-rotate="2"
+                    data-final-scale="1"
+                >
+                    <path d="M79.706 78.5487L79.1938 90.1633C78.8308 98.3966 78.6492 102.513 77.166 103.906C75.8855 105.108 74.068 105.55 72.3783 105.07C70.4212 104.515 68.3689 100.942 64.2644 93.7952L58.4742 83.7139C57.6742 82.3211 57.2743 81.6247 56.7172 81.108C56.2241 80.6506 55.6439 80.2975 55.0111 80.0696C54.2963 79.8121 53.494 79.7767 51.8894 79.706L40.2748 79.1938C32.0415 78.8308 27.9249 78.6492 26.5324 77.1661C25.3301 75.8855 24.888 74.068 25.3677 72.3783C25.9232 70.4212 29.4965 68.3689 36.6429 64.2644L46.7243 58.4742C48.117 57.6743 48.8134 57.2743 49.3301 56.7172C49.7875 56.2242 50.1407 55.6439 50.3686 55.0111C50.626 54.2963 50.6614 53.494 50.7321 51.8894L51.2443 40.2748C51.6074 32.0415 51.7889 27.9249 53.2721 26.5324C54.5526 25.3301 56.3701 24.888 58.0598 25.3677C60.0169 25.9232 62.0692 29.4965 66.1737 36.6429L66.1738 36.6429L71.9639 46.7243C72.7639 48.1171 73.1639 48.8134 73.7209 49.3302C74.214 49.7875 74.7942 50.1407 75.427 50.3686C76.1418 50.626 76.9441 50.6614 78.5487 50.7322L90.1633 51.2443C98.3966 51.6074 102.513 51.7889 103.906 53.2721C105.108 54.5526 105.55 56.3701 105.07 58.0599C104.515 60.0169 100.942 62.0692 93.7952 66.1738L83.7138 71.964C82.3211 72.7639 81.6247 73.1639 81.108 73.7209C80.6506 74.214 80.2974 74.7943 80.0696 75.427C79.8121 76.1419 79.7767 76.9441 79.706 78.5487Z" stroke="white" strokeWidth="3" />
+                    <path d="M79.9965 76.9371L78.8246 100.327C78.5801 105.207 72.2005 106.875 69.5987 102.739L56.8241 82.432C55.9774 81.0861 54.5411 80.2231 52.9552 80.1076L29.676 78.4114C24.831 78.0584 23.2844 71.7012 27.4258 69.162L47.3012 56.9762C48.6698 56.137 49.5523 54.6918 49.6734 53.091L51.4172 30.0537C51.7828 25.224 58.1149 23.6836 60.6582 27.8056L72.785 47.46C73.6305 48.8304 75.0843 49.7097 76.6907 49.8223L100.149 51.4662C105.009 51.8068 106.561 58.1887 102.401 60.7238L82.3886 72.9175C80.975 73.7788 80.0793 75.2839 79.9965 76.9371Z" fill="white" />
+                </svg>
+
+                <svg
+                    ref={el => sparklesRef.current[1] = el}
+                    className="camera-sparkle camera-sparkle-1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="131"
+                    height="131"
+                    viewBox="0 0 131 131"
+                    fill="none"
+                    style={{ opacity: 0 }}
+                    data-final-left="23%"
+                    data-final-top="18%"
+                    data-final-rotate="24.264"
+                    data-final-scale="1.3"
+                >
+                    <path d="M79.706 78.5487L79.1938 90.1633C78.8308 98.3966 78.6492 102.513 77.166 103.906C75.8855 105.108 74.068 105.55 72.3783 105.07C70.4212 104.515 68.3689 100.942 64.2644 93.7952L58.4742 83.7139C57.6742 82.3211 57.2743 81.6247 56.7172 81.108C56.2241 80.6506 55.6439 80.2975 55.0111 80.0696C54.2963 79.8121 53.494 79.7767 51.8894 79.706L40.2748 79.1938C32.0415 78.8308 27.9249 78.6492 26.5324 77.1661C25.3301 75.8855 24.888 74.068 25.3677 72.3783C25.9232 70.4212 29.4965 68.3689 36.6429 64.2644L46.7243 58.4742C48.117 57.6743 48.8134 57.2743 49.3301 56.7172C49.7875 56.2242 50.1407 55.6439 50.3686 55.0111C50.626 54.2963 50.6614 53.494 50.7321 51.8894L51.2443 40.2748C51.6074 32.0415 51.7889 27.9249 53.2721 26.5324C54.5526 25.3301 56.3701 24.888 58.0598 25.3677C60.0169 25.9232 62.0692 29.4965 66.1737 36.6429L66.1738 36.6429L71.9639 46.7243C72.7639 48.1171 73.1639 48.8134 73.7209 49.3302C74.214 49.7875 74.7942 50.1407 75.427 50.3686C76.1418 50.626 76.9441 50.6614 78.5487 50.7322L90.1633 51.2443C98.3966 51.6074 102.513 51.7889 103.906 53.2721C105.108 54.5526 105.55 56.3701 105.07 58.0599C104.515 60.0169 100.942 62.0692 93.7952 66.1738L83.7138 71.964C82.3211 72.7639 81.6247 73.1639 81.108 73.7209C80.6506 74.214 80.2974 74.7943 80.0696 75.427C79.8121 76.1419 79.7767 76.9441 79.706 78.5487Z" stroke="white" strokeWidth="3" />
+                    <path d="M79.9965 76.9371L78.8246 100.327C78.5801 105.207 72.2005 106.875 69.5987 102.739L56.8241 82.432C55.9774 81.0861 54.5411 80.2231 52.9552 80.1076L29.676 78.4114C24.831 78.0584 23.2844 71.7012 27.4258 69.162L47.3012 56.9762C48.6698 56.137 49.5523 54.6918 49.6734 53.091L51.4172 30.0537C51.7828 25.224 58.1149 23.6836 60.6582 27.8056L72.785 47.46C73.6305 48.8304 75.0843 49.7097 76.6907 49.8223L100.149 51.4662C105.009 51.8068 106.561 58.1887 102.401 60.7238L82.3886 72.9175C80.975 73.7788 80.0793 75.2839 79.9965 76.9371Z" fill="white" />
+                </svg>
+
+                <svg
+                    ref={el => sparklesRef.current[2] = el}
+                    className="camera-sparkle camera-sparkle-2"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="131"
+                    height="131"
+                    viewBox="0 0 131 131"
+                    fill="none"
+                    style={{ opacity: 0 }}
+                    data-final-left="27%"
+                    data-final-bottom="11%"
+                    data-final-rotate="-5.673"
+                    data-final-scale="2.2"
+                >
+                    <path d="M79.706 78.5487L79.1938 90.1633C78.8308 98.3966 78.6492 102.513 77.166 103.906C75.8855 105.108 74.068 105.55 72.3783 105.07C70.4212 104.515 68.3689 100.942 64.2644 93.7952L58.4742 83.7139C57.6742 82.3211 57.2743 81.6247 56.7172 81.108C56.2241 80.6506 55.6439 80.2975 55.0111 80.0696C54.2963 79.8121 53.494 79.7767 51.8894 79.706L40.2748 79.1938C32.0415 78.8308 27.9249 78.6492 26.5324 77.1661C25.3301 75.8855 24.888 74.068 25.3677 72.3783C25.9232 70.4212 29.4965 68.3689 36.6429 64.2644L46.7243 58.4742C48.117 57.6743 48.8134 57.2743 49.3301 56.7172C49.7875 56.2242 50.1407 55.6439 50.3686 55.0111C50.626 54.2963 50.6614 53.494 50.7321 51.8894L51.2443 40.2748C51.6074 32.0415 51.7889 27.9249 53.2721 26.5324C54.5526 25.3301 56.3701 24.888 58.0598 25.3677C60.0169 25.9232 62.0692 29.4965 66.1737 36.6429L66.1738 36.6429L71.9639 46.7243C72.7639 48.1171 73.1639 48.8134 73.7209 49.3302C74.214 49.7875 74.7942 50.1407 75.427 50.3686C76.1418 50.626 76.9441 50.6614 78.5487 50.7322L90.1633 51.2443C98.3966 51.6074 102.513 51.7889 103.906 53.2721C105.108 54.5526 105.55 56.3701 105.07 58.0599C104.515 60.0169 100.942 62.0692 93.7952 66.1738L83.7138 71.964C82.3211 72.7639 81.6247 73.1639 81.108 73.7209C80.6506 74.214 80.2974 74.7943 80.0696 75.427C79.8121 76.1419 79.7767 76.9441 79.706 78.5487Z" stroke="white" strokeWidth="3" />
+                    <path d="M79.9965 76.9371L78.8246 100.327C78.5801 105.207 72.2005 106.875 69.5987 102.739L56.8241 82.432C55.9774 81.0861 54.5411 80.2231 52.9552 80.1076L29.676 78.4114C24.831 78.0584 23.2844 71.7012 27.4258 69.162L47.3012 56.9762C48.6698 56.137 49.5523 54.6918 49.6734 53.091L51.4172 30.0537C51.7828 25.224 58.1149 23.6836 60.6582 27.8056L72.785 47.46C73.6305 48.8304 75.0843 49.7097 76.6907 49.8223L100.149 51.4662C105.009 51.8068 106.561 58.1887 102.401 60.7238L82.3886 72.9175C80.975 73.7788 80.0793 75.2839 79.9965 76.9371Z" fill="white" />
+                </svg>
+
+                <div className="camera-title-container">
+                    <span className="camera-title-box" style={{ transform: 'rotate(-3deg)', display: 'inline-block' }}>AI-powered</span>
+                    {' '}
+                    <span className="camera-title-box" style={{ transform: 'rotate(3deg)', display: 'inline-block' }}>camera</span>
                 </div>
-                <div className="big-feature-badge">
-                  <FiSearch className="badge-icon" />
-                  <span className="badge-text">Find your Recipes</span>
-                </div>
-              </div>
-              <div className="big-feature-badges-row">
-                <div className="big-feature-badge">
-                  <FaEarthAmericas className="badge-icon" />
-                  <span className="badge-text">Meet your Community</span>
-                </div>
-                <div className="big-feature-badge">
-                  <PiPaperPlaneTiltFill className="badge-icon" />
-                  <span className="badge-text">Share your Recipes</span>
-                </div>
-              </div>
+
+                <svg
+                    ref={el => sparklesRef.current[3] = el}
+                    className="camera-sparkle camera-sparkle-3"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="131"
+                    height="131"
+                    viewBox="0 0 131 131"
+                    fill="none"
+                    style={{ opacity: 0 }}
+                    data-final-left="71%"
+                    data-final-top="29%"
+                    data-final-rotate="20"
+                    data-final-scale="2.2"
+                >
+                    <path d="M79.706 78.5487L79.1938 90.1633C78.8308 98.3966 78.6492 102.513 77.166 103.906C75.8855 105.108 74.068 105.55 72.3783 105.07C70.4212 104.515 68.3689 100.942 64.2644 93.7952L58.4742 83.7139C57.6742 82.3211 57.2743 81.6247 56.7172 81.108C56.2241 80.6506 55.6439 80.2975 55.0111 80.0696C54.2963 79.8121 53.494 79.7767 51.8894 79.706L40.2748 79.1938C32.0415 78.8308 27.9249 78.6492 26.5324 77.1661C25.3301 75.8855 24.888 74.068 25.3677 72.3783C25.9232 70.4212 29.4965 68.3689 36.6429 64.2644L46.7243 58.4742C48.117 57.6743 48.8134 57.2743 49.3301 56.7172C49.7875 56.2242 50.1407 55.6439 50.3686 55.0111C50.626 54.2963 50.6614 53.494 50.7321 51.8894L51.2443 40.2748C51.6074 32.0415 51.7889 27.9249 53.2721 26.5324C54.5526 25.3301 56.3701 24.888 58.0598 25.3677C60.0169 25.9232 62.0692 29.4965 66.1737 36.6429L66.1738 36.6429L71.9639 46.7243C72.7639 48.1171 73.1639 48.8134 73.7209 49.3302C74.214 49.7875 74.7942 50.1407 75.427 50.3686C76.1418 50.626 76.9441 50.6614 78.5487 50.7322L90.1633 51.2443C98.3966 51.6074 102.513 51.7889 103.906 53.2721C105.108 54.5526 105.55 56.3701 105.07 58.0599C104.515 60.0169 100.942 62.0692 93.7952 66.1738L83.7138 71.964C82.3211 72.7639 81.6247 73.1639 81.108 73.7209C80.6506 74.214 80.2974 74.7943 80.0696 75.427C79.8121 76.1419 79.7767 76.9441 79.706 78.5487Z" stroke="white" strokeWidth="3" />
+                    <path d="M79.9965 76.9371L78.8246 100.327C78.5801 105.207 72.2005 106.875 69.5987 102.739L56.8241 82.432C55.9774 81.0861 54.5411 80.2231 52.9552 80.1076L29.676 78.4114C24.831 78.0584 23.2844 71.7012 27.4258 69.162L47.3012 56.9762C48.6698 56.137 49.5523 54.6918 49.6734 53.091L51.4172 30.0537C51.7828 25.224 58.1149 23.6836 60.6582 27.8056L72.785 47.46C73.6305 48.8304 75.0843 49.7097 76.6907 49.8223L100.149 51.4662C105.009 51.8068 106.561 58.1887 102.401 60.7238L82.3886 72.9175C80.975 73.7788 80.0793 75.2839 79.9965 76.9371Z" fill="white" />
+                </svg>
+
+                <svg
+                    ref={el => sparklesRef.current[4] = el}
+                    className="camera-sparkle camera-sparkle-4"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="131"
+                    height="131"
+                    viewBox="0 0 131 131"
+                    fill="none"
+                    style={{ opacity: 0 }}
+                    data-final-left="65%"
+                    data-final-top="55%"
+                    data-final-rotate="25"
+                    data-final-scale="1.3"
+                >
+                    <path d="M79.706 78.5487L79.1938 90.1633C78.8308 98.3966 78.6492 102.513 77.166 103.906C75.8855 105.108 74.068 105.55 72.3783 105.07C70.4212 104.515 68.3689 100.942 64.2644 93.7952L58.4742 83.7139C57.6742 82.3211 57.2743 81.6247 56.7172 81.108C56.2241 80.6506 55.6439 80.2975 55.0111 80.0696C54.2963 79.8121 53.494 79.7767 51.8894 79.706L40.2748 79.1938C32.0415 78.8308 27.9249 78.6492 26.5324 77.1661C25.3301 75.8855 24.888 74.068 25.3677 72.3783C25.9232 70.4212 29.4965 68.3689 36.6429 64.2644L46.7243 58.4742C48.117 57.6743 48.8134 57.2743 49.3301 56.7172C49.7875 56.2242 50.1407 55.6439 50.3686 55.0111C50.626 54.2963 50.6614 53.494 50.7321 51.8894L51.2443 40.2748C51.6074 32.0415 51.7889 27.9249 53.2721 26.5324C54.5526 25.3301 56.3701 24.888 58.0598 25.3677C60.0169 25.9232 62.0692 29.4965 66.1737 36.6429L66.1738 36.6429L71.9639 46.7243C72.7639 48.1171 73.1639 48.8134 73.7209 49.3302C74.214 49.7875 74.7942 50.1407 75.427 50.3686C76.1418 50.626 76.9441 50.6614 78.5487 50.7322L90.1633 51.2443C98.3966 51.6074 102.513 51.7889 103.906 53.2721C105.108 54.5526 105.55 56.3701 105.07 58.0599C104.515 60.0169 100.942 62.0692 93.7952 66.1738L83.7138 71.964C82.3211 72.7639 81.6247 73.1639 81.108 73.7209C80.6506 74.214 80.2974 74.7943 80.0696 75.427C79.8121 76.1419 79.7767 76.9441 79.706 78.5487Z" stroke="white" strokeWidth="3" />
+                    <path d="M79.9965 76.9371L78.8246 100.327C78.5801 105.207 72.2005 106.875 69.5987 102.739L56.8241 82.432C55.9774 81.0861 54.5411 80.2231 52.9552 80.1076L29.676 78.4114C24.831 78.0584 23.2844 71.7012 27.4258 69.162L47.3012 56.9762C48.6698 56.137 49.5523 54.6918 49.6734 53.091L51.4172 30.0537C51.7828 25.224 58.1149 23.6836 60.6582 27.8056L72.785 47.46C73.6305 48.8304 75.0843 49.7097 76.6907 49.8223L100.149 51.4662C105.009 51.8068 106.561 58.1887 102.401 60.7238L82.3886 72.9175C80.975 73.7788 80.0793 75.2839 79.9965 76.9371Z" fill="white" />
+                </svg>
+
+                <svg
+                    ref={el => sparklesRef.current[5] = el}
+                    className="camera-sparkle camera-sparkle-5"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="131"
+                    height="131"
+                    viewBox="0 0 131 131"
+                    fill="none"
+                    style={{ opacity: 0 }}
+                    data-final-left="78%"
+                    data-final-top="39%"
+                    data-final-rotate="8"
+                    data-final-scale="1"
+                >
+                    <path d="M79.706 78.5487L79.1938 90.1633C78.8308 98.3966 78.6492 102.513 77.166 103.906C75.8855 105.108 74.068 105.55 72.3783 105.07C70.4212 104.515 68.3689 100.942 64.2644 93.7952L58.4742 83.7139C57.6742 82.3211 57.2743 81.6247 56.7172 81.108C56.2241 80.6506 55.6439 80.2975 55.0111 80.0696C54.2963 79.8121 53.494 79.7767 51.8894 79.706L40.2748 79.1938C32.0415 78.8308 27.9249 78.6492 26.5324 77.1661C25.3301 75.8855 24.888 74.068 25.3677 72.3783C25.9232 70.4212 29.4965 68.3689 36.6429 64.2644L46.7243 58.4742C48.117 57.6743 48.8134 57.2743 49.3301 56.7172C49.7875 56.2242 50.1407 55.6439 50.3686 55.0111C50.626 54.2963 50.6614 53.494 50.7321 51.8894L51.2443 40.2748C51.6074 32.0415 51.7889 27.9249 53.2721 26.5324C54.5526 25.3301 56.3701 24.888 58.0598 25.3677C60.0169 25.9232 62.0692 29.4965 66.1737 36.6429L66.1738 36.6429L71.9639 46.7243C72.7639 48.1171 73.1639 48.8134 73.7209 49.3302C74.214 49.7875 74.7942 50.1407 75.427 50.3686C76.1418 50.626 76.9441 50.6614 78.5487 50.7322L90.1633 51.2443C98.3966 51.6074 102.513 51.7889 103.906 53.2721C105.108 54.5526 105.55 56.3701 105.07 58.0599C104.515 60.0169 100.942 62.0692 93.7952 66.1738L83.7138 71.964C82.3211 72.7639 81.6247 73.1639 81.108 73.7209C80.6506 74.214 80.2974 74.7943 80.0696 75.427C79.8121 76.1419 79.7767 76.9441 79.706 78.5487Z" stroke="white" strokeWidth="3" />
+                    <path d="M79.9965 76.9371L78.8246 100.327C78.5801 105.207 72.2005 106.875 69.5987 102.739L56.8241 82.432C55.9774 81.0861 54.5411 80.2231 52.9552 80.1076L29.676 78.4114C24.831 78.0584 23.2844 71.7012 27.4258 69.162L47.3012 56.9762C48.6698 56.137 49.5523 54.6918 49.6734 53.091L51.4172 30.0537C51.7828 25.224 58.1149 23.6836 60.6582 27.8056L72.785 47.46C73.6305 48.8304 75.0843 49.7097 76.6907 49.8223L100.149 51.4662C105.009 51.8068 106.561 58.1887 102.401 60.7238L82.3886 72.9175C80.975 73.7788 80.0793 75.2839 79.9965 76.9371Z" fill="white" />
+                </svg>
             </div>
-            <img src="mockups/homemockup2.png" alt="Camera Mockup" className="big-feature-mockup-feed" />
-          </div>
-        </div>
-      </div>
-      <svg className="wave-decoration-bottom" width="100%" height="200" viewBox="0 0 1440 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-        <path d="M 0,0 L 0,100 C 18.463793598560997,136.74245673104982 36.927587197121994,173.48491346209965 63,187.25 C 89.072412802878,201.01508653790035 122.75344481007303,191.76605281615124 148,188.75 C 173.24655518992697,185.73394718384876 190.05863356258584,188.94087525429539 214,189.25 C 237.94136643741416,189.55912474570461 269.01202093958364,186.9724461666672 296,186.5 C 322.98797906041636,186.027553833333 345.8932826790797,187.66984007903581 367,186 C 388.1067173209203,184.33015992096419 407.4148483440976,179.34819351718956 433,178.5 C 458.5851516559024,177.65180648281044 490.44732394453,181.93738585220595 514,180.5 C 537.55267605547,179.06261414779405 552.7958558777825,175.90226307398663 573,177.75 C 593.2041441222175,179.59773692601337 618.36925254434,185.45356185184752 645,185.75 C 671.63074745566,186.04643814815248 699.7271339448572,180.78348951862328 726,180.5 C 752.2728660551428,180.21651048137672 776.7222116762315,186.91248007365936 796,189.25 C 815.2777883237685,191.58751992634064 829.3840193502172,189.56659018673926 853,186.5 C 876.6159806497828,183.43340981326074 909.7417109228998,179.32115917938357 934,181.25 C 958.2582890771002,183.17884082061643 973.6491369581837,191.14877309572646 996,192.25 C 1018.3508630418163,193.35122690427354 1047.661741244365,187.5837484377106 1076,185 C 1104.338258755635,182.4162515622894 1131.7038980643551,183.01623153431114 1156,182.75 C 1180.2961019356449,182.48376846568886 1201.5226664982142,181.35131894856485 1221,182.75 C 1240.4773335017858,184.14868105143515 1258.2054359427887,188.07849105230946 1284,191.5 C 1309.7945640572113,194.92150894769054 1343.6555897306318,197.8347168421973 1371,182.5 C 1398.3444102693682,167.1652831578027 1419.1722051346842,133.58264157890136 1440,100 L 1440,0 L 0,0 Z" stroke="none" strokeWidth="0" fill="#181b18" fillOpacity="1"></path>
-      </svg>
-    </>
-  )
+
+            <BounceCards
+                features={features}
+                animationDelay={0.6}
+                animationStagger={0.08}
+                easeType="elastic.out(1, 0.8)"
+            />
+            <BigFeatureFeed />
+        </>
+    )
 }
 
 export default BigFeature
