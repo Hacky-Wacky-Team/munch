@@ -1,4 +1,18 @@
 /* Global animations and styles */
+@font-face {
+  font-family: 'Nunito Sans';
+  src: url('/fonts/Nunito_Sans/NunitoSans-VariableFont_YTLC,opsz,wdth,wght.ttf') format('truetype');
+  font-weight: 200 1000;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Nunito Sans';
+  src: url('/fonts/Nunito_Sans/NunitoSans-Italic-VariableFont_YTLC,opsz,wdth,wght.ttf') format('truetype');
+  font-weight: 200 1000;
+  font-style: italic;
+  font-display: swap;
+}
 @keyframes fallDown {
   from {
     transform: translateY(-30px);
@@ -54,6 +68,7 @@ body {
   align-items: center;
   overflow-x: hidden;
   width: 100%;
+  font-family: 'Nunito Sans', Arial, sans-serif;
 }
 
 html {
@@ -63,6 +78,7 @@ html {
   padding-bottom: 0rem;
   background-color: #e6f5e3;
   align-items: center;
+  font-family: 'Nunito Sans', Arial, sans-serif;
 }
 
 a {
@@ -100,8 +116,7 @@ a {
   align-items: center;
   justify-content: flex-start;
   margin-bottom: -10rem;
-  opacity: 0;
-  animation: fadeRise 0.3s ease-out 0.8s forwards;
+  opacity: 1;
 }
 
 /* Message inside waitlist box */

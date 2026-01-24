@@ -42,8 +42,7 @@
   -ms-overflow-style: none;
   overscroll-behavior-x: contain;
   overscroll-behavior-y: auto;
-  opacity: 0;
-  animation: fadeRise 0.3s ease-out 0.8s forwards;
+  opacity: 1;
 }
 
 .features-track::after {
@@ -255,8 +254,7 @@
   width: fit-content;
   margin-left: auto;
   margin-right: auto;
-  opacity: 0;
-  animation: fadeRise 0.3s ease-out 0.8s forwards;
+  opacity: 1;
 }
 
 .carousel-dot {
@@ -287,7 +285,7 @@
   }
 
   .carousel-title-container {
-    margin-top: calc(68rem - 100vh);
+    margin-top: calc(74rem - 100vh);
   }
 
   .carousel-title-box {
@@ -370,18 +368,18 @@
 
 @media (max-width: 426px) {
     .carousel-title-container {
-    margin-top: calc(65rem - 100vh);
+    margin-top: calc(71rem - 100vh);
   }
 }
 
 @media (max-width: 415px) {
     .carousel-title-container {
-    margin-top: calc(60rem - 100vh);
+    margin-top: calc(66rem - 100vh);
   }
 }
 
 @media (max-width: 400px) {
     .carousel-title-container {
-    margin-top: calc(58rem - 100vh);
+    margin-top: calc(64rem - 100vh);
   }
 }

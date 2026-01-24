@@ -1,10 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
-import { LuChefHat } from 'react-icons/lu'
-import { FiSearch } from 'react-icons/fi'
-import { FaStar } from 'react-icons/fa'
-import { FaEarthAmericas } from 'react-icons/fa6'
-import { PiPaperPlaneTiltFill } from 'react-icons/pi'
 import './BigFeatureFeed.css'
 
 function BigFeatureFeed() {
@@ -315,7 +310,7 @@ function BigFeatureFeed() {
                         {/* Scrolling content behind the frame */}
                         <div className="phone-screen-content" style={contentStyle}>
                             <div className="content-card card-1">
-                                <img src="mockups/homemockup3.png" alt="Home Screen" className="card-image" />
+                                <img src={isMobile ? "mockups/homemockup3mobile.png" : "mockups/homemockup3.png"} alt="Home Screen" className="card-image" />
                             </div>
                             <div className="content-card card-2">
                                 <div className="card-box-2">

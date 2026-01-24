@@ -6,8 +6,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  opacity: 0;
-  animation: fadeRise 0.3s ease-out 0.8s forwards;
+  opacity: 1;
   box-sizing: border-box;
   width: 100%;
   max-width: 1200px;

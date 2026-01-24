@@ -5,8 +5,7 @@
   padding-bottom: 0rem;
   margin-bottom: 0rem;
   overflow: hidden;
-  opacity: 0;
-  animation: fadeRise 0.3s ease-out 1s forwards;
+  opacity: 1;
   position: relative;
 }
 

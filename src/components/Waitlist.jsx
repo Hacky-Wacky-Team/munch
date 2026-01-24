@@ -1,7 +1,7 @@
 import { useRef, useEffect, useState } from 'react'
 import { gsap } from 'gsap'
 import { FaApple } from 'react-icons/fa'
-import { PiAndroidLogoFill, PiPaperPlaneTiltFill } from 'react-icons/pi'
+import { PiAndroidLogoFill } from 'react-icons/pi'
 import SendIcon from "@/components/ui/send-icon";
 import './Waitlist.css'
 

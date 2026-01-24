@@ -5,8 +5,7 @@
     justify-content: center;
     margin-bottom: 0rem;
     gap: 1rem;
-    opacity: 0;
-    animation: fadeRise 0.3s ease-out 0.925s forwards;
+    opacity: 1;
     position: relative;
     z-index: 10;
     margin-top: 0rem;
@@ -253,21 +252,6 @@
 }
 
 
-.big-feature-feed {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: auto;
-    width: 100%;
-    margin-top: 5rem;
-    margin-bottom: 0rem;
-    position: relative;
-    overflow: hidden;
-    opacity: 0;
-    animation: fadeRise 0.3s ease-out 0.8s forwards;
-
-}
-
 .feed-title-container {
     display: flex;
     flex-direction: column;
@@ -396,7 +380,7 @@
 
     .feed-mockup-container {
         width: calc(100vw - 2rem);
-        height: calc((100vw - 0rem) * 2.39);
+        height: calc((100vw - 0rem) * 2.497);
         max-width: 100%;
         
     }
@@ -520,7 +504,7 @@
 
 @media (max-width: 426px) {
         .feed-mockup-container {
-        height: calc((100vw - 0.5rem) * 2.39);
+        height: calc((100vw - 0.2rem) * 2.497);
         
     }
     
@@ -535,7 +519,14 @@
         border-radius: 2rem;
     }
         .feed-mockup-container {
-        height: calc((100vw - 2.3rem) * 2.39);
+        height: calc((100vw - 0.8rem) * 2.497);
+        
+    }
+    
+}
+@media (max-width: 400px) {
+        .feed-mockup-container {
+        height: calc((100vw - 1.7rem) * 2.497);
         
     }
     
@@ -543,7 +534,7 @@
 
 @media (max-width: 385px) {
         .feed-mockup-container {
-        height: calc((100vw - 2.55rem) * 2.39);
+        height: calc((100vw - 2.2rem) * 2.497);
         
     }
     

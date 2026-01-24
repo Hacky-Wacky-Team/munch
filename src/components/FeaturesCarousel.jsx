@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import { FiUser, FiHome, FiEdit3, FiCamera, FiBookmark, FiCalendar, FiShoppingCart } from 'react-icons/fi'
 import './FeaturesCarousel.css'
 
@@ -11,6 +12,17 @@ function FeaturesCarousel({
   carouselRef,
   scrollToFeature
 }) {
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768)
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768)
+    }
+
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
   return (
     <>
       <div className="section-header">
@@ -46,7 +58,7 @@ function FeaturesCarousel({
         <div className="features-track" ref={featuresTrackRef}>
           <div className="feature1">
             <div className="showcase-container">
-              <img src="mockups/profile.png" alt="App mockup" className="mockup-image" />
+              <img src={isMobile ? "mockups/profilemobile.webp" : "mockups/profile.png"} alt="App mockup" className="mockup-image" />
               <div className="showcase-content">
                 <h2>Create your own <strong>profile</strong> and connect with other foodies.</h2>
               </div>
@@ -59,9 +71,9 @@ function FeaturesCarousel({
 
           <div className="feature2">
             <div className="showcase-container">
-              <img src="mockups/home.png" alt="App mockup" className="mockup-image" />
+              <img src={isMobile ? "mockups/homemobile.webp" : "mockups/home.png"} alt="App mockup" className="mockup-image" />
               <div className="showcase-content">
-                <h2>Browse through your <strong>personalized feed</strong> and get inspired </h2>
+                <h2>Get immersive, detailed <strong>step-by-step</strong> instructions for your recipes.</h2>
               </div>
               <div className="feature-label">
                 <p>Your feed</p>
@@ -75,7 +87,7 @@ function FeaturesCarousel({
               <div className="showcase-content">
                 <h2>Craft detailed posts.<br></br>Share your recipes with the <strong>world</strong>.</h2>
               </div>
-              <img src="mockups/post.png" alt="App mockup" className="mockup-image" />
+              <img src={isMobile ? "mockups/postmobile.webp" : "mockups/post.png"} alt="App mockup" className="mockup-image" />
               <div className="feature-label">
                 <p>Create post</p>
                 <FiEdit3 className="feature-label-icon" />
@@ -84,7 +96,7 @@ function FeaturesCarousel({
           </div>
           <div className="feature4">
             <div className="showcase-container">
-              <img src="mockups/recipe.png" alt="App mockup" className="mockup-image" />
+              <img src={isMobile ? "mockups/recipemobile.webp" : "mockups/recipe.png"} alt="App mockup" className="mockup-image" />
               <div className="showcase-content">
                 <h2>Scan with your <strong>camera</strong>.<br></br>Get recipes based off your pantry.</h2>
               </div>
@@ -97,7 +109,7 @@ function FeaturesCarousel({
 
           <div className="feature5">
             <div className="showcase-container">
-              <img src="mockups/saved.webp" alt="App mockup" className="mockup-image" />
+              <img src={isMobile ? "mockups/savedmobile.webp" : "mockups/saved.png"} alt="App mockup" className="mockup-image" />
               <div className="showcase-content">
                 <h2>Never lose a recipe.<br></br><strong>Save them</strong> all in one place.</h2>
               </div>

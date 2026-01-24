@@ -1,7 +1,6 @@
 .scrolling-section {
   margin-top: 0rem;
-  opacity: 0;
-  animation: fadeRise 0.3s ease-out 0.9s forwards;
+  opacity: 1;
   width: 100%;
   overflow-x: hidden;
 }

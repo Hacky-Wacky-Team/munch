@@ -3,8 +3,18 @@ import './ImmersiveFeature.css'
 
 function ImmersiveFeature() {
   const [scrollOffset, setScrollOffset] = useState(0)
-  const lastScrollRef = useRef(0)
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768)
+  const lastScrollRef = useRef(null)
   const sectionRef = useRef(null)
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768)
+    }
+
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   useEffect(() => {
     let ticking = false
@@ -68,13 +78,13 @@ function ImmersiveFeature() {
           }}
         >
           <img src="/mockups/sideshadow.png" alt="Shadow left" className="camera-mockup-shadow" />
-          <img src="/mockups/cameramockup2.png" alt="Camera Mockup left" className="camera-mockup-background" />
+          <img src={isMobile ? "/mockups/cameramockup2mobile.png" : "/mockups/cameramockup2.png"} alt="Camera Mockup left" className="camera-mockup-background" />
           <img src="/mockups/nakedphoneframe.png" alt="Phone Frame left" className="camera-mockup-frame" />
         </div>
 
         <div className="mockup-pair mockup-center">
           <img src="/mockups/sideshadow.png" alt="Shadow center" className="camera-mockup-shadow" />
-          <img src="/mockups/cameramockup2.png" alt="Camera Mockup center" className="camera-mockup-background" />
+          <img src={isMobile ? "/mockups/cameramockup2mobile.png" : "/mockups/cameramockup2.png"} alt="Camera Mockup center" className="camera-mockup-background" />
           <img src="/mockups/nakedphoneframe.png" alt="Phone Frame center" className="camera-mockup-frame" />
         </div>
 
@@ -86,7 +96,7 @@ function ImmersiveFeature() {
           }}
         >
           <img src="/mockups/sideshadow.png" alt="Shadow right" className="camera-mockup-shadow" />
-          <img src="/mockups/cameramockup2.png" alt="Camera Mockup right" className="camera-mockup-background" />
+          <img src={isMobile ? "/mockups/cameramockup2mobile.png" : "/mockups/cameramockup2.png"} alt="Camera Mockup right" className="camera-mockup-background" />
           <img src="/mockups/nakedphoneframe.png" alt="Phone Frame right" className="camera-mockup-frame" />
         </div>
       </div>
