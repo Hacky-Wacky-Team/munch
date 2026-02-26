@@ -21,7 +21,7 @@ function App() {
   const [activeFeature, setActiveFeature] = useState(0)
   const [isDarkSection, setIsDarkSection] = useState(false)
   const [carouselCursor, setCarouselCursor] = useState({ show: false, x: 0, y: 0, direction: 'right' })
-  const [waitlistCount, setWaitlistCount] = useState(0)
+  const [waitlistCount, setWaitlistCount] = useState(100)
   const [digitOffsets, setDigitOffsets] = useState([])
   const [isAnimating, setIsAnimating] = useState(false)
   const featuresTrackRef = useRef(null)
@@ -43,50 +43,50 @@ function App() {
   }, [showToast])
 
   // Fetch waitlist count (cached for 10 minutes of real time)
-  useEffect(() => {
-    const fetchWaitlistCount = async () => {
-      try {
-        // Check cache first
-        const cachedData = localStorage.getItem('waitlistCount')
-        const cacheExpiry = localStorage.getItem('waitlistCountExpiry')
+  // useEffect(() => {
+  //   const fetchWaitlistCount = async () => {
+  //     try {
+  //       // Check cache first
+  //       const cachedData = localStorage.getItem('waitlistCount')
+  //       const cacheExpiry = localStorage.getItem('waitlistCountExpiry')
         
-        if (cachedData && cacheExpiry && Date.now() < parseInt(cacheExpiry)) {
-          // Use cached data if still valid
-          setWaitlistCount(parseInt(cachedData))
-          return false // Cache is still valid
-        }
+  //       if (cachedData && cacheExpiry && Date.now() < parseInt(cacheExpiry)) {
+  //         // Use cached data if still valid
+  //         setWaitlistCount(parseInt(cachedData))
+  //         return false // Cache is still valid
+  //       }
 
-        // Fetch count from Firebase using aggregation (only 1 read!)
-        const coll = collection(db, 'users')
-        const snapshot = await getCountFromServer(coll)
-        const count = Math.floor(snapshot.data().count / 5) * 5
+  //       // Fetch count from Firebase using aggregation (only 1 read!)
+  //       const coll = collection(db, 'users')
+  //       const snapshot = await getCountFromServer(coll)
+  //       const count = Math.floor(snapshot.data().count / 5) * 5
         
-        // Cache for 10 minutes
-        setWaitlistCount(count)
-        localStorage.setItem('waitlistCount', count.toString())
-        localStorage.setItem('waitlistCountExpiry', (Date.now() + 10 * 60 * 1000).toString())
-        return true // Fetched new data
-      } catch (error) {
-        console.error('Error fetching waitlist count: ', error)
-        // Fallback to cached data even if expired
-        const cachedData = localStorage.getItem('waitlistCount')
-        if (cachedData) {
-          setWaitlistCount(parseInt(cachedData))
-        }
-        return false
-      }
-    }
+  //       // Cache for 10 minutes
+  //       setWaitlistCount(count)
+  //       localStorage.setItem('waitlistCount', count.toString())
+  //       localStorage.setItem('waitlistCountExpiry', (Date.now() + 10 * 60 * 1000).toString())
+  //       return true // Fetched new data
+  //     } catch (error) {
+  //       console.error('Error fetching waitlist count: ', error)
+  //       // Fallback to cached data even if expired
+  //       const cachedData = localStorage.getItem('waitlistCount')
+  //       if (cachedData) {
+  //         setWaitlistCount(parseInt(cachedData))
+  //       }
+  //       return false
+  //     }
+  //   }
     
-    // Initial fetch
-    fetchWaitlistCount()
+  //   // Initial fetch
+  //   fetchWaitlistCount()
     
-    // Check every minute if cache has expired and refetch if needed
-    const interval = setInterval(() => {
-      fetchWaitlistCount()
-    }, 60 * 1000) // Check every 60 seconds
+  //   // Check every minute if cache has expired and refetch if needed
+  //   const interval = setInterval(() => {
+  //     fetchWaitlistCount()
+  //   }, 60 * 1000) // Check every 60 seconds
     
-    return () => clearInterval(interval)
-  }, [])
+  //   return () => clearInterval(interval)
+  // }, [])
 
   // Animate waitlist count with slot machine effect
   useEffect(() => {

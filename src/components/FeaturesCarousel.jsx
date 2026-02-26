@@ -73,7 +73,7 @@ function FeaturesCarousel({
             <div className="showcase-container">
               <img src={isMobile ? "mockups/homemobile.webp" : "mockups/home.png"} alt="App mockup" className="mockup-image" />
               <div className="showcase-content">
-                <h2>Get immersive, detailed <strong>step-by-step</strong> instructions for your recipes.</h2>
+                <h2>Get immersive, detailed, <strong>step-by-step</strong> instructions for your recipes.</h2>
               </div>
               <div className="feature-label">
                 <p>Your feed</p>

@@ -46,7 +46,7 @@
   background: linear-gradient(to left, rgb(255, 255, 255), rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
   pointer-events: none;
   z-index: 2;
-  border-radius: 0 2.5rem 2.5rem 0;
+  border-radius: 0 1.9rem 1.9rem 0;
 }
 
 .university-logos-container::before {

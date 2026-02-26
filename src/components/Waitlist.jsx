@@ -258,8 +258,9 @@ function Waitlist({
             <span className="top-title-box" style={{ transform: 'rotate(-2deg)', display: 'inline-block' }}>The</span>
           </div>
           <div className="top-title-row">
-            <span className="top-title-box" style={{ transform: 'rotate(-2deg)', display: 'inline-block' }}>Munch</span>
-            <span className="top-title-box" style={{ transform: 'rotate(4deg)', display: 'inline-block' }}>ment</span>
+            <span className="top-title-box munch-box" style={{ transform: 'rotate(-2deg)', display: 'inline-block'}}>Munch</span>
+            {/* marginLeft="-4rem" */}
+            <span className="top-title-box ment-box" style={{ transform: 'rotate(3deg)', display: 'inline-block'}}>ment</span>
           </div>
         </div>
       )}
