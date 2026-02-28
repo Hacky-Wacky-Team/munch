@@ -34,6 +34,9 @@ function Waitlist({
             observer.disconnect()
 
             // Animate each secondary box to its final position
+            // Use transform-based animation (GPU-accelerated) instead of left/top (layout-triggering)
+            const containerRect = titleContainerRef.current.getBoundingClientRect()
+
             secondaryBoxesRef.current.forEach((box, index) => {
               if (box) {
                 const isMobile = window.innerWidth <= 768
@@ -53,26 +56,37 @@ function Waitlist({
                   if (mobileRotate) finalRotate = mobileRotate
                 }
 
+                // Set final left/top immediately (no animation on layout properties)
+                box.style.left = finalLeft
+                box.style.top = finalTop
+
+                // Calculate transform offset from center to final position
+                const boxRect = box.getBoundingClientRect()
+                const centerX = containerRect.left + containerRect.width / 2
+                const centerY = containerRect.top + containerRect.height / 2
+                const boxCenterX = boxRect.left + boxRect.width / 2
+                const boxCenterY = boxRect.top + boxRect.height / 2
+                const offsetX = centerX - boxCenterX
+                const offsetY = centerY - boxCenterY
+
+                // Animate only transforms + opacity (compositor-friendly, no layout thrashing)
                 gsap.fromTo(
                   box,
                   {
-                    left: '50%',
-                    top: '50%',
-                    xPercent: -50,
-                    yPercent: -50,
+                    x: offsetX,
+                    y: offsetY,
                     rotation: 0,
                     opacity: 0
                   },
                   {
-                    left: finalLeft,
-                    top: finalTop,
-                    xPercent: 0,
-                    yPercent: 0,
+                    x: 0,
+                    y: 0,
                     rotation: parseFloat(finalRotate),
                     opacity: 1,
                     duration: 0.6,
                     delay: 0.7 + index * 0.04,
-                    ease: 'back.out(1.7)'
+                    ease: 'back.out(1.7)',
+                    force3D: true
                   }
                 )
               }
