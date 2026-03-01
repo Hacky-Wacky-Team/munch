@@ -38,7 +38,7 @@
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  background-image: url('images/camerafocus.svg');
+  background-image: url('/images/camerafocus.svg');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
