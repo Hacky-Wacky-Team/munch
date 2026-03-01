@@ -5,6 +5,7 @@ import ImmersiveFeature from './ImmersiveFeature'
 import BounceCards from './BounceCards';
 
 function Camera() {
+    const [isMobile, setIsMobile] = useState(false)
     const [feedTitleAnimated, setFeedTitleAnimated] = useState(false)
     const feedTitleContainerRef = useRef(null)
     const feedSecondaryBoxesRef = useRef([])
@@ -32,6 +33,15 @@ function Camera() {
         }
     ];
 
+    useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth <= 768)
+        }
+        checkMobile()
+        window.addEventListener('resize', checkMobile)
+        return () => window.removeEventListener('resize', checkMobile)
+    }, [])
+
     // Animate feed secondary title boxes when section comes into view
     useEffect(() => {
         if (feedTitleAnimated || !feedTitleContainerRef.current) return
@@ -50,31 +60,31 @@ function Camera() {
                                 const finalTop = isMobile && box.dataset.mobileFinalTop ? box.dataset.mobileFinalTop : box.dataset.finalTop
                                 const finalRotate = isMobile && box.dataset.mobileFinalRotate ? box.dataset.mobileFinalRotate : box.dataset.finalRotate
 
-                            // Defer animation to avoid forced reflow
-                            requestAnimationFrame(() => {
-                              gsap.fromTo(
-                                box,
-                                {
-                                  left: '50%',
-                                  top: '50%',
-                                  xPercent: -50,
-                                  yPercent: -50,
-                                  rotation: 0,
-                                  opacity: 0
-                                },
-                                {
-                                  left: finalLeft,
-                                  top: finalTop,
-                                  xPercent: 0,
-                                  yPercent: 0,
-                                  rotation: parseFloat(finalRotate),
-                                  opacity: 1,
-                                  duration: 0.7,
-                                  delay: index * 0.02,
-                                  ease: 'back.out(1.7)'
-                                }
-                              );
-                            });
+                                // Defer animation to avoid forced reflow
+                                requestAnimationFrame(() => {
+                                    gsap.fromTo(
+                                        box,
+                                        {
+                                            left: '50%',
+                                            top: '50%',
+                                            xPercent: -50,
+                                            yPercent: -50,
+                                            rotation: 0,
+                                            opacity: 0
+                                        },
+                                        {
+                                            left: finalLeft,
+                                            top: finalTop,
+                                            xPercent: 0,
+                                            yPercent: 0,
+                                            rotation: parseFloat(finalRotate),
+                                            opacity: 1,
+                                            duration: 0.7,
+                                            delay: index * 0.02,
+                                            ease: 'back.out(1.7)'
+                                        }
+                                    );
+                                });
                             }
                         })
                     }
@@ -95,13 +105,13 @@ function Camera() {
             {/* AI CAMERA SECTION */}
             <div className="camera-section">
                 <div className="camera-pill">
-                        <span className="camera-pill-text">CAMERA</span>
-                    </div>
-                    <h2 className="camera-title">Find recipes faster with the</h2>
-                    <div className="ai-camera-title-container">
-                        <img src="images/sparkle.svg" alt="Sparkle icon" className="sparkle-icon" />
-                        <h2 className="ai-camera-title">AI Camera</h2>
-                    </div>
+                    <span className="camera-pill-text">CAMERA</span>
+                </div>
+                <h2 className="camera-title">Find recipes faster with the</h2>
+                <div className="ai-camera-title-container">
+                    <img src="images/sparkle.svg" alt="Sparkle icon" className="sparkle-icon" />
+                    <h2 className="ai-camera-title">AI Camera</h2>
+                </div>
             </div>
             {/* IMMERSIVE FEATURE SECTION */}
             <ImmersiveFeature />
@@ -148,12 +158,20 @@ function Camera() {
                         data-mobile-final-rotate="-8"
                     >teriyaki</span>
 
-                    <div className="feed-title-row">
-                        <span className="feed-title-box" style={{ transform: 'rotate(-4deg)' }}>Apply</span>
-                        <span className="feed-title-box" style={{ transform: 'rotate(3deg)' }}>countless</span>
-                        <span className="feed-title-box" style={{ transform: 'rotate(-2deg)' }}>filters</span>
-                        <span className="feed-title-box" style={{ transform: 'rotate(2deg)' }}><img src="images/filtericon.svg" alt="Filter icon" className="feed-title-box-icon" /></span>
-                    </div>
+                    {isMobile ? (
+                        <div className="feed-title-row">
+                            <span className="feed-title-box" style={{ transform: 'rotate(-4deg)' }}>Apply</span>
+                            <span className="feed-title-box" style={{ transform: 'rotate(3deg)' }}>countless</span>
+                            <span className="feed-title-box" style={{ transform: 'rotate(-2deg)' }}><img src="images/filtericon.svg" alt="Filter icon" className="feed-title-box-icon" />filters</span>
+                        </div>
+                    ) : (
+                        <div className="feed-title-row">
+                            <span className="feed-title-box" style={{ transform: 'rotate(-4deg)' }}>Apply</span>
+                            <span className="feed-title-box" style={{ transform: 'rotate(3deg)' }}>countless</span>
+                            <span className="feed-title-box" style={{ transform: 'rotate(-2deg)' }}>filters</span>
+                            <span className="feed-title-box" style={{ transform: 'rotate(2deg)' }}><img src="images/filtericon.svg" alt="Filter icon" className="feed-title-box-icon" /></span>
+                        </div>
+                    )}
 
                     <span
                         ref={el => feedSecondaryBoxesRef.current[3] = el}
@@ -173,7 +191,7 @@ function Camera() {
                         data-final-left="74%"
                         data-final-top="55%"
                         data-final-rotate="-10"
-                        data-mobile-final-left="84%"
+                        data-mobile-final-left="78%"
                         data-mobile-final-top="50%"
                         data-mobile-final-rotate="7"
                     >tacos</span>
@@ -229,7 +247,7 @@ function Camera() {
                         data-final-left="9%"
                         data-final-top="82%"
                         data-final-rotate="9"
-                        data-mobile-final-left="12%"
+                        data-mobile-final-left="-50%"
                         data-mobile-final-top="83%"
                         data-mobile-final-rotate="12"
                     >curry</span>
@@ -240,7 +258,7 @@ function Camera() {
                         data-final-left="63%"
                         data-final-top="87%"
                         data-final-rotate="19"
-                        data-mobile-final-left="-3%"
+                        data-mobile-final-left="3%"
                         data-mobile-final-top="50%"
                         data-mobile-final-rotate="10"
                     >pizza</span>
@@ -262,8 +280,8 @@ function Camera() {
                         data-final-left="45%"
                         data-final-top="85%"
                         data-final-rotate="-7"
-                        data-mobile-final-left="68%"
-                        data-mobile-final-top="85%"
+                        data-mobile-final-left="159%"
+                        data-mobile-final-top="83%"
                         data-mobile-final-rotate="-5"
                     >pasta</span>
                     <span
@@ -273,8 +291,8 @@ function Camera() {
                         data-final-left="25%"
                         data-final-top="86%"
                         data-final-rotate="-12"
-                        data-mobile-final-left="35%"
-                        data-mobile-final-top="89%"
+                        data-mobile-final-left="39%"
+                        data-mobile-final-top="71%"
                         data-mobile-final-rotate="-7"
                     >comfort</span>
                 </div>

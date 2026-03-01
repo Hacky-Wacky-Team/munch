@@ -110,6 +110,25 @@
     padding: 4rem 1.5rem;
     min-height: 300px;
   }
+
+  .student-pill {
+    padding: 0.2rem 0.8rem;
+    margin-top: 2rem;
+    margin-bottom: 0.5 rem;
+  }
+
+  .student-pill-text {
+    font-size: 0.9rem;
+  }
+
+  .student-subtitle {
+    font-size: 1.1rem;
+    margin-top: 1rem;
+    text-wrap: wrap;
+    max-width: 80%;
+    margin-bottom: 0rem;
+  }
+
 }
 
 /* ─── Freeform Canvas ─────────────────────────────────────────────────────── */
@@ -248,6 +267,123 @@
 
 @media (max-width: 768px) {
   .freeform-canvas {
-    display: none;
+    display: block;
+    height: 49rem;
+    overflow: visible;
+    margin-bottom: 0rem;
   }
+
+  /* Smaller images on mobile */
+  .freeform-canvas .fc-image-wrap {
+    width: 170px;
+  }
+
+  .freeform-canvas .fc-image {
+    height: 210px;
+  }
+
+  /* ── Row 1: wavy star + tangulu + fire icon ── */
+  .fc-wavystar {
+    left: 38% !important;
+    top: 0% !important;
+    z-index: 5;
+  }
+  .fc-wavystar img { height: 90px !important; }
+
+  .fc-tangulu {
+    left: 0% !important;
+    top: 5% !important;
+    z-index: 4;
+  }
+
+  .fc-fireicon {
+    left: -2% !important;
+    top: 18% !important;
+    z-index: 6;
+  }
+  .fc-fireicon img { height: 80px !important; }
+
+  /* ── Row 2: wings underlaps tangulu ── */
+  .fc-wings {
+    left: 46% !important;
+    top: 14% !important;
+    z-index: 3;
+  }
+
+  /* Arrow at bottom-left of tangulu pointing to text-raw */
+  .fc-arrow1-item {
+    left: -6% !important;
+    top: 28% !important;
+    z-index: 6;
+    rotate: 50deg !important;
+  }
+
+  /* fc-text-raw overlaps everything */
+  .fc-textraw {
+    left: 6% !important;
+    top: 39% !important;
+    z-index: 9;
+    max-width: 170px;
+    rotate: 7deg !important;
+  }
+  .fc-textraw .fc-text { font-size: 1.1rem; }
+
+  /* ── Row 3: bear pizza underlaps wings ── */
+  .fc-bearpizza {
+    left: 0% !important;
+    top: 49% !important;
+    z-index: 2;
+  }
+
+  /* Jonathan text block overlapping between wings and bear pizza */
+  .fc-jonathan {
+    left: 58% !important;
+    top: 10% !important;
+    z-index: 8;
+    width: 155px;
+    rotate: 5deg !important;
+  }
+
+  .fc-text-body, .fc-text-heading {
+    font-size: 0.85rem !important;
+    padding: -0.1rem 0rem !important;
+  }
+
+  .fc-text-block {
+    padding: 0.6rem 0.6rem !important;
+    border-radius: 1.3rem !important;
+  }
+
+  /* ── Row 4: mochi donuts underlaps bear pizza ── */
+  .fc-mochi {
+    left: 45% !important;
+    top: 57% !important;
+    z-index: 1;
+  }
+
+  /* Logosticker on bottom half of mochi */
+  .fc-logosticker {
+    left: 68% !important;
+    top: 38% !important;
+    z-index: 3;
+    rotate: -10deg !important;
+  }
+  .fc-logosticker img { height: 130px !important; }
+
+  /* Badge near mochi */
+  .fc-badgeyellow {
+    left: 50% !important;
+    top: 85% !important;
+    z-index: 8;
+  }
+
+  /* Sharon text block near bottom */
+  .fc-sharon {
+    left: -11% !important;
+    top: 77% !important;
+    z-index: 8;
+    max-width: 260px;
+    rotate: 7deg !important;
+  }
+
 }

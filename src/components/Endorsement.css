@@ -18,7 +18,7 @@
   font-family: 'Nunito Sans', sans-serif;
   font-weight: 600;
   font-size: 1.7rem;
-  color: #0f3a1e;
+  color: #152b15;
   margin: 0 0 0rem 0;
   margin-bottom: 1rem;
 }
@@ -101,31 +101,31 @@
 
 @media (max-width: 768px) {
   .endorsement-header {
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
 
   .endorsement-section {
     padding: 0 1rem;
     margin-top: 1rem;
-    width: 100%;
     box-sizing: border-box;
-    max-width: 100%;
-    margin-left: auto;
-    margin-right: auto;
+    max-width: 120%;
+    margin-left: -2rem;
+    margin-right: -2rem;
+    width:120%;
   }
 
   .university-logos-container {
-    height: 10.5rem;
+    height: 9.5rem;
     width: 100%;
     padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
+    padding-bottom: 0rem;
     max-width: none;
     border-radius: 2rem;
   }
 
   .university-logos-row {
     height: 5rem;
-    gap: 2rem;
+    gap: 1.5rem;
   }
 
   .university-logo {

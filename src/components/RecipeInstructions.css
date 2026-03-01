@@ -110,6 +110,39 @@ margin-top: 3rem;
   }
 
   .recipe-instructions-mockup {
-    width: 70%;
+    width: 60%;
   }
+
+  .instructions-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .recipe-instructions-content{
+    margin-left: -2rem;
+    margin-right: -2rem;
+    width: calc(100% + 4rem);
+    border-radius: 2rem;
+    overflow: visible;
+  }
+
+  .recipe-instructions-overlay{
+    scale: 0.9;
+    overflow: visible;
+  }
+
+  .recipe-instructions-overlay text {
+    font-size: 3.5rem;
+  }
+
+  .recipe-pill {
+    padding: 0.2rem 0.8rem;
+    margin-top: 2rem;
+    margin-bottom: 0.5 rem;
+  }
+
+  .recipe-pill-text {
+    font-size: 0.9rem;
+  }
+
 }

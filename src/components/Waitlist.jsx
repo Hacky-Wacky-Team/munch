@@ -23,6 +23,7 @@ function Waitlist({
   const [titleAnimated, setTitleAnimated] = useState(false)
   const [currentWordIndex, setCurrentWordIndex] = useState(0)
   const [shouldTransition, setShouldTransition] = useState(true)
+  const [isMobile, setIsMobile] = useState(false)
   const titleContainerRef = useRef(null)
   const heroImageRef = useRef(null)
   const secondaryBoxesRef = useRef([])
@@ -51,6 +52,16 @@ function Waitlist({
       return () => clearTimeout(timeout)
     }
   }, [currentWordIndex])
+
+  // Check mobile size on mount and resize
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768)
+    }
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
   // Animate food icons from behind the hero image to their final positions
   useEffect(() => {
@@ -186,6 +197,11 @@ function Waitlist({
       {!showBottomVersion && (
         <div className="titletext" ref={titleContainerRef}>
           <div className="waitlist-pill">
+            <div className="waitlist-pill-avatars">
+              <img src="images/amandapfp.svg" alt="Amanda" className="waitlist-pill-avatar" style={{ zIndex: 1 }} />
+              <img src="images/jonathanpfp.svg" alt="Jonathan" className="waitlist-pill-avatar" style={{ zIndex: 2 }} />
+              <img src="images/sharonpfp.svg" alt="Sharon" className="waitlist-pill-avatar" style={{ zIndex: 3 }} />
+            </div>
             <span className="waitlist-pill-text">
               {getDigits(waitlistCount).map((digit, index) => {
                 const offset = digitOffsets[index] !== undefined ? digitOffsets[index] : 0
@@ -274,9 +290,10 @@ function Waitlist({
             data-final-rotate="-10"
           />
 
-          <div className="hero-title-line">Your social app</div>
+          <div className="hero-title-line hero-title-line-desktop">Your social app</div>
+          <div className="hero-title-line hero-title-line-mobile">Your social app for</div>
           <div className="hero-title-line">
-            for{' '}
+            <span className="hero-title-for-desktop">for{' '}</span>
             <span className="cycling-word-wrapper">
               <span className="cycling-word-bg" aria-hidden="true" />
               <span
@@ -301,7 +318,7 @@ function Waitlist({
 
       <div className="hero-image-section" ref={heroImageRef}>
         <div className="hero-image-card">
-          <img src="images/titleimage.png" alt="Munch preview" className="hero-image" />
+          <img src={isMobile ? "images/titleimagemobile.png" : "images/titleimage.png"} alt="Munch preview" className="hero-image" />
         </div>
       </div>
 

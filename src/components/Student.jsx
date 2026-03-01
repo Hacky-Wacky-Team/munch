@@ -20,40 +20,40 @@ function Student() {
                 <div className="freeform-canvas">
 
                     {/* Sample image */}
-                    <div className="fc-item fc-image-wrap" style={{ left: '1%', top: '18%', rotate: '-5deg' }}>
+                    <div className="fc-item fc-image-wrap fc-tangulu" style={{ left: '1%', top: '18%', rotate: '-5deg' }}>
                         <img src="images/tanguluimage.jpg" alt="Tangulu" className="fc-image" />
                     </div>
 
-                    <div className="fc-item fc-image-wrap" style={{ left: '77%', top: '5%', rotate: '8deg' }}>
+                    <div className="fc-item fc-image-wrap fc-mochi" style={{ left: '77%', top: '5%', rotate: '8deg' }}>
                         <img src="images/mochidonutsimage.jpg" alt="Mochi Donuts" className="fc-image" />
                     </div>
 
-                    <div className="fc-item fc-image-wrap" style={{ left: '49%', top: '40%', rotate: '-4deg' }}>
+                    <div className="fc-item fc-image-wrap fc-bearpizza" style={{ left: '49%', top: '40%', rotate: '-4deg' }}>
                         <img src="images/bearpizzaimage.jpg" alt="Bear pizza" className="fc-image" />
                     </div>
 
-                    <div className="fc-item fc-image-wrap" style={{ left: '30%', top: '5%', rotate: '4deg' }}>
+                    <div className="fc-item fc-image-wrap fc-wings" style={{ left: '30%', top: '5%', rotate: '4deg' }}>
                         <img src="images/wingsimage.JPG" alt="Wings" className="fc-image" />
                     </div>
 
-                    <div className="fc-item fc-arrow-wrap" style={{ left: '0%', top: '75%', rotate: '-4deg' }}>
+                    <div className="fc-item fc-arrow-wrap fc-arrow1-item" style={{ left: '0%', top: '75%', rotate: '-4deg' }}>
                         <img src="images/arrow1.svg" alt="arrow1" className="fc-arrow" />
                     </div>
 
-                    <div className="fc-item fc-sticker-wrap" style={{ left: '78%', top: '56%', rotate: '-20deg' }}>
+                    <div className="fc-item fc-sticker-wrap fc-logosticker" style={{ left: '78%', top: '56%', rotate: '-20deg' }}>
                         <img src="images/logosticker.svg" alt="Munch logo sticker" className="fc-sticker" />
                     </div>
 
-                    <div className="fc-item fc-sticker-wrap" style={{ left: '15%', top: '0%', rotate: '5deg' }}>
-                        <img src="images/wavystarshape.svg" alt="Munch logo sticker" className="fc-sticker" style={{height: '150px' }} />
+                    <div className="fc-item fc-sticker-wrap fc-wavystar" style={{ left: '15%', top: '0%', rotate: '5deg' }}>
+                        <img src="images/wavystarshape.svg" alt="Wavy star shape sticker" className="fc-sticker" style={{height: '150px' }} />
                     </div>
 
-                    <div className="fc-item fc-sticker-wrap" style={{ left: '19%', top: '50%', rotate: '12deg' }}>
+                    <div className="fc-item fc-sticker-wrap fc-fireicon" style={{ left: '19%', top: '50%', rotate: '12deg' }}>
                         <img src="images/fireicon.svg" alt="Fire icon" className="fc-sticker" style={{height: '110px' }} />
                     </div>
 
                     {/* Text block */}
-                    <div className="fc-item fc-text-block" style={{ left: '50%', top: '13%', rotate: '-2deg' }}>
+                    <div className="fc-item fc-text-block fc-jonathan" style={{ left: '50%', top: '13%', rotate: '-2deg' }}>
                         <img src="images/jonathanpfp.svg" alt="Jonathan" className="fc-text-pfp" />
                         <div className="fc-text-content">
                             <p className="fc-text-body">@jonnyo.z</p>
@@ -61,7 +61,7 @@ function Student() {
                         </div>
                     </div>
 
-                    <div className="fc-item fc-text-block" style={{ left: '35%', top: '70%', rotate: '2deg' }}>
+                    <div className="fc-item fc-text-block fc-sharon" style={{ left: '35%', top: '70%', rotate: '2deg' }}>
                         <img src="images/sharonpfp.svg" alt="Sharon" className="fc-text-pfp" />
                         <div className="fc-text-content">
                             <p className="fc-text-body">@sharsjourna1</p>
@@ -69,13 +69,13 @@ function Student() {
                         </div>
                     </div>
 
-                    <div className="fc-item fc-text-raw" style={{ left: '9%', top: '83%', rotate: '2deg' }}>
+                    <div className="fc-item fc-text-raw fc-textraw" style={{ left: '9%', top: '83%', rotate: '2deg' }}>
                         <p className="fc-text">hottest campus dining hall creations</p>
                     </div>
 
 
                     {/* Another rounded rect */}
-                    <div className="fc-item fc-badge fc-badge-yellow" style={{ left: '70%', top: '8%', rotate: '-3deg' }}>
+                    <div className="fc-item fc-badge fc-badge-yellow fc-badgeyellow" style={{ left: '70%', top: '8%', rotate: '-3deg' }}>
                         ✨ Trending this week
                     </div>
                 </div>

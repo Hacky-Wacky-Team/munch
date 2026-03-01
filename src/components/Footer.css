@@ -29,11 +29,14 @@
 
 .feature-title-footer {
   font-family: 'Nunito Sans', sans-serif;
-  font-weight: 850;
+  font-weight: 700;
   font-size: 4.5rem;
-  color: #242924;
+  color: #152b15;
   margin: 0;
-  line-height: 1.2;
+  line-height: 1.1;
+  text-align: center;
+  letter-spacing: -0.08rem;
+  z-index: 1;
 }
 
 .waitlist-box-footer {

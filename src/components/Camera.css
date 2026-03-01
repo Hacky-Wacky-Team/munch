@@ -208,4 +208,38 @@ background-clip: text;
     display: block;
     margin-bottom: 0.5rem;
   }
+
+    .camera-pill {
+    padding: 0.2rem 0.8rem;
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .camera-pill-text {
+    font-size: 0.9rem;
+  }
+
+  .camera-title {
+    font-size: 2.8rem;
+    max-width: 90%;
+  }
+
+  .ai-camera-title {
+    font-size: 4.5rem;
+    max-width: 100%;
+  }
+  .sparkle-icon {
+    display: none;
+  }
+  .camera-section {
+    margin-top: 2rem;
+    margin-bottom: 0rem;
+    gap: 0rem;
+  }
+  .feed-title-box-icon {
+    width: 1.6rem;
+    height: 1.6rem;
+    margin-bottom: -0.2rem;
+    margin-right: 0.5rem;
+  }
 }

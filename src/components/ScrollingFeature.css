@@ -11,32 +11,34 @@
   margin-bottom: 0rem;
   width: 100%;
   box-sizing: border-box;
+  position: relative;
 }
 
-.scrolling-title {
+.scrolling-title-text {
   font-family: 'Nunito Sans', sans-serif;
   font-weight: 700;
   font-size: 4.5rem;
   color: #152b15;
   margin: 0;
   line-height: 1.1;
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
-  align-items: center;
-  margin-bottom: 4rem;
-  letter-spacing: -0.06rem;
+  text-align: center;
+  letter-spacing: -0.08rem;
 }
 
-.scrolling-title-row {
-  display: flex;
-  gap: 2rem;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
+.scrolling-subtitle {
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 500;
+  font-size: 1.4rem;
+  color: #5a5a5a;
+  margin-top: 1.5rem;
+  text-align: center;
+  position: relative;
+  z-index: 10;
+  letter-spacing: -0.08rem;
+    margin-bottom: 3rem;
 }
+
+
 .scrolling-icon-left,
 .scrolling-icon-right {
   position: absolute;
@@ -54,17 +56,7 @@
   right: max(1rem, calc(50% - 34rem));
   top: 20%;
 }
-.scrolling-subtitle {
-  font-family: 'Nunito Sans', sans-serif;
-  font-weight: 500;
-  font-size: 1.4rem;
-  color: #5a5a5a;
-  margin-top: 1.4rem;
-  text-align: center;
-  position: relative;
-  z-index: 10;
-  letter-spacing: -0.08rem;
-}
+
 
 .scrolling-rows {
   display: flex;
@@ -115,15 +107,6 @@
     margin-bottom: 2rem;
   }
 
-  .scrolling-title {
-    padding: 0;
-    margin: 0 auto;
-    max-width: 100%;
-    word-wrap: break-word;
-    box-sizing: border-box;
-    gap: 1rem;
-  }
-
   .scrolling-title-row {
     gap: 1rem;
   }
@@ -140,12 +123,33 @@
   }
 
   .scroll-row {
-    height: 21rem;
+    height: 20rem;
     gap: 1rem;
   }
 
   .scroll-box {
-    width: 17rem;
-    height: 21rem;
+    width: 15rem;
+    height: 19rem;
+  }
+
+  .scrolling-title-text {
+    font-size: 2.8rem;
+  }
+
+  .scrolling-subtitle {
+    font-size: 1.2rem;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .scrolling-icon-left {
+    left: max(2rem, calc(50% - 17.5rem));
+    top: 52%;
+
+  }
+
+  .scrolling-icon-right {
+    right: max(2rem, calc(50% - 17.5rem));
+    top: 52%;
   }
 }

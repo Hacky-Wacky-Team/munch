@@ -202,6 +202,14 @@
   letter-spacing: -0.1rem;
 }
 
+.hero-title-line-desktop {
+  display: flex;
+}
+
+.hero-title-line-mobile {
+  display: none;
+}
+
 .hero-subtitle {
   font-family: 'Nunito Sans', sans-serif;
   font-weight: 500;
@@ -309,11 +317,14 @@
   box-shadow: 0rem 0.2rem 0.2rem rgba(0, 0, 0, 0.035);
   border: 2px solid #98e094;
   border-radius: 50px;
-  padding: 0.4rem 1.2rem;
+  padding: 0.1rem 0.8rem;
   margin-top: 3rem;
   opacity: 1;
-  overflow: hidden;
+  overflow: visible;
   margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
 }
 
 .waitlist-pill-text {
@@ -325,6 +336,43 @@
   display: inline-flex;
   align-items: center;
   gap: 0.1rem;
+  margin-top: 0.1rem;
+}
+
+.waitlist-pill-avatars {
+  display: flex;
+  align-items: center;
+  height: 1.9rem;
+  position: relative;
+  width: 3.6rem;
+  flex-shrink: 0;
+  margin-left: -0.5rem;
+  margin-right: 0.2rem;
+}
+
+.waitlist-pill-avatar {
+  position: absolute;
+  width: 1.4rem;
+  height: 1.4rem;
+  border-radius: 50%;
+  border: 3px solid #ffffff;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.waitlist-pill-avatar:nth-child(1) {
+  left: 0;
+  z-index: 1;
+}
+
+.waitlist-pill-avatar:nth-child(2) {
+  left: 1.2rem;
+  z-index: 2;
+}
+
+.waitlist-pill-avatar:nth-child(3) {
+  left: 2.4rem;
+  z-index: 3;
 }
 
 .number-scroll-container {
@@ -362,9 +410,9 @@
 /* Mobile */
 @media (max-width: 768px) {
   .gradient-background {
-    top: 10rem;
+    top: 0rem;
     min-height: 600px;
-    height: 100%;
+    height: 85%;
     width: 108vw;
   }
 
@@ -375,7 +423,7 @@
   }
 
   .waitlist-pill {
-    padding: 0.3rem 0.8rem;
+    padding: 0.1rem 0.7rem;
     font-size: 0.8rem;
     margin-top: 1.5rem;
   }
@@ -384,59 +432,119 @@
     font-size: 0.8rem;
   }
 
+  .waitlist-pill-avatars {
+    width: 3rem;
+    height: 1.4rem;
+    margin-right: -0.7rem;
+    margin-left: -0.2rem;
+  }
+
+  .waitlist-pill-avatar {
+    width: 1rem;
+    height: 1rem;
+    border-width: 1.8px;
+  }
+
+  .waitlist-pill-avatar:nth-child(2) {
+    left: 0.8rem;
+  }
+
+  .waitlist-pill-avatar:nth-child(3) {
+    left: 1.6rem;
+  }
+
   .number-scroll span {
     font-size: 0.8rem;
   }
 
   .hero-title-line {
-    font-size: 2.8rem;
+    font-size: 3.9rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.2rem;
+    margin-top: 0.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .hero-title-line-desktop {
+    display: none;
+  }
+
+  .hero-title-line-mobile {
+    display: flex;
   }
 
   .cycling-word-wrapper {
-    width: 5.6em;
-    height: 1.15em;
+    width: 4.5em;
+    height: 1.2em;
+  }
+
+  .cycling-word-item {
+    height: 1.2em;
+  }
+
+  /* 'for' repositioning */
+  .hero-title-for-mobile {
+    display: inline;
+  }
+
+  .hero-title-for-desktop {
+    display: none;
+  }
+
+  .hero-title-line-desktop {
+    display: none;
+  }
+
+  .hero-title-line-mobile {
+    display: flex;
+  }
+
+  /* Hide logo badge on mobile */
+  .hero-logo-badge {
+    display: none;
+  }
+
+  /* Hero image: full-bleed, extends past screen edges */
+  .hero-image-section {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
   }
 
   .hero-image-card {
-    height: 300px;
+    height: 330px;
     border-radius: 1.5rem;
   }
 
   .hero-image {
-    max-width: 95%;
-    max-height: 115%;
+    max-width: 195%;
+    max-height: 140%;
+  }
+
+  /* Hide unwanted food icons on mobile */
+  .top-title-food-icon[alt="salad"],
+  .top-title-food-icon[alt="pie"],
+  .top-title-food-icon[alt="broccoli"],
+  .top-title-food-icon[alt="sushi"] {
+    display: none;
   }
 
   .top-title-food-icon {
-    width: 50px;
-    height: 50px;
+    width: 75px;
+    height: 75px;
   }
-
-    /* Make stickers bigger in mobile view */
-    .top-title-food-icon {
-      width: 75px;
-      height: 75px;
-    }
 
   /* Mobile-specific sticker positions - can be customized by changing these values */
-  .top-title-food-icon[alt="pie"] {
-    --mobile-final-left: 7%;
-    --mobile-final-top: 12%;
-  }
-
-  .top-title-food-icon[alt="sushi"] {
-    --mobile-final-left: 2%;
-    --mobile-final-top: 78%;
-  }
 
   .top-title-food-icon[alt="cake"] {
-    --mobile-final-left: 78%;
-    --mobile-final-top: 44%;
+    --mobile-final-left: 0%;
+    --mobile-final-top: 100%;
   }
 
-  .top-title-food-icon[alt="broccoli"] {
-    --mobile-final-left: 4%;
-    --mobile-final-top: 43%;
+  .top-title-food-icon[alt="boba"] {
+    --mobile-final-left: 85%;
+    --mobile-final-top: 100%;
   }
 
   /* WAITLIST BOX */

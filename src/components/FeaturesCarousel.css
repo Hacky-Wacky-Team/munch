@@ -178,7 +178,7 @@
   flex-direction: column;
   align-items: center;
   gap: 1.5rem;
-    margin-top: 15rem;
+    margin-top: 12rem;
 }
 
 .carousel-title-boxes {
@@ -282,11 +282,11 @@
     padding-left: 1rem;
     padding-right: 1rem;
     margin-bottom: 2.5rem;
-    margin-top: 1rem;
+    margin-top: 1.5rem;
   }
 
   .carousel-title-container {
-    margin-top: calc(74rem - 100vh);
+    margin-top: 2rem;
   }
 
   .carousel-title-box {
@@ -364,23 +364,5 @@
     padding: 0.5rem 1.3rem;
     border-radius: 1.1rem;
     margin-bottom: 1rem;
-  }
-}
-
-@media (max-width: 426px) {
-    .carousel-title-container {
-    margin-top: calc(71rem - 100vh);
-  }
-}
-
-@media (max-width: 415px) {
-    .carousel-title-container {
-    margin-top: calc(66rem - 100vh);
-  }
-}
-
-@media (max-width: 400px) {
-    .carousel-title-container {
-    margin-top: calc(64rem - 100vh);
   }
 }

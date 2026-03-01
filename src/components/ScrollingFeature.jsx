@@ -1,9 +1,21 @@
+import { useState, useEffect } from 'react'
 import './ScrollingFeature.css'
 import { ThreeDScrollTriggerContainer, ThreeDScrollTriggerRow } from '@/components/ui/ThreeDScrollTrigger'
 import WorldIcon from "@/components/ui/world-icon";
 import SoupIcon from "@/components/ui/soup-icon";
 
 function ScrollingFeature() {
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768)
+    }
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
   const images = [
     '/images/post 1.webp',
     '/images/post 2.webp',
@@ -16,17 +28,17 @@ function ScrollingFeature() {
   return (
     <div className="scrolling-section">
       <div className="scrolling-text">
+        <div className="scrolling-icon-left" style={{ transform: 'rotate(-15deg)' }}>
+          <WorldIcon size={isMobile ? 60 : 120} color="#98e094" strokeWidth={1.7} />
+        </div>
+        <div className="scrolling-icon-right" style={{ transform: 'rotate(12deg)' }}>
+          <SoupIcon size={isMobile ? 60 : 120} color="#98e094" strokeWidth={1.7} />
+        </div>
         <h2 className="scrolling-title">
-          <div className="scrolling-icon-left" style={{ transform: 'rotate(-15deg)' }}>
-            <WorldIcon size={120} color="#98e094" strokeWidth={1.7} />
-          </div>
-          <div className="scrolling-icon-right" style={{ transform: 'rotate(12deg)' }}>
-            <SoupIcon size={120} color="#98e094" strokeWidth={1.7} />
-          </div>
-          <div className="scrolling-title-row">Join the scrumptious</div>
-          <div className="scrolling-title-row">community of foodies</div>
-          <div className="scrolling-subtitle">A space for real meals, real people, and real recipes.</div>
+          <h2 className="scrolling-title-text">Join the scrumptious</h2>
+          <h2 className="scrolling-title-text">community of foodies</h2>
         </h2>
+        <p className="scrolling-subtitle">A space for real meals, real people, and real recipes.</p>
       </div>
       <ThreeDScrollTriggerContainer>
         <ThreeDScrollTriggerRow baseVelocity={3} direction={1} className="scroll-row">
