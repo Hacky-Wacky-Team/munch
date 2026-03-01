@@ -1,14 +1,14 @@
 import { useState, useEffect, useRef } from 'react'
 import './components/global.css'
-import { db } from './firebase'
-import { collection, addDoc, query, where, getDocs, getCountFromServer } from 'firebase/firestore'
 
 // Import components
 import Navbar from './components/Navbar'
 import Waitlist from './components/Waitlist'
 import Endorsement from './components/Endorsement'
 import ScrollingFeature from './components/ScrollingFeature'
-import BigFeature from './components/BigFeature'
+import Camera from './components/Camera'
+import RecipeInstructions from './components/RecipeInstructions'
+import Student from './components/Student'
 import FeaturesCarousel from './components/FeaturesCarousel'
 import Footer from './components/Footer'
 
@@ -41,52 +41,6 @@ function App() {
       return () => clearTimeout(timer)
     }
   }, [showToast])
-
-  // Fetch waitlist count (cached for 10 minutes of real time)
-  // useEffect(() => {
-  //   const fetchWaitlistCount = async () => {
-  //     try {
-  //       // Check cache first
-  //       const cachedData = localStorage.getItem('waitlistCount')
-  //       const cacheExpiry = localStorage.getItem('waitlistCountExpiry')
-        
-  //       if (cachedData && cacheExpiry && Date.now() < parseInt(cacheExpiry)) {
-  //         // Use cached data if still valid
-  //         setWaitlistCount(parseInt(cachedData))
-  //         return false // Cache is still valid
-  //       }
-
-  //       // Fetch count from Firebase using aggregation (only 1 read!)
-  //       const coll = collection(db, 'users')
-  //       const snapshot = await getCountFromServer(coll)
-  //       const count = Math.floor(snapshot.data().count / 5) * 5
-        
-  //       // Cache for 10 minutes
-  //       setWaitlistCount(count)
-  //       localStorage.setItem('waitlistCount', count.toString())
-  //       localStorage.setItem('waitlistCountExpiry', (Date.now() + 10 * 60 * 1000).toString())
-  //       return true // Fetched new data
-  //     } catch (error) {
-  //       console.error('Error fetching waitlist count: ', error)
-  //       // Fallback to cached data even if expired
-  //       const cachedData = localStorage.getItem('waitlistCount')
-  //       if (cachedData) {
-  //         setWaitlistCount(parseInt(cachedData))
-  //       }
-  //       return false
-  //     }
-  //   }
-    
-  //   // Initial fetch
-  //   fetchWaitlistCount()
-    
-  //   // Check every minute if cache has expired and refetch if needed
-  //   const interval = setInterval(() => {
-  //     fetchWaitlistCount()
-  //   }, 60 * 1000) // Check every 60 seconds
-    
-  //   return () => clearInterval(interval)
-  // }, [])
 
   // Animate waitlist count with slot machine effect
   useEffect(() => {
@@ -177,6 +131,12 @@ function App() {
     setShowToast(false)
 
     try {
+      // Lazy-load Firebase only when the form is actually submitted
+      const [{ db }, { collection, addDoc, query, where, getDocs }] = await Promise.all([
+        import('./firebase'),
+        import('firebase/firestore')
+      ])
+
       // Check if email already exists
       const q = query(collection(db, 'users'), where('email', '==', email.trim()))
       const querySnapshot = await getDocs(q)
@@ -392,8 +352,14 @@ function App() {
         <ScrollingFeature />
       </div>
 
+      {/* RECIPE INSTRUCTIONS SECTION */}
+      <RecipeInstructions />
+
+      {/* STUDENT SECTION */}
+      <Student />
+
       {/* BIG FEATURES SECTION */}
-      <BigFeature />
+      <Camera />
 
       {/* FEATURE CAROUSEL */}
       <FeaturesCarousel
@@ -406,9 +372,6 @@ function App() {
         carouselRef={carouselRef}
         scrollToFeature={scrollToFeature}
       />
-
-              {/* ENDORSEMENT SECTION */}
-        <Endorsement />
 
       {/* FOOTER */}
       <Footer 

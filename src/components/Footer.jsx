@@ -29,22 +29,25 @@ function Footer({
               if (box) {
                 const finalRotate = box.dataset.finalRotate
 
-                gsap.fromTo(
-                  box,
-                  {
-                    y: 50,
-                    rotation: 0,
-                    opacity: 0
-                  },
-                  {
-                    y: 0,
-                    rotation: parseFloat(finalRotate),
-                    opacity: 1,
-                    duration: 0.6,
-                    delay: index * 0.1,
-                    ease: 'back.out(1.7)'
-                  }
-                )
+            // Defer animation to avoid forced reflow
+            requestAnimationFrame(() => {
+              gsap.fromTo(
+                box,
+                {
+                  y: 50,
+                  rotation: 0,
+                  opacity: 0
+                },
+                {
+                  y: 0,
+                  rotation: parseFloat(finalRotate),
+                  opacity: 1,
+                  duration: 0.6,
+                  delay: index * 0.1,
+                  ease: 'back.out(1.7)'
+                }
+              );
+            });
               }
             })
           }
@@ -138,7 +141,7 @@ function Footer({
             </form>
           </div>
           <div className="waitlist-right-panel-footer">
-            <img src="images/waitlistfoodimage.png" alt="Food" className="waitlist-food-image-footer" />
+            <img src="images/waitlistfoodimage.webp" alt="Food" className="waitlist-food-image-footer" />
           </div>
         </div>
         

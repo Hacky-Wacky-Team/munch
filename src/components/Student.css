@@ -1,0 +1,253 @@
+.student-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 8rem;
+  margin-bottom: 4rem;
+}
+
+.student-section .student-dot-bg {
+  position: relative;
+  width: 100%;
+  min-height: 400px;
+  padding: 6rem 0rem 4rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-bottom: 7rem;
+}
+
+.student-dot-pattern {
+  position: absolute;
+  inset: 0;
+  background-size: 40px 40px;
+  background-image: radial-gradient(#dedede 1.8px, transparent 1.8px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.title-container {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.student-title {
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 700;
+  font-size: 4.5rem;
+  color: #152b15;
+  margin: 0;
+  line-height: 1.1;
+  text-align: center;
+  letter-spacing: -0.08rem;
+  z-index: 1;
+}
+
+.student-pill {
+  background: #f3fff2;
+  box-shadow: 0rem 0.2rem 0.2rem rgba(0, 0, 0, 0.035);
+  border: 2px solid #98e094;
+  border-radius: 50px;
+  padding: 0.35rem 1.2rem;
+  margin-top: 3rem;
+  opacity: 1;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.student-pill-text {
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #242924;
+  letter-spacing: 0.02rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.1rem;
+}
+
+.graduation-icon {
+  width: 1.8rem;
+  height: 1.8rem;
+  fill: #242924;
+  margin-top: -0.1rem;
+  margin-left: 0.3rem;
+  margin-right: -0.3rem;
+}
+
+.student-subtitle {
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 500;
+  font-size: 1.4rem;
+  color: #5a5a5a;
+  margin-top: 1.4rem;
+  text-align: center;
+  position: relative;
+  z-index: 10;
+  letter-spacing: -0.08rem;
+}
+
+@media (max-width: 768px) {
+  .student-section {
+    margin-top: 4rem;
+    margin-bottom: 2rem;
+  }
+
+  .student-title {
+    font-size: 2.8rem;
+  }
+
+  .student-section .student-dot-bg {
+    padding: 4rem 1.5rem;
+    min-height: 300px;
+  }
+}
+
+/* ─── Freeform Canvas ─────────────────────────────────────────────────────── */
+
+.freeform-canvas {
+  position: relative;
+  width: 100%;
+  max-width: 1250px;
+  height: 39rem;
+  margin: 2rem auto 0;
+}
+
+/* Base item – all children share this */
+.fc-item {
+  position: absolute;
+  transform-origin: center center;
+}
+
+/* Image */
+.fc-image-wrap {
+  border-radius: 2rem;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.13);
+  border: 10px solid #ffffff;
+  width: 260px;
+}
+
+.fc-image {
+  display: block;
+  width: 100%;
+  height: 340px;
+  object-fit: cover;
+}
+
+.fc-arrow {
+    display: block;
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+}
+
+.fc-sticker-wrap {
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.07));
+}
+
+.fc-sticker {
+    display: block;
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+}
+
+
+/* Text block */
+.fc-text-block {
+  background: #fff;
+  border: 1.5px solid #e8e8e8;
+  border-radius: 1.6rem;
+  padding: 1rem 1rem;
+  max-width: 320px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+  display: flex;
+  gap: 0.6rem;
+  align-items: flex-start;
+}
+
+.fc-text-pfp {
+  width: 42px;
+  height: 42px;
+}
+
+.fc-text-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.fc-text-raw {
+  max-width: 280px;
+  display: flex;
+  align-items: center;
+}
+
+.fc-text {
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: #333333;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.fc-text-heading {
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: #102010;
+  margin: 0 0 0rem;
+  line-height: 1.3;
+}
+
+.fc-text-body {
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #313131;
+  margin: 0;
+  line-height: 1.3;
+}
+
+/* Badges / rounded rectangles */
+.fc-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border-radius: 50px;
+  padding: 0.5rem 1.2rem;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+.fc-badge-green {
+  background: #f0fdf0;
+  border: 1.5px solid #86efac;
+  color: #166534;
+}
+
+.fc-badge-yellow {
+  background: #fffbeb;
+  border: 1.5px solid #fcd34d;
+  color: #92400e;
+}
+
+
+@media (max-width: 768px) {
+  .freeform-canvas {
+    display: none;
+  }
+}

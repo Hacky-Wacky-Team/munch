@@ -3,6 +3,13 @@ import { gsap } from 'gsap';
 import Stack from './Stack';
 import './BounceCards.css';
 
+// Apply will-change for performance
+if (typeof window !== 'undefined') {
+  const style = document.createElement('style');
+  style.textContent = `.card { will-change: transform, opacity; }`;
+  document.head.appendChild(style);
+}
+
 export default function BounceCards({
   className = '',
   features = [],
@@ -43,19 +50,22 @@ export default function BounceCards({
             setHasAnimated(true);
             observer.disconnect();
             
-            const ctx = gsap.context(() => {
-              gsap.fromTo(
-                '.card',
-                { scale: 0, opacity: 0 },
-                {
-                  scale: 1,
-                  opacity: 1,
-                  stagger: animationStagger,
-                  ease: easeType,
-                  delay: animationDelay
-                }
-              );
-            }, containerRef);
+            // Defer animation to avoid forced reflow
+            requestAnimationFrame(() => {
+              const ctx = gsap.context(() => {
+                gsap.fromTo(
+                  '.card',
+                  { scale: 0, opacity: 0 },
+                  {
+                    scale: 1,
+                    opacity: 1,
+                    stagger: animationStagger,
+                    ease: easeType,
+                    delay: animationDelay
+                  }
+                );
+              }, containerRef);
+            });
           }
         });
       },

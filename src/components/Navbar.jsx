@@ -1,5 +1,4 @@
-import { PiPaperPlaneTiltFill } from 'react-icons/pi'
-import { FiClock } from 'react-icons/fi'
+import { FiSend, FiClock } from 'react-icons/fi'
 import './Navbar.css'
 
 function Navbar({ isDarkSection }) {
@@ -16,7 +15,7 @@ function Navbar({ isDarkSection }) {
       <div className="nav-right">
         <a href="https://instagram.com/jointhemunch" target="_blank" rel="noopener noreferrer">
           <button className="nav-button">
-            <PiPaperPlaneTiltFill className="button-icon" />
+            <FiSend className="button-icon" />
             <span>Instagram</span>
           </button>
         </a>

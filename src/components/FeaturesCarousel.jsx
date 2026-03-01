@@ -76,7 +76,7 @@ function FeaturesCarousel({
                 <h2>Get immersive, detailed, <strong>step-by-step</strong> instructions for your recipes.</h2>
               </div>
               <div className="feature-label">
-                <p>Your feed</p>
+                <p>Recipe instructions</p>
                 <FiHome className="feature-label-icon" />
               </div>
             </div>

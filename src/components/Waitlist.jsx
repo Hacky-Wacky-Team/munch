@@ -1,9 +1,11 @@
 import { useRef, useEffect, useState } from 'react'
 import { gsap } from 'gsap'
-import { FaApple } from 'react-icons/fa'
-import { PiAndroidLogoFill } from 'react-icons/pi'
 import SendIcon from "@/components/ui/send-icon";
 import './Waitlist.css'
+
+const CYCLING_WORDS = ['inspo', 'creations', 'meals', 'food', 'recipes', 'snacks', 'munch', 'ideas', 'craves']
+// Duplicate first word at end for seamless loop
+const DISPLAY_WORDS = [...CYCLING_WORDS, CYCLING_WORDS[0]]
 
 function Waitlist({
   name,
@@ -19,12 +21,40 @@ function Waitlist({
   showBottomVersion = false
 }) {
   const [titleAnimated, setTitleAnimated] = useState(false)
+  const [currentWordIndex, setCurrentWordIndex] = useState(0)
+  const [shouldTransition, setShouldTransition] = useState(true)
   const titleContainerRef = useRef(null)
+  const heroImageRef = useRef(null)
   const secondaryBoxesRef = useRef([])
 
-  // Animate secondary title boxes when section comes into view
+  // Cycle through words every 3 seconds
   useEffect(() => {
-    if (titleAnimated || !titleContainerRef.current || showBottomVersion) return
+    const interval = setInterval(() => {
+      setCurrentWordIndex(prev => prev + 1)
+    }, 3000)
+    return () => clearInterval(interval)
+  }, [])
+
+  // Handle seamless loop: when we land on the duplicate last word, snap back to 0
+  useEffect(() => {
+    if (currentWordIndex === CYCLING_WORDS.length) {
+      const timeout = setTimeout(() => {
+        setShouldTransition(false)
+        setCurrentWordIndex(0)
+        // Re-enable transition after browser paints the reset position
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            setShouldTransition(true)
+          })
+        })
+      }, 600) // wait for current transition to finish
+      return () => clearTimeout(timeout)
+    }
+  }, [currentWordIndex])
+
+  // Animate food icons from behind the hero image to their final positions
+  useEffect(() => {
+    if (titleAnimated || !heroImageRef.current || !titleContainerRef.current || showBottomVersion) return
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -33,72 +63,78 @@ function Waitlist({
             setTitleAnimated(true)
             observer.disconnect()
 
-            // Animate each secondary box to its final position
-            // Use transform-based animation (GPU-accelerated) instead of left/top (layout-triggering)
-            const containerRect = titleContainerRef.current.getBoundingClientRect()
+            // Pass 1: read dataset values (no layout), write all final positions (batch writes)
+            const isMobile = window.innerWidth <= 768
+            const boxData = secondaryBoxesRef.current.map((box, index) => {
+              if (!box) return null
 
-            secondaryBoxesRef.current.forEach((box, index) => {
-              if (box) {
-                const isMobile = window.innerWidth <= 768
-                let finalLeft = box.dataset.finalLeft
-                let finalTop = box.dataset.finalTop
-                let finalRotate = box.dataset.finalRotate
+              let finalLeft = box.dataset.finalLeft
+              let finalTop = box.dataset.finalTop
+              let finalRotate = box.dataset.finalRotate
 
-                // Use mobile-specific positions and rotation for iOS/Android boxes and stickers if on mobile
-                if (isMobile) {
-                  const computedStyle = getComputedStyle(box)
-                  const mobileLeft = computedStyle.getPropertyValue('--mobile-final-left').trim()
-                  const mobileTop = computedStyle.getPropertyValue('--mobile-final-top').trim()
-                  const mobileRotate = computedStyle.getPropertyValue('--mobile-final-rotate').trim()
+              if (isMobile) {
+                const computedStyle = getComputedStyle(box)
+                const mobileLeft = computedStyle.getPropertyValue('--mobile-final-left').trim()
+                const mobileTop = computedStyle.getPropertyValue('--mobile-final-top').trim()
+                const mobileRotate = computedStyle.getPropertyValue('--mobile-final-rotate').trim()
 
-                  if (mobileLeft) finalLeft = mobileLeft
-                  if (mobileTop) finalTop = mobileTop
-                  if (mobileRotate) finalRotate = mobileRotate
-                }
+                if (mobileLeft) finalLeft = mobileLeft
+                if (mobileTop) finalTop = mobileTop
+                if (mobileRotate) finalRotate = mobileRotate
+              }
 
-                // Set final left/top immediately (no animation on layout properties)
-                box.style.left = finalLeft
-                box.style.top = finalTop
+              // Write final positions all together (no reads in between)
+              box.style.left = finalLeft
+              box.style.top = finalTop
 
-                // Calculate transform offset from center to final position
-                const boxRect = box.getBoundingClientRect()
-                const centerX = containerRect.left + containerRect.width / 2
-                const centerY = containerRect.top + containerRect.height / 2
-                const boxCenterX = boxRect.left + boxRect.width / 2
-                const boxCenterY = boxRect.top + boxRect.height / 2
-                const offsetX = centerX - boxCenterX
-                const offsetY = centerY - boxCenterY
+              return { box, index, finalRotate }
+            }).filter(Boolean)
 
-                // Animate only transforms + opacity (compositor-friendly, no layout thrashing)
+            // Pass 2: single rAF — batch read all rects, then animate (no interleaved write/read)
+            requestAnimationFrame(() => {
+              const heroRect = heroImageRef.current.getBoundingClientRect()
+              const heroCenterX = heroRect.left + heroRect.width / 2
+              const heroCenterY = heroRect.top + heroRect.height / 2
+
+              // Read all box positions in one batch before touching GSAP
+              const rects = boxData.map(({ box }) => box.getBoundingClientRect())
+
+              boxData.forEach(({ box, index, finalRotate }, i) => {
+                const boxRect = rects[i]
+                const offsetX = heroCenterX - (boxRect.left + boxRect.width / 2)
+                const offsetY = heroCenterY - (boxRect.top + boxRect.height / 2)
+
                 gsap.fromTo(
                   box,
                   {
                     x: offsetX,
                     y: offsetY,
+                    scale: 0.3,
                     rotation: 0,
                     opacity: 0
                   },
                   {
                     x: 0,
                     y: 0,
+                    scale: 1,
                     rotation: parseFloat(finalRotate),
                     opacity: 1,
-                    duration: 0.6,
-                    delay: 0.7 + index * 0.04,
-                    ease: 'back.out(1.7)',
+                    duration: 0.8,
+                    delay: 0.3 + index * 0.06,
+                    ease: 'back.out(1.4)',
                     force3D: true
                   }
                 )
-              }
+              })
             })
           }
         })
       },
-      { threshold: 0.5 }
+      { threshold: 0.3 }
     )
 
-    if (titleContainerRef.current) {
-      observer.observe(titleContainerRef.current)
+    if (heroImageRef.current) {
+      observer.observe(heroImageRef.current)
     }
 
     return () => observer.disconnect()
@@ -175,36 +211,7 @@ function Waitlist({
             </span>
           </div>
           
-          <span 
-            ref={el => secondaryBoxesRef.current[0] = el}
-            className="top-title-box-secondary" 
-            style={{ zIndex: 1, opacity: 0 }}
-            data-final-left="24%"
-            data-final-top="104%"
-            data-final-rotate="-3"
-          >
-            <FaApple style={{ marginRight: '0.4rem',marginBottom: '0.4rem', display: 'inline', verticalAlign: 'middle' }} />
-            iOS
-          </span>
-          <span 
-            ref={el => secondaryBoxesRef.current[1] = el}
-            className="top-title-box-secondary" 
-            style={{ zIndex: 2, opacity: 0 }}
-            data-final-left="38%"
-            data-final-top="104%"
-            data-final-rotate="4"
-          >
-            <PiAndroidLogoFill style={{ marginRight: '0.4rem', display: 'inline', verticalAlign: 'middle' }} />
-            Android
-          </span>
-          <span 
-            ref={el => secondaryBoxesRef.current[2] = el}
-            className="top-title-box-secondary" 
-            style={{ zIndex: 3, opacity: 0, whiteSpace: 'nowrap' }}
-            data-final-left="57%"
-            data-final-top="104%"
-            data-final-rotate="-3"
-          >Coming Soon</span>
+
           
           <img 
             ref={el => secondaryBoxesRef.current[3] = el}
@@ -212,8 +219,8 @@ function Waitlist({
             alt="boba"
             className="top-title-food-icon" 
             style={{ zIndex: 1, opacity: 0 }}
-            data-final-left="81%"
-            data-final-top="80%"
+            data-final-left="92%"
+            data-final-top="124%"
             data-final-rotate="12"
           />
           <img 
@@ -222,8 +229,8 @@ function Waitlist({
             alt="broccoli"
             className="top-title-food-icon" 
             style={{ zIndex: 2, opacity: 0 }}
-            data-final-left="5%"
-            data-final-top="42%"
+            data-final-left="-3%"
+            data-final-top="79%"
             data-final-rotate="-8"
           />
           <img 
@@ -232,8 +239,8 @@ function Waitlist({
             alt="cake"
             className="top-title-food-icon" 
             style={{ zIndex: 3, opacity: 0 }}
-            data-final-left="84%"
-            data-final-top="39%"
+            data-final-left="90%"
+            data-final-top="75%"
             data-final-rotate="15"
           />
           <img 
@@ -242,8 +249,8 @@ function Waitlist({
             alt="pie"
             className="top-title-food-icon" 
             style={{ zIndex: 1, opacity: 0 }}
-            data-final-left="15%"
-            data-final-top="6%"
+            data-final-left="14%"
+            data-final-top="106%"
             data-final-rotate="-12"
           />
           <img 
@@ -252,8 +259,8 @@ function Waitlist({
             alt="salad"
             className="top-title-food-icon" 
             style={{ zIndex: 2, opacity: 0 }}
-            data-final-left="75%"
-            data-final-top="11%"
+            data-final-left="74%"
+            data-final-top="107%"
             data-final-rotate="10"
           />
           <img 
@@ -262,22 +269,42 @@ function Waitlist({
             alt="sushi"
             className="top-title-food-icon" 
             style={{ zIndex: 3, opacity: 0 }}
-            data-final-left="7%"
-            data-final-top="83%"
+            data-final-left="-5%"
+            data-final-top="127%"
             data-final-rotate="-10"
           />
 
-          <div className="top-title-row">
-            <span className="top-title-box" style={{ transform: 'rotate(2deg)', display: 'inline-block' }}>Join</span>
-            <span className="top-title-box" style={{ transform: 'rotate(-2deg)', display: 'inline-block' }}>The</span>
+          <div className="hero-title-line">Your social app</div>
+          <div className="hero-title-line">
+            for{' '}
+            <span className="cycling-word-wrapper">
+              <span className="cycling-word-bg" aria-hidden="true" />
+              <span
+                className="cycling-word-track"
+                style={{
+                  transform: `translateY(-${currentWordIndex * (100 / DISPLAY_WORDS.length)}%)`,
+                  transition: shouldTransition ? 'transform 0.6s cubic-bezier(0.65, 0, 0.35, 1)' : 'none'
+                }}
+              >
+                {DISPLAY_WORDS.map((word, i) => (
+                  <span key={`${word}-${i}`} className="cycling-word-item">{word}</span>
+                ))}
+              </span>
+            </span>
+            <span className="hero-logo-badge">
+              <img src="images/fulllogo.svg" alt="Munch logo" className="hero-logo-img" />
+            </span>
           </div>
-          <div className="top-title-row">
-            <span className="top-title-box munch-box" style={{ transform: 'rotate(-2deg)', display: 'inline-block'}}>Munch</span>
-            {/* marginLeft="-4rem" */}
-            <span className="top-title-box ment-box" style={{ transform: 'rotate(3deg)', display: 'inline-block'}}>ment</span>
-          </div>
+          <div className="hero-subtitle">See what real people are eating.</div>
         </div>
       )}
+
+      <div className="hero-image-section" ref={heroImageRef}>
+        <div className="hero-image-card">
+          <img src="images/titleimage.png" alt="Munch preview" className="hero-image" />
+        </div>
+      </div>
+
       <div className={`waitlist-box ${!showBottomVersion ? 'fade-rise-delay-2' : ''}`}>
         <div className="waitlist-left-panel">
           <h2 className="waitlist-header" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
@@ -309,7 +336,7 @@ function Waitlist({
           </form>
         </div>
         <div className="waitlist-right-panel">
-          <img src="images/waitlistfoodimage.png" alt="Food" className="waitlist-food-image" />
+          <img src="images/waitlistfoodimage.webp" alt="Food" className="waitlist-food-image" />
         </div>
       </div>
     </div>

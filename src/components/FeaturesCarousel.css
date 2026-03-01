@@ -33,7 +33,7 @@
 .features-track {
   display: flex;
   gap: 1.5rem;
-  padding: 0 5vw 1rem calc(max((100vw - 110ch) / 2, 2rem));
+  padding: 0 5vw 1rem calc(max((100vw - 112ch) / 2, 2rem));
   overflow-x: auto;
   overflow-y: visible;
   scroll-behavior: smooth;
@@ -48,7 +48,7 @@
 .features-track::after {
   content: '';
   display: block;
-  min-width: calc(max((100vw - 110ch) / 2, 2rem) - 5vw);
+  min-width: calc(max((100vw - 117ch) / 2, 2rem) - 5vw);
   height: 1px;
 }
 
@@ -161,14 +161,15 @@
 
 .feature-title {
   font-size: 4rem;
-  margin-bottom: 4rem;
-  background: #242924;
+  margin-bottom: 4.5rem;
+  background: #152b15;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   text-align: center;
   font-family: 'Nunito Sans', sans-serif !important;
-  font-weight: 800 !important;
+  font-weight: 700 !important;
+    letter-spacing: -0.08rem;
   z-index: 1;
 }
 
@@ -177,7 +178,7 @@
   flex-direction: column;
   align-items: center;
   gap: 1.5rem;
-    margin-top: calc(103rem - 100vh);
+    margin-top: 15rem;
 }
 
 .carousel-title-boxes {
@@ -195,7 +196,7 @@
   font-family: 'Nunito Sans', sans-serif;
   font-weight: 700;
   font-size: 3rem;
-  padding: 0.7rem 3rem;
+  padding: 0.6rem 2.3rem;
   border-radius: 2.3rem;
   display: inline-block;
   text-align: center;
