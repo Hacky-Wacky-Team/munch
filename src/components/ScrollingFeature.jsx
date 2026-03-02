@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import './ScrollingFeature.css'
 import { ThreeDScrollTriggerContainer, ThreeDScrollTriggerRow } from '@/components/ui/ThreeDScrollTrigger'
+import DrawUnderline from '@/components/ui/DrawUnderline'
 import WorldIcon from "@/components/ui/world-icon";
 import SoupIcon from "@/components/ui/soup-icon";
 
@@ -36,7 +37,7 @@ function ScrollingFeature() {
         </div>
         <h2 className="scrolling-title">
           <h2 className="scrolling-title-text">Join the scrumptious</h2>
-          <h2 className="scrolling-title-text">community of foodies</h2>
+          <h2 className="scrolling-title-text"><DrawUnderline>community</DrawUnderline> of foodies</h2>
         </h2>
         <p className="scrolling-subtitle">A space for real meals, real people, and real recipes.</p>
       </div>

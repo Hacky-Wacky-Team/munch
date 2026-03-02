@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import './Camera.css'
+import DrawUnderline from '@/components/ui/DrawUnderline'
 import ImmersiveFeature from './ImmersiveFeature'
 import BounceCards from './BounceCards';
 
@@ -107,7 +108,7 @@ function Camera() {
                 <div className="camera-pill">
                     <span className="camera-pill-text">CAMERA</span>
                 </div>
-                <h2 className="camera-title">Find recipes faster with the</h2>
+                <h2 className="camera-title">Find recipes <DrawUnderline>faster</DrawUnderline> with the</h2>
                 <div className="ai-camera-title-container">
                     <img src="images/sparkle.svg" alt="Sparkle icon" className="sparkle-icon" />
                     <h2 className="ai-camera-title">AI Camera</h2>

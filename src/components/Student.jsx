@@ -1,5 +1,6 @@
 import './Student.css'
 import Endorsement from './Endorsement'
+import DrawUnderline from '@/components/ui/DrawUnderline'
 
 function Student() {
     return (
@@ -12,7 +13,7 @@ function Student() {
                             <img src="images/graduationcap.svg" alt="Munch logo" className="graduation-icon" />
                         </span>
                     </div>
-                    <h2 className="student-title">Built for students, by students</h2>
+                    <h2 className="student-title">Built for <DrawUnderline>students,</DrawUnderline> by <DrawUnderline delay={0.15}>students</DrawUnderline></h2>
                     <p className="student-subtitle">See what students are actually cooking, and share yours.</p>
                 </div>
 

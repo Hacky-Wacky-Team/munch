@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { FiUser, FiHome, FiEdit3, FiCamera, FiBookmark, FiCalendar, FiShoppingCart } from 'react-icons/fi'
 import './FeaturesCarousel.css'
+import DrawUnderline from '@/components/ui/DrawUnderline'
 
 function FeaturesCarousel({
   activeFeature,
@@ -32,7 +33,7 @@ function FeaturesCarousel({
             <span className="carousel-title-box" style={{ transform: 'rotate(2deg)', display: 'inline-block' }}>Share.</span>
             <span className="carousel-title-box" style={{ transform: 'rotate(-1deg)', display: 'inline-block' }}>Plan.</span>
           </div>
-          <h1 className='feature-title'>Built for how <span className="you-highlight">you</span> munch.</h1>
+          <h1 className='feature-title'>Built for how <DrawUnderline>you</DrawUnderline> munch.</h1>
         </div>
       </div>
       <div id="features" className="features-carousel" 

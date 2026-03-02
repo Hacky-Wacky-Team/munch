@@ -53,6 +53,18 @@
   }
 }
 
+@keyframes slideDown {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -123,9 +135,9 @@ a {
 /* Toast notification */
 .toast {
   position: fixed;
-  bottom: 1.5rem;
-  left: 50%;
-  transform: translateX(-50%);
+  inset: auto 0 1.5rem;
+  margin: 0 auto;
+  width: fit-content;
   background-color: #242924;
   color: #e6f5e3;
   padding: 1rem 2rem;
@@ -138,31 +150,11 @@ a {
   animation: slideUp 0.3s ease-in-out;
 }
 
-.early-highlight {
-  background: #242924;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  position: relative;
-  display: inline-block;
+.toast-exit {
+  animation: slideDown 0.3s ease-in-out forwards !important;
 }
 
-.early-highlight::before {
-  content: '';
-  position: absolute;
-  bottom: 8%;
-  left: -2.5%;
-  right: 0;
-  height: 40%;
-  width: 0%;
-  background-color: #8fd583;
-  z-index: -1;
-  border-radius: 0.3rem;
-}
-
-.early-highlight.highlight-active::before {
-  animation: highlightSweep 0.6s cubic-bezier(0.7, 0, 0.3, 1) forwards;
-}
+/* early-highlight replaced by DrawUnderline component */
 
 @media (max-width: 768px) {
   .main-content {

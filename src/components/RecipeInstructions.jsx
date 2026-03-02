@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import './RecipeInstructions.css'
+import DrawUnderline from '@/components/ui/DrawUnderline'
 
 function RecipeInstructions() {
     const [isMobile, setIsMobile] = useState(false)
@@ -18,7 +19,7 @@ function RecipeInstructions() {
       <div className="recipe-pill">
         <span className="recipe-pill-text">RECIPES</span>
       </div>
-      <h2 className="recipe-instructions-title">Gliiiide through your cooking</h2>
+      <h2 className="recipe-instructions-title"><DrawUnderline>Gliiiide</DrawUnderline> through your cooking</h2>
       <p className="instructions-subtitle">Cook with total confidence. You'll never feel lost again.</p>
 
       <div className="recipe-instructions-content">

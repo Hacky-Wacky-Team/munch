@@ -18,6 +18,7 @@ function App() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [message, setMessage] = useState('')
   const [showToast, setShowToast] = useState(false)
+  const [toastExiting, setToastExiting] = useState(false)
   const [activeFeature, setActiveFeature] = useState(0)
   const [isDarkSection, setIsDarkSection] = useState(false)
   const [carouselCursor, setCarouselCursor] = useState({ show: false, x: 0, y: 0, direction: 'right' })
@@ -32,11 +33,16 @@ function App() {
     return num.toString().split('').map(d => parseInt(d))
   }
 
-  // Toast auto-dismiss after 5 seconds
+  // Toast auto-dismiss after 5 seconds with exit animation
   useEffect(() => {
     if (showToast) {
       const timer = setTimeout(() => {
-        setShowToast(false)
+        setToastExiting(true)
+        const exitTimer = setTimeout(() => {
+          setShowToast(false)
+          setToastExiting(false)
+        }, 300) // duration of slideDown animation
+        return () => clearTimeout(exitTimer)
       }, 5000)
       return () => clearTimeout(timer)
     }
@@ -99,8 +105,6 @@ function App() {
       triggerHighlight('.community-highlight')
       triggerHighlight('.camera-ai-highlight')
       triggerHighlight('.feed-highlight')
-      triggerHighlight('.you-highlight')
-      triggerHighlight('.early-highlight')
     }
 
     window.addEventListener('scroll', handleScroll)
@@ -162,6 +166,45 @@ function App() {
       console.error('Error adding document: ', error)
       setMessage('Something went wrong. Please try again.')
       setShowToast(true)
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
+  const handleGoogleSignup = async () => {
+    setIsSubmitting(true)
+    setMessage('')
+    setShowToast(false)
+
+    try {
+      const [{ auth, googleProvider, db }, { signInWithPopup, signOut }, { doc, setDoc, serverTimestamp }] = await Promise.all([
+        import('./firebase'),
+        import('firebase/auth'),
+        import('firebase/firestore')
+      ])
+
+      const result = await signInWithPopup(auth, googleProvider)
+      const user = result.user
+
+      await setDoc(doc(db, 'users', user.uid), {
+        name: user.displayName || '',
+        email: user.email || '',
+        provider: 'google',
+        timestamp: serverTimestamp()
+      }, { merge: true })
+
+      await signOut(auth)
+
+      setMessage('Successfully joined the waitlist!')
+      setShowToast(true)
+    } catch (error) {
+      if (error.code === 'auth/popup-closed-by-user') {
+        // User dismissed — silently ignore
+      } else {
+        console.error('Google signup error:', error)
+        setMessage('Something went wrong. Please try again.')
+        setShowToast(true)
+      }
     } finally {
       setIsSubmitting(false)
     }
@@ -345,6 +388,7 @@ function App() {
           onNameChange={(e) => setName(e.target.value)}
           onEmailChange={(e) => setEmail(e.target.value)}
           onSubmit={handleJoinWaitlist}
+          onGoogleSignup={handleGoogleSignup}
           showBottomVersion={false}
         />
 
@@ -381,11 +425,12 @@ function App() {
         onNameChange={(e) => setName(e.target.value)}
         onEmailChange={(e) => setEmail(e.target.value)}
         onSubmit={handleJoinWaitlist}
+        onGoogleSignup={handleGoogleSignup}
       />
 
       {/* Toast notification */}
       {showToast && (
-        <div className="toast">
+        <div className={`toast ${toastExiting ? 'toast-exit' : ''}`}>
           {message}
         </div>
       )}

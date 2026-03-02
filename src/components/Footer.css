@@ -163,6 +163,47 @@
   transform: scale(1);
 }
 
+.waitlist-button-row-footer {
+  display: flex;
+  flex-direction: row;
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 500px;
+}
+
+.waitlist-button-row-footer button[type="submit"] {
+  flex: 1;
+}
+
+.google-signup-btn-footer {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1.2rem 1rem;
+  border-radius: 1rem;
+  border: 0.0625rem solid #98e094;
+  background-color: #f5fff5;
+  color: #3c3c3c;
+  font-size: 1.3rem;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+  white-space: nowrap;
+}
+
+.google-signup-btn-footer:hover {
+  background-color: #e5ffe5;
+  border-color: #e5ffe5;
+}
+
+.google-signup-btn-footer:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 .gradient-background-footer {
   position: absolute;
   bottom: 0;
@@ -306,6 +347,17 @@
     font-size: 0.9rem;
     padding: 0.6rem 0rem;
     border-radius: 0.8rem;
+  }
+
+  .waitlist-button-row-footer {
+    gap: 0.5rem;
+  }
+
+  .google-signup-btn-footer {
+    font-size: 0.75rem;
+    padding: 0.6rem 0.3rem;
+    border-radius: 0.8rem;
+    gap: 0.3rem;
   }
 
   .waitlist-right-panel-footer {
