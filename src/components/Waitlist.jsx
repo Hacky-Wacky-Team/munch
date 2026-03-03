@@ -112,50 +112,43 @@ function Waitlist({
               return { box, index, finalRotate }
             }).filter(Boolean)
 
-            // Pass 2: on mobile only, set position and rotation, let CSS animation handle fade/rise
-            if (isMobile) {
-              boxData.forEach(({ box, finalRotate }) => {
-                box.style.transform = `rotate(${parseFloat(finalRotate) || 0}deg)`
+            // Pass 2: use GSAP animation for all devices
+            requestAnimationFrame(() => {
+              const heroRect = heroImageRef.current.getBoundingClientRect()
+              const heroCenterX = heroRect.left + heroRect.width / 2
+              const heroCenterY = heroRect.top + heroRect.height / 2
+
+              // Read all box positions in one batch before touching GSAP
+              const rects = boxData.map(({ box }) => box.getBoundingClientRect())
+
+              boxData.forEach(({ box, index, finalRotate }, i) => {
+                const boxRect = rects[i]
+                const offsetX = heroCenterX - (boxRect.left + boxRect.width / 2)
+                const offsetY = heroCenterY - (boxRect.top + boxRect.height / 2)
+
+                gsap.fromTo(
+                  box,
+                  {
+                    x: offsetX,
+                    y: offsetY,
+                    scale: 0.3,
+                    rotation: 0,
+                    opacity: 0
+                  },
+                  {
+                    x: 0,
+                    y: 0,
+                    scale: 1,
+                    rotation: parseFloat(finalRotate),
+                    opacity: 1,
+                    duration: 0.8,
+                    delay: 0.3 + index * 0.06,
+                    ease: 'back.out(1.4)',
+                    force3D: true
+                  }
+                )
               })
-            } else {
-              // single rAF — batch read all rects, then animate (no interleaved write/read)
-              requestAnimationFrame(() => {
-                const heroRect = heroImageRef.current.getBoundingClientRect()
-                const heroCenterX = heroRect.left + heroRect.width / 2
-                const heroCenterY = heroRect.top + heroRect.height / 2
-
-                // Read all box positions in one batch before touching GSAP
-                const rects = boxData.map(({ box }) => box.getBoundingClientRect())
-
-                boxData.forEach(({ box, index, finalRotate }, i) => {
-                  const boxRect = rects[i]
-                  const offsetX = heroCenterX - (boxRect.left + boxRect.width / 2)
-                  const offsetY = heroCenterY - (boxRect.top + boxRect.height / 2)
-
-                  gsap.fromTo(
-                    box,
-                    {
-                      x: offsetX,
-                      y: offsetY,
-                      scale: 0.3,
-                      rotation: 0,
-                      opacity: 0
-                    },
-                    {
-                      x: 0,
-                      y: 0,
-                      scale: 1,
-                      rotation: parseFloat(finalRotate),
-                      opacity: 1,
-                      duration: 0.8,
-                      delay: 0.3 + index * 0.06,
-                      ease: 'back.out(1.4)',
-                      force3D: true
-                    }
-                  )
-                })
-              })
-            }
+            })
           }
         })
       },

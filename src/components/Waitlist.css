@@ -602,9 +602,6 @@
   .top-title-food-icon {
     width: 75px;
     height: 75px;
-    animation: fadeRise 0.4s ease-out forwards;
-    animation-delay: 0.3s;
-    opacity: 0;
   }
 
   /* Mobile-specific sticker positions - can be customized by changing these values */
