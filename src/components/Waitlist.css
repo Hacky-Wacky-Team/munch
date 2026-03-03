@@ -29,12 +29,12 @@
 
 .gradient-background {
   position: absolute;
-  top: 0;
+  top: 4%;
   left: 50%;
-  transform: translateX(-55%);
+  transform: translateX(-50%);
   width: 100vw;
-  height: 76%;
-  min-height: 1000px;
+  height: 78vw;
+  min-height: 800px;
   z-index: 0;
   pointer-events: none;
   overflow: visible;
@@ -47,6 +47,17 @@
   width: 108%;
   height: 100%;
   min-width: 100vw;
+}
+
+.gradient-image {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 .gradient-svg-green-15 {
@@ -489,10 +500,7 @@
 /* Mobile */
 @media (max-width: 768px) {
   .gradient-background {
-    top: 0rem;
-    min-height: 600px;
-    height: 85%;
-    width: 108vw;
+    display: none;
   }
 
   .waitlist-container {
@@ -612,8 +620,8 @@
   .top-title-food-icon {
     width: 75px;
     height: 75px;
-    animation: fadeOnly 0.6s ease-out forwards;
-    animation-delay: 0.6s;
+    animation: fadeRise 0.4s ease-out forwards;
+    animation-delay: 0.3s;
     opacity: 0;
   }
 
@@ -628,10 +636,6 @@
     --mobile-final-left: 85%;
     --mobile-final-top: 100%;
   }
-}
-
-
-@media (max-width: 768px) {
   /* WAITLIST BOX */
   .waitlist-box {
     flex-direction: column;
