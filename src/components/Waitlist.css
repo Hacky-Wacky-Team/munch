@@ -40,15 +40,6 @@
   overflow: visible;
 }
 
-.gradient-svg {
-  position: absolute;
-  top: 0%;
-  left: 0%;
-  width: 108%;
-  height: 100%;
-  min-width: 100vw;
-}
-
 .gradient-image {
   position: absolute;
   top: 0;
@@ -486,15 +477,6 @@
 
 .fade-rise-delay-2 {
   animation-delay: 0.5s;
-}
-
-/* Tablet (iPad) food icons — CSS fade only, no transform conflict with JS rotation */
-@media (min-width: 769px) and (max-width: 1224px) {
-  .top-title-food-icon {
-    animation: fadeRise 0.3s ease-out forwards;
-    animation-delay: 0.3s;
-    opacity: 0;
-  }
 }
 
 /* Mobile */

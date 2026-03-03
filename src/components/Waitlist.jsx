@@ -112,8 +112,8 @@ function Waitlist({
               return { box, index, finalRotate }
             }).filter(Boolean)
 
-            // Pass 2: on mobile or tablet, set position and rotation, let CSS animation handle fade/rise
-            if (isMobile || isTablet) {
+            // Pass 2: on mobile only, set position and rotation, let CSS animation handle fade/rise
+            if (isMobile) {
               boxData.forEach(({ box, finalRotate }) => {
                 box.style.transform = `rotate(${parseFloat(finalRotate) || 0}deg)`
               })
