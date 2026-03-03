@@ -1,7 +1,19 @@
+/* Page load animations */
+@keyframes fadeRise {
+  from {
+    opacity: 0.7;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .waitlist-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center; 
   justify-content: flex-start;
   color: black;
   padding: 2rem;
@@ -247,6 +259,9 @@
   justify-content: center;
   gap: 1rem;
   letter-spacing: -0.1rem;
+  animation: fadeRise 0.3s ease-out forwards;
+  animation-delay: 0.1s;
+  opacity: 0;
 }
 
 .hero-title-line-desktop {
@@ -267,6 +282,9 @@
   position: relative;
   z-index: 10;
   letter-spacing: -0.08rem;
+  animation: fadeRise 0.3s ease-out forwards;
+  animation-delay: 0.2s;
+  opacity: 0;
 }
 
 /* Cycling word wrapper */
@@ -348,6 +366,9 @@
   justify-content: center;
   height: 500px;
   position: relative;
+  animation: fadeRise 0.3s ease-out forwards;
+  animation-delay: 0.4s;
+  opacity: 0;
 }
 
 .hero-image {
@@ -372,6 +393,8 @@
   display: flex;
   align-items: center;
   gap: 0.8rem;
+  animation: fadeRise 0.3s ease-out forwards;
+  animation-delay: 0s;
 }
 
 .waitlist-pill-text {
@@ -451,7 +474,16 @@
 }
 
 .fade-rise-delay-2 {
-  animation-delay: 0.7s;
+  animation-delay: 0.5s;
+}
+
+/* Tablet (iPad) food icons — CSS fade only, no transform conflict with JS rotation */
+@media (min-width: 769px) and (max-width: 1224px) {
+  .top-title-food-icon {
+    animation: fadeRise 0.3s ease-out forwards;
+    animation-delay: 0.3s;
+    opacity: 0;
+  }
 }
 
 /* Mobile */
@@ -580,6 +612,9 @@
   .top-title-food-icon {
     width: 75px;
     height: 75px;
+    animation: fadeOnly 0.6s ease-out forwards;
+    animation-delay: 0.6s;
+    opacity: 0;
   }
 
   /* Mobile-specific sticker positions - can be customized by changing these values */
@@ -593,7 +628,10 @@
     --mobile-final-left: 85%;
     --mobile-final-top: 100%;
   }
+}
 
+
+@media (max-width: 768px) {
   /* WAITLIST BOX */
   .waitlist-box {
     flex-direction: column;

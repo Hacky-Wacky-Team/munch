@@ -77,6 +77,7 @@ function Waitlist({
 
             // Pass 1: read dataset values (no layout), write all final positions (batch writes)
             const isMobile = window.innerWidth <= 768
+            const isTablet = window.innerWidth > 768 && window.innerWidth <= 1224
             const boxData = secondaryBoxesRef.current.map((box, index) => {
               if (!box) return null
 
@@ -84,7 +85,16 @@ function Waitlist({
               let finalTop = box.dataset.finalTop
               let finalRotate = box.dataset.finalRotate
 
-              if (isMobile) {
+              if (isTablet) {
+                const computedStyle = getComputedStyle(box)
+                const tabletLeft = computedStyle.getPropertyValue('--tablet-final-left').trim()
+                const tabletTop = computedStyle.getPropertyValue('--tablet-final-top').trim()
+                const tabletRotate = computedStyle.getPropertyValue('--tablet-final-rotate').trim()
+
+                if (tabletLeft) finalLeft = tabletLeft
+                if (tabletTop) finalTop = tabletTop
+                if (tabletRotate) finalRotate = tabletRotate
+              } else if (isMobile) {
                 const computedStyle = getComputedStyle(box)
                 const mobileLeft = computedStyle.getPropertyValue('--mobile-final-left').trim()
                 const mobileTop = computedStyle.getPropertyValue('--mobile-final-top').trim()
@@ -102,10 +112,9 @@ function Waitlist({
               return { box, index, finalRotate }
             }).filter(Boolean)
 
-            // Pass 2: on mobile, skip animation and show icons statically for performance
-            if (isMobile) {
+            // Pass 2: on mobile or tablet, set position and rotation, let CSS animation handle fade/rise
+            if (isMobile || isTablet) {
               boxData.forEach(({ box, finalRotate }) => {
-                box.style.opacity = '1'
                 box.style.transform = `rotate(${parseFloat(finalRotate) || 0}deg)`
               })
             } else {
