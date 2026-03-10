@@ -33,7 +33,7 @@ function FeaturesCarousel({
             <span className="carousel-title-box" style={{ transform: 'rotate(2deg)', display: 'inline-block' }}>Share.</span>
             <span className="carousel-title-box" style={{ transform: 'rotate(-1deg)', display: 'inline-block' }}>Plan.</span>
           </div>
-          <h1 className='feature-title'>Built for how <DrawUnderline>you</DrawUnderline> munch.</h1>
+          <h2 className='feature-title'>Built for how <DrawUnderline>you</DrawUnderline> munch.</h2>
         </div>
       </div>
       <div id="features" className="features-carousel" 

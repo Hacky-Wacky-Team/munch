@@ -264,6 +264,8 @@
   animation: fadeRise 0.3s ease-out forwards;
   animation-delay: 0.1s;
   opacity: 0;
+  margin-bottom: 0rem;
+  margin-top: 0rem;
 }
 
 .hero-title-line-desktop {

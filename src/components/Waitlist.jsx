@@ -265,8 +265,8 @@ function Waitlist({
             data-final-rotate="-10"
           />
 
-          <div className="hero-title-line hero-title-line-desktop">Your social app</div>
-          <div className="hero-title-line hero-title-line-mobile">Your social app for</div>
+          <h1 className="hero-title-line hero-title-line-desktop">Your social app</h1>
+          <h1 className="hero-title-line hero-title-line-mobile">Your social app for</h1>
           <div className="hero-title-line">
             <span className="hero-title-for-desktop">for{' '}</span>
             <span className="cycling-word-wrapper">

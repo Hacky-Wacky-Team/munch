@@ -73,7 +73,7 @@ function Footer({
       
       <div className="footer-content">
         <div className="section-header-footer">
-          <h1 className='feature-title-footer'>Get <DrawUnderline>early</DrawUnderline> access.</h1>
+          <h2 className='feature-title-footer'>Get <DrawUnderline>early</DrawUnderline> access.</h2>
         </div>
         
         <div className="waitlist-box-footer">
