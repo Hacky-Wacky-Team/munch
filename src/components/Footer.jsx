@@ -68,7 +68,7 @@ function Footer({
   return (
     <footer className="footer">
       <div className="gradient-background-footer">
-        <img src="images/gradientbackground.png" alt="Gradient" className="gradient-image-footer gradient-image-1-footer" />
+        <img src="images/gradientbackground.png" alt="Gradient" className="gradient-image-footer" />
       </div>
       
       <div className="footer-content">

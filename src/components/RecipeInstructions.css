@@ -116,6 +116,7 @@ margin-top: 3rem;
   .instructions-subtitle {
     font-size: 1.2rem;
     margin-bottom: 0.5rem;
+      line-height: 1.2;
   }
 
   .recipe-instructions-content{

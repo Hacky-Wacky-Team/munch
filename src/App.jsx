@@ -22,7 +22,7 @@ function App() {
   const [activeFeature, setActiveFeature] = useState(0)
   const [isDarkSection, setIsDarkSection] = useState(false)
   const [carouselCursor, setCarouselCursor] = useState({ show: false, x: 0, y: 0, direction: 'right' })
-  const [waitlistCount, setWaitlistCount] = useState(100)
+  const [waitlistCount, setWaitlistCount] = useState(200)
   const [digitOffsets, setDigitOffsets] = useState([])
   const [isAnimating, setIsAnimating] = useState(false)
   const featuresTrackRef = useRef(null)

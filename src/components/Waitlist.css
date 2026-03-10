@@ -482,7 +482,12 @@
 /* Mobile */
 @media (max-width: 768px) {
   .gradient-background {
-    display: none;
+    display: visible;
+    top: 78%;
+  }
+  .gradient-image {
+    width: 115%;
+    height: auto;
   }
 
   .waitlist-container {
@@ -534,6 +539,7 @@
     font-size: 1.2rem;
     margin-top: 0.5rem;
     margin-bottom: 2rem;
+    
   }
 
   .hero-title-line-desktop {

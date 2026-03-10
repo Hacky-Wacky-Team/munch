@@ -123,11 +123,12 @@
   }
 
   .student-subtitle {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     margin-top: 1rem;
     text-wrap: wrap;
-    max-width: 80%;
+    max-width: 90%;
     margin-bottom: 0rem;
+    line-height: 1.2;
   }
 
 }

@@ -35,10 +35,10 @@ function ScrollingFeature() {
         <div className="scrolling-icon-right" style={{ transform: 'rotate(12deg)' }}>
           <SoupIcon size={isMobile ? 60 : 120} color="#98e094" strokeWidth={1.7} />
         </div>
-        <h2 className="scrolling-title">
+        <div className="scrolling-title">
           <h2 className="scrolling-title-text">Join the scrumptious</h2>
           <h2 className="scrolling-title-text"><DrawUnderline>community</DrawUnderline> of foodies</h2>
-        </h2>
+        </div>
         <p className="scrolling-subtitle">A space for real meals, real people, and real recipes.</p>
       </div>
       <ThreeDScrollTriggerContainer>
