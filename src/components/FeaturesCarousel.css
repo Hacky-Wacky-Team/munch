@@ -5,6 +5,7 @@
   overflow-y: visible;
   padding: 2rem 0;
   margin-top: -2rem;
+  margin-bottom: -4rem;
 }
 
 .custom-carousel-cursor {
@@ -56,6 +57,7 @@
   display: none;
 }
 
+.feature0,
 .feature1,
 .feature2,
 .feature3,
@@ -159,14 +161,37 @@
   line-height: 1.5rem;
 }
 
+.carousel-pill {
+    background: #f3fff2;
+  box-shadow: 0rem 0.2rem 0.2rem rgba(0, 0, 0, 0.035);
+  border: 2px solid #98e094;
+  border-radius: 50px;
+  padding: 0.35rem 1.2rem;
+  margin-top: 3rem;
+  opacity: 1;
+  overflow: hidden;
+  margin-bottom: -4.5rem;
+}
+
+.carousel-pill-text {
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #242924;
+  letter-spacing: 0.02rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.1rem;
+}
+
 .feature-title {
-  font-size: 4rem;
-  margin-bottom: 4.5rem;
+  font-size: 4.5rem;
+  margin-bottom: 3rem;
   color: #152b15;
   text-align: center;
   font-family: 'Nunito Sans', sans-serif;
   font-weight: 700;
-  letter-spacing: -0.08rem;
+  letter-spacing: -0.15rem;
   z-index: 1;
   line-height: 1.1;
 }
@@ -176,43 +201,7 @@
   flex-direction: column;
   align-items: center;
   gap: 1.5rem;
-    margin-top: 12rem;
-}
-
-.carousel-title-boxes {
-  display: flex;
-  gap: 1.5rem;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-bottom: -2.7rem;
-}
-
-.carousel-title-box {
-  background-color: #ffffff;
-  color: #214221;
-  font-family: 'Nunito Sans', sans-serif;
-  font-weight: 700;
-  font-size: 3rem;
-  padding: 0.6rem 2.3rem;
-  border-radius: 2.3rem;
-  display: inline-block;
-  text-align: center;
-  white-space: nowrap;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-}
-
-.feature-title-bottom {
-  font-size: 3.5rem;
-  margin-bottom: 4rem;
-  background: #242924;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  text-align: center;
-  font-family: 'Nunito Sans', sans-serif !important;
-  font-weight: 800 !important;
-  z-index: 1;
+    margin-top: 0rem;
 }
 
 /* you-highlight replaced by DrawUnderline component */
@@ -251,34 +240,28 @@
 }
 
 @media (max-width: 768px) {
+  .carousel-pill {
+        padding: 0.15rem 0.7rem;
+    margin-top: 2rem;
+    margin-bottom: 0.5 rem;
+      border: 1px solid #98e094;
+      margin-bottom: -0.5rem;
+  }
+
+  .carousel-pill-text {
+    font-size: 0.8rem;
+  }
+
   .feature-title {
     font-size: 2.8rem;
     padding-left: 1rem;
     padding-right: 1rem;
-    margin-bottom: 2.5rem;
-    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    margin-top: 0rem;
   }
 
   .carousel-title-container {
     margin-top: 2rem;
-  }
-
-  .carousel-title-box {
-    font-size: 2rem;
-    padding: 0.6rem 2rem;
-    border-radius: 1.5rem;
-  }
-
-  .carousel-title-boxes {
-    gap: 1rem;
-  }
-
-  .feature-title-bottom {
-    font-size: 2.25rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    margin-bottom: 3rem;
-    margin-top: 1rem;
   }
 
   .feature1,
@@ -287,7 +270,8 @@
   .feature4,
   .feature5,
   .feature6,
-  .feature7 {
+  .feature7,
+  .feature0 {
     max-width: 26rem;
     min-width: 23rem;
     scroll-snap-align: center;
@@ -333,10 +317,4 @@
     height: 0.6rem;
   }
 
-  .carousel-title-box {
-    font-size: 1.6rem;
-    padding: 0.5rem 1.3rem;
-    border-radius: 1.1rem;
-    margin-bottom: 1rem;
-  }
 }

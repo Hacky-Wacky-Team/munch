@@ -80,12 +80,26 @@ function Footer({
           <div className="waitlist-left-panel-footer">
           <h2 className="waitlist-header-footer" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
             <span>Be the <strong>first</strong> to try munch when we launch</span>
-            <SendIcon 
-              size={typeof window !== 'undefined' && window.innerWidth <= 768 ? 55 : 80}
-              color="#214221" 
-              className="mb-[0px]"
-            />
           </h2>
+          <div className="waitlist-send-icons-footer">
+            <SendIcon 
+              size={typeof window !== 'undefined' && window.innerWidth <= 768 ? 55 : 280}
+              color="#d5f2d4" 
+              className="waitlist-send-icon-footer"
+            />
+            <SendIcon 
+              size={typeof window !== 'undefined' && window.innerWidth <= 768 ? 55 : 280}
+              color="#bdebbb" 
+              className="waitlist-send-icon-footer"
+            />
+            <SendIcon 
+              size={typeof window !== 'undefined' && window.innerWidth <= 768 ? 55 : 280}
+              color="#a0e69d" 
+              className="waitlist-send-icon-footer"
+            />
+          </div>
+          </div>
+          <div className="waitlist-right-panel-footer">
             <form onSubmit={onSubmit} noValidate>
               <input
                 type="text"
@@ -121,9 +135,6 @@ function Footer({
                 </button>
               </div>
             </form>
-          </div>
-          <div className="waitlist-right-panel-footer">
-            <img src="images/waitlistfoodimage.webp" alt="Food" className="waitlist-food-image-footer" />
           </div>
         </div>
         

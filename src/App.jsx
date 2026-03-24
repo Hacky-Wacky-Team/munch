@@ -11,6 +11,7 @@ import RecipeInstructions from './components/RecipeInstructions'
 import Student from './components/Student'
 import FeaturesCarousel from './components/FeaturesCarousel'
 import Footer from './components/Footer'
+import Profile from './components/Profile'
 
 function App() {
   const [name, setName] = useState('')
@@ -396,14 +397,17 @@ function App() {
         <ScrollingFeature />
       </div>
 
+      {/* PROFILE SECTION */}
+      <Profile />
+
       {/* RECIPE INSTRUCTIONS SECTION */}
       <RecipeInstructions />
 
-      {/* STUDENT SECTION */}
-      <Student />
-
       {/* BIG FEATURES SECTION */}
       <Camera />
+
+      {/* STUDENT SECTION */}
+      <Student />
 
       {/* FEATURE CAROUSEL */}
       <FeaturesCarousel

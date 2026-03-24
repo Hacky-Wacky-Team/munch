@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
-import Stack from './Stack';
 import './BounceCards.css';
 
 // Apply will-change for performance
@@ -27,8 +26,10 @@ export default function BounceCards({
   enableHover = true
 }) {
   const containerRef = useRef(null);
+  const mobileTrackRef = useRef(null);
   const [hasAnimated, setHasAnimated] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [activeMobileFeature, setActiveMobileFeature] = useState(0);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -164,28 +165,25 @@ export default function BounceCards({
     });
   };
 
-  // Mobile: use Stack component
+  // Mobile: use swipe carousel
   if (isMobile) {
-    const stackCards = features.map((feature, idx) => (
-      <div key={idx} style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-        <h3 className="stack-card-title">{feature.title}</h3>
-        <p className="stack-card-description">{feature.description}</p>
-        <div className="stack-card-image-container">
-          <img src={feature.image} alt={feature.title} />
-        </div>
-      </div>
-    ));
-
     return (
-      <div style={{ width: '100%', maxWidth: '310px', height: '440px', margin: '3rem auto 8rem auto', paddingRight: '1.75rem'}}>
-        <Stack
-          randomRotation={true}
-          sensitivity={200}
-          sendToBackOnClick={true}
-          cards={stackCards}
-          autoplay={false}
-          pauseOnHover
-        />
+      <div className="mobileFeaturesCarousel">
+        <div className="mobile-features-track" ref={mobileTrackRef} role="region" aria-label="Camera feature cards">
+          {features.map((feature, idx) => (
+            <article
+              key={idx}
+              data-index={idx}
+              className={`mobile-feature-card mobile-feature-${idx + 1}`}
+            >
+              <h3 className="stack-card-title">{feature.title}</h3>
+              <p className="stack-card-description">{feature.description}</p>
+              <div className="stack-card-image-container">
+                <img src={feature.image} alt={feature.title} />
+              </div>
+            </article>
+          ))}
+        </div>
       </div>
     );
   }

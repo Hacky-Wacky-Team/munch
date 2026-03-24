@@ -9,7 +9,7 @@ function Student() {
                 <div className="student-dot-pattern" />
                 <div className="title-container">
                     <div className="student-pill">
-                        <span className="student-pill-text">MUNCH FOR STUDENTS
+                        <span className="student-pill-text">YOUR STUDENT APP
                             <img src="images/graduationcap.svg" alt="Munch logo" className="graduation-icon" />
                         </span>
                     </div>

@@ -28,15 +28,13 @@ function FeaturesCarousel({
     <>
       <div className="section-header">
         <div className="carousel-title-container">
-          <div className="carousel-title-boxes">
-            <span className="carousel-title-box" style={{ transform: 'rotate(-2deg)', display: 'inline-block' }}>Cook.</span>
-            <span className="carousel-title-box" style={{ transform: 'rotate(2deg)', display: 'inline-block' }}>Share.</span>
-            <span className="carousel-title-box" style={{ transform: 'rotate(-1deg)', display: 'inline-block' }}>Plan.</span>
+          <div className="carousel-pill">
+            <span className="carousel-pill-text">FEATURE RICH</span>
           </div>
           <h2 className='feature-title'>Built for how <DrawUnderline>you</DrawUnderline> munch.</h2>
         </div>
       </div>
-      <div id="features" className="features-carousel" 
+      <div id="features" className="features-carousel"
         ref={carouselRef}
         onMouseMove={onMouseMove}
         onMouseLeave={onMouseLeave}
@@ -44,7 +42,7 @@ function FeaturesCarousel({
         style={{ cursor: carouselCursor.show ? 'none' : 'default' }}
       >
         {carouselCursor.show && (
-          <div 
+          <div
             className="custom-carousel-cursor"
             style={{
               left: `${carouselCursor.x}px`,
@@ -57,9 +55,22 @@ function FeaturesCarousel({
           </div>
         )}
         <div className="features-track" ref={featuresTrackRef}>
+          <div className="feature0">
+            <div className="showcase-container">
+              <img src="mockups/feed.png" alt="App mockup" className="mockup-image" />
+              <div className="showcase-content">
+                <h2> Gather <strong>inspiration</strong> and recipes for your next meal</h2>
+              </div>
+              <div className="feature-label">
+                <p>Your feed</p>
+                <FiHome className="feature-label-icon" />
+              </div>
+            </div>
+          </div>
+
           <div className="feature1">
             <div className="showcase-container">
-              <img src={isMobile ? "mockups/profilemobile.webp" : "mockups/profile.png"} alt="App mockup" className="mockup-image" />
+              <img src= "mockups/profile.png" alt="App mockup" className="mockup-image" />
               <div className="showcase-content">
                 <h2>Create your own <strong>profile</strong> and connect with other foodies.</h2>
               </div>
@@ -72,13 +83,12 @@ function FeaturesCarousel({
 
           <div className="feature2">
             <div className="showcase-container">
-              <img src={isMobile ? "mockups/homemobile.webp" : "mockups/home.png"} alt="App mockup" className="mockup-image" />
+              <img src="mockups/home.png" alt="App mockup" className="mockup-image" />
               <div className="showcase-content">
                 <h2>Get immersive, detailed, <strong>step-by-step</strong> instructions for your recipes.</h2>
               </div>
               <div className="feature-label">
                 <p>Recipe instructions</p>
-                <FiHome className="feature-label-icon" />
               </div>
             </div>
           </div>
@@ -88,7 +98,7 @@ function FeaturesCarousel({
               <div className="showcase-content">
                 <h2>Craft detailed posts.<br></br>Share your recipes with the <strong>world</strong>.</h2>
               </div>
-              <img src={isMobile ? "mockups/postmobile.webp" : "mockups/post.png"} alt="App mockup" className="mockup-image" />
+              <img src="mockups/post.png" alt="App mockup" className="mockup-image" />
               <div className="feature-label">
                 <p>Create post</p>
                 <FiEdit3 className="feature-label-icon" />
@@ -97,7 +107,7 @@ function FeaturesCarousel({
           </div>
           <div className="feature4">
             <div className="showcase-container">
-              <img src={isMobile ? "mockups/recipemobile.webp" : "mockups/recipe.png"} alt="App mockup" className="mockup-image" />
+              <img src= "mockups/recipe.png" alt="App mockup" className="mockup-image" />
               <div className="showcase-content">
                 <h2>Scan with your <strong>camera</strong>.<br></br>Get recipes based off your pantry.</h2>
               </div>
@@ -110,7 +120,7 @@ function FeaturesCarousel({
 
           <div className="feature5">
             <div className="showcase-container">
-              <img src={isMobile ? "mockups/savedmobile.webp" : "mockups/saved.png"} alt="App mockup" className="mockup-image" />
+              <img src= "mockups/saved.png" alt="App mockup" className="mockup-image" />
               <div className="showcase-content">
                 <h2>Never lose a recipe.<br></br><strong>Save them</strong> all in one place.</h2>
               </div>
@@ -149,7 +159,7 @@ function FeaturesCarousel({
 
         </div>
         <div className="carousel-indicators">
-          {[0, 1, 2, 3, 4, 5, 6].map((index) => (
+          {[0, 1, 2, 3, 4, 5, 6, 7].map((index) => (
             <span
               key={index}
               className={`carousel-dot ${activeFeature === index ? 'active' : ''}`}

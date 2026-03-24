@@ -3,10 +3,38 @@
   opacity: 1;
   width: 100%;
   overflow-x: hidden;
+    width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.scrolling-pill-text {
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #242924;
+  letter-spacing: 0.02rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.1rem;
+}
+
+.scrolling-pill {
+  background: #f3fff2;
+  box-shadow: 0rem 0.2rem 0.2rem rgba(0, 0, 0, 0.035);
+  border: 2px solid #98e094;
+  border-radius: 50px;
+  padding: 0.35rem 1.2rem;
+  margin-top: 6rem;
+  opacity: 1;
+  overflow: hidden;
+  margin-bottom: 0rem;
 }
 
 .scrolling-text {
-  margin-top: 6rem;
+  margin-top: 1rem;
   text-align: center;
   margin-bottom: 0rem;
   width: 100%;
@@ -22,7 +50,7 @@
   margin: 0;
   line-height: 1.1;
   text-align: center;
-  letter-spacing: -0.08rem;
+  letter-spacing: -0.15rem;
 }
 
 .scrolling-subtitle {
@@ -58,16 +86,6 @@
 }
 
 
-.scrolling-rows {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  width: 100%;
-  overflow: hidden;
-  position: relative;
-  margin-top: 2rem;
-}
-
 .scroll-row {
   margin-top: 1rem;
   display: flex;
@@ -97,29 +115,26 @@
     right: 0;
     margin-left: 0;
     margin-right: 0;
+    margin-bottom: -3rem;
+  }
+
+  .scrolling-pill {
+        padding: 0.15rem 0.7rem;
+    margin-top: 6rem;
+    margin-bottom: 0.5 rem;
+      border: 1px solid #98e094;
+  }
+
+  .scrolling-pill-text {
+    font-size: 0.8rem;
   }
 
   .scrolling-text {
-    margin-top: 5rem;
+    margin-top: 1rem;
     padding: 0 2rem;
     width: 100%;
     box-sizing: border-box;
     margin-bottom: 2rem;
-  }
-
-  .scrolling-title-row {
-    gap: 1rem;
-  }
-
-  .scrolling-rows {
-    margin-left: calc(-1rem - 1rem);
-    margin-right: calc(-1rem - 1rem);
-    width: 100vw;
-    position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
   }
 
   .scroll-row {
@@ -139,7 +154,7 @@
   .scrolling-subtitle {
     font-size: 1.2rem;
     margin-top: 1rem;
-    margin-bottom: 3rem;
+    margin-bottom: 0rem;
     line-height: 1.2;
   }
 

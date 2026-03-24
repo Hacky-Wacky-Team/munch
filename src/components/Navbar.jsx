@@ -22,7 +22,7 @@ function Navbar({ isDarkSection }) {
         <a href="#waitlist">
           <button className="nav-button">
             <FiClock className="button-icon" />
-            <span>Join the Waitlist</span>
+            <span>Join Waitlist</span>
           </button>
         </a>
       </div>

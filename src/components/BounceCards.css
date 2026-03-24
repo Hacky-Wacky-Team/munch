@@ -5,7 +5,7 @@
   align-items: center;
   width: 100%;
   height: 500px;
-  margin: 2rem auto 14rem auto;
+  margin: 2rem auto 9rem auto;
   max-width: 1350px;
   padding: 0 2rem;
 }
@@ -115,6 +115,71 @@
   object-fit: contain;
 }
 
+.mobileFeaturesCarousel {
+  --mobile-feature-card-width: calc(100vw - 4rem);
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: visible;
+  padding: 2rem 0;
+  margin-top: 3rem;
+  margin-bottom: 8rem;
+}
+
+.mobile-features-track {
+  display: flex;
+  gap: 3rem;
+  padding: 2rem 5vw 3.5rem calc(max((100vw - 112ch) / 2, 2rem));
+  overflow-x: auto;
+  overflow-y: visible;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  overscroll-behavior-x: contain;
+  overscroll-behavior-y: auto;
+  box-sizing: border-box;
+}
+
+.mobile-features-track::after {
+  content: '';
+  display: block;
+  min-width: calc(max((100vw - 117ch) / 2, 2rem) - 5vw);
+  height: 1px;
+}
+
+.mobile-features-track::-webkit-scrollbar {
+  display: none;
+}
+.mobile-feature-card {
+  flex: 0 0 var(--mobile-feature-card-width);
+  max-width: var(--mobile-feature-card-width);
+  min-width: var(--mobile-feature-card-width);
+  padding: 0;
+  min-height: 40vh;
+  display: flex;
+  gap: 2rem;
+  align-items: flex-end;
+  position: relative;
+  background: #ffffff;
+  border-radius: 2rem;
+  user-select: none;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+  scale: 1.05;
+}
+
+.mobile-feature-card {
+  height: 440px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
 
 @media (max-width: 768px) {
   .bounceCardsContainer {
@@ -123,7 +188,7 @@
     gap: 2rem;
     min-height: auto;
     padding: 0 1rem;
-    margin: 3rem auto 8rem auto;
+    margin: 3rem auto 4rem auto;
   }
 
   .card {
@@ -147,6 +212,37 @@
   }
 
   .card-image {
-    min-height: 150px;
+    min-height: 190px;
+  }
+
+  .mobileFeaturesCarousel {
+    --mobile-feature-card-width: calc(100vw - 4rem);
+    margin-top: 3rem;
+    margin-bottom: -1rem;
+  }
+
+  .mobile-features-track {
+    padding-left: calc((100vw - var(--mobile-feature-card-width)) / 2);
+    padding-right: calc((100vw - var(--mobile-feature-card-width)) / 2);
+  }
+
+  .mobile-feature-card {
+    height: 430px;
+    padding: 1.6rem;
+  }
+
+  .stack-card-title {
+    font-size: 2rem;
+    letter-spacing: -1.6px;
+  }
+
+  .stack-card-description {
+    font-size: 1.1rem;
+    letter-spacing: -0.8px;
+  }
+
+  .stack-card-image-container {
+    min-height: 170px;
+    margin-bottom: -1.2rem;
   }
 }

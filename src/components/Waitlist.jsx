@@ -1,9 +1,8 @@
 import { useRef, useEffect, useState } from 'react'
-import { gsap } from 'gsap'
 import SendIcon from "@/components/ui/send-icon";
 import './Waitlist.css'
 
-const CYCLING_WORDS = ['inspo', 'creations', 'meals', 'food', 'recipes', 'snacks', 'munch', 'ideas', 'craves']
+const CYCLING_WORDS = ['cravings', 'ingredients', 'scrolls', 'scraps', 'leftovers', 'recipes', 'groceries', 'no ideas', 'inspiration']
 // Duplicate first word at end for seamless loop
 const DISPLAY_WORDS = [...CYCLING_WORDS, CYCLING_WORDS[0]]
 
@@ -21,13 +20,14 @@ function Waitlist({
   onGoogleSignup,
   showBottomVersion = false
 }) {
-  const [titleAnimated, setTitleAnimated] = useState(false)
   const [currentWordIndex, setCurrentWordIndex] = useState(0)
   const [shouldTransition, setShouldTransition] = useState(true)
-  const [isMobile, setIsMobile] = useState(false)
+  const [isMobile, setIsMobile] = useState(
+    () => (typeof window !== 'undefined' ? window.innerWidth <= 768 : false)
+  )
+  const [heroFlattenProgress, setHeroFlattenProgress] = useState(0)
   const titleContainerRef = useRef(null)
-  const heroImageRef = useRef(null)
-  const secondaryBoxesRef = useRef([])
+  const heroImageContainerRef = useRef(null)
 
   // Cycle through words every 3 seconds
   useEffect(() => {
@@ -64,109 +64,45 @@ function Waitlist({
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
-  // Animate food icons from behind the hero image to their final positions
+  // Subtle perspective at top that eases to flat while scrolling down.
   useEffect(() => {
-    if (titleAnimated || !heroImageRef.current || !titleContainerRef.current || showBottomVersion) return
+    let rafId = null
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && !titleAnimated) {
-            setTitleAnimated(true)
-            observer.disconnect()
+    const updateHeroPerspective = () => {
+      rafId = null
 
-            // Pass 1: read dataset values (no layout), write all final positions (batch writes)
-            const isMobile = window.innerWidth <= 768
-            const isTablet = window.innerWidth > 768 && window.innerWidth <= 1224
-            const boxData = secondaryBoxesRef.current.map((box, index) => {
-              if (!box) return null
-
-              let finalLeft = box.dataset.finalLeft
-              let finalTop = box.dataset.finalTop
-              let finalRotate = box.dataset.finalRotate
-
-              if (isTablet) {
-                const computedStyle = getComputedStyle(box)
-                const tabletLeft = computedStyle.getPropertyValue('--tablet-final-left').trim()
-                const tabletTop = computedStyle.getPropertyValue('--tablet-final-top').trim()
-                const tabletRotate = computedStyle.getPropertyValue('--tablet-final-rotate').trim()
-
-                if (tabletLeft) finalLeft = tabletLeft
-                if (tabletTop) finalTop = tabletTop
-                if (tabletRotate) finalRotate = tabletRotate
-              } else if (isMobile) {
-                const computedStyle = getComputedStyle(box)
-                const mobileLeft = computedStyle.getPropertyValue('--mobile-final-left').trim()
-                const mobileTop = computedStyle.getPropertyValue('--mobile-final-top').trim()
-                const mobileRotate = computedStyle.getPropertyValue('--mobile-final-rotate').trim()
-
-                if (mobileLeft) finalLeft = mobileLeft
-                if (mobileTop) finalTop = mobileTop
-                if (mobileRotate) finalRotate = mobileRotate
-              }
-
-              // Write final positions all together (no reads in between)
-              box.style.left = finalLeft
-              box.style.top = finalTop
-
-              return { box, index, finalRotate }
-            }).filter(Boolean)
-
-            // Pass 2: use GSAP animation for all devices
-            requestAnimationFrame(() => {
-              const heroRect = heroImageRef.current.getBoundingClientRect()
-              const heroCenterX = heroRect.left + heroRect.width / 2
-              const heroCenterY = heroRect.top + heroRect.height / 2
-
-              // Read all box positions in one batch before touching GSAP
-              const rects = boxData.map(({ box }) => box.getBoundingClientRect())
-
-              boxData.forEach(({ box, index, finalRotate }, i) => {
-                const boxRect = rects[i]
-                const offsetX = heroCenterX - (boxRect.left + boxRect.width / 2)
-                const offsetY = heroCenterY - (boxRect.top + boxRect.height / 2)
-
-                gsap.fromTo(
-                  box,
-                  {
-                    x: offsetX,
-                    y: offsetY,
-                    scale: 0.3,
-                    rotation: 0,
-                    opacity: 0
-                  },
-                  {
-                    x: 0,
-                    y: 0,
-                    scale: 1,
-                    rotation: parseFloat(finalRotate),
-                    opacity: 1,
-                    duration: 0.8,
-                    delay: 0.3 + index * 0.06,
-                    ease: 'back.out(1.4)',
-                    force3D: true
-                  }
-                )
-              })
-            })
-          }
-        })
-      },
-      { threshold: 0.3 }
-    )
-
-    if (heroImageRef.current) {
-      observer.observe(heroImageRef.current)
+      const scrollY = window.scrollY || window.pageYOffset || 0
+      const flattenDistance = window.innerWidth <= 768 ? 240 : 260
+      const progress = Math.max(0, Math.min(1, scrollY / flattenDistance))
+      setHeroFlattenProgress(progress)
     }
 
-    return () => observer.disconnect()
-  }, [titleAnimated, showBottomVersion])
+    const onScrollOrResize = () => {
+      if (rafId !== null) return
+      rafId = requestAnimationFrame(updateHeroPerspective)
+    }
+
+    updateHeroPerspective()
+    window.addEventListener('scroll', onScrollOrResize, { passive: true })
+    window.addEventListener('resize', onScrollOrResize)
+
+    return () => {
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId)
+      }
+      window.removeEventListener('scroll', onScrollOrResize)
+      window.removeEventListener('resize', onScrollOrResize)
+    }
+  }, [])
+
+  const tiltDegrees = (isMobile ? 30 : 20) * (1 - heroFlattenProgress)
+  const liftPixels = (isMobile ? 20 : 10) * (1 - heroFlattenProgress)
+  const scaleY = 0.985 + (0.015 * heroFlattenProgress)
 
   return (
     <div id="waitlist" className="waitlist-container">
       {!showBottomVersion && (
         <div className="gradient-background">
-          <img src="images/gradientbackground.png" alt="Gradient" className="gradient-image gradient-image-1" />
         </div>
       )}
       {!showBottomVersion && (
@@ -204,71 +140,9 @@ function Waitlist({
           
 
           
-          <img 
-            ref={el => secondaryBoxesRef.current[3] = el}
-            src="foodicons/boba.png"
-            alt="boba"
-            className="top-title-food-icon" 
-            style={{ zIndex: 1, opacity: 0 }}
-            data-final-left="92%"
-            data-final-top="124%"
-            data-final-rotate="12"
-          />
-          <img 
-            ref={el => secondaryBoxesRef.current[4] = el}
-            src="foodicons/broccoli.png"
-            alt="broccoli"
-            className="top-title-food-icon" 
-            style={{ zIndex: 2, opacity: 0 }}
-            data-final-left="-3%"
-            data-final-top="79%"
-            data-final-rotate="-8"
-          />
-          <img 
-            ref={el => secondaryBoxesRef.current[5] = el}
-            src="foodicons/cake.png"
-            alt="cake"
-            className="top-title-food-icon" 
-            style={{ zIndex: 3, opacity: 0 }}
-            data-final-left="90%"
-            data-final-top="75%"
-            data-final-rotate="15"
-          />
-          <img 
-            ref={el => secondaryBoxesRef.current[6] = el}
-            src="foodicons/pie.png"
-            alt="pie"
-            className="top-title-food-icon" 
-            style={{ zIndex: 1, opacity: 0 }}
-            data-final-left="14%"
-            data-final-top="106%"
-            data-final-rotate="-12"
-          />
-          <img 
-            ref={el => secondaryBoxesRef.current[7] = el}
-            src="foodicons/salad.png"
-            alt="salad"
-            className="top-title-food-icon" 
-            style={{ zIndex: 2, opacity: 0 }}
-            data-final-left="74%"
-            data-final-top="107%"
-            data-final-rotate="10"
-          />
-          <img 
-            ref={el => secondaryBoxesRef.current[8] = el}
-            src="foodicons/sushi.png"
-            alt="sushi"
-            className="top-title-food-icon" 
-            style={{ zIndex: 3, opacity: 0 }}
-            data-final-left="-5%"
-            data-final-top="127%"
-            data-final-rotate="-10"
-          />
-
-          <h1 className="hero-title-line hero-title-line-desktop">Your social app</h1>
-          <h1 className="hero-title-line hero-title-line-mobile">Your social app for</h1>
+          <h1 className="hero-title-line" style={{ color: '#aab2aa' }}>move from</h1>
           <div className="hero-title-line">
-            <span className="hero-title-for-desktop">for{' '}</span>
+            <span className="hero-title-for-desktop">{' '}</span>
             <span className="cycling-word-wrapper">
               <span className="cycling-word-bg" aria-hidden="true" />
               <span
@@ -283,30 +157,52 @@ function Waitlist({
                 ))}
               </span>
             </span>
-            <span className="hero-logo-badge">
-              <img src="images/fulllogo.svg" alt="Munch logo" className="hero-logo-img" />
-            </span>
           </div>
-          <div className="hero-subtitle">See what real people are munching.</div>
+          <h1 className="hero-title-line">to real meals</h1>
+          {/* <div className="hero-subtitle">See what real people are munching everyday.</div> */}
         </div>
       )}
-
+{/* 
       <div className="hero-image-section" ref={heroImageRef}>
         <div className="hero-image-card">
           <img src={isMobile ? "images/titleimagemobile.png" : "images/titleimage.png"} alt="Munch preview" className="hero-image" />
         </div>
+      </div> */}
+
+      <div
+        className="hero-image-container"
+        ref={heroImageContainerRef}
+        style={{
+          transform: `perspective(1400px) rotateX(${tiltDegrees}deg) translateY(${liftPixels}px) scaleY(${scaleY})`
+        }}
+      >
+        <img src={isMobile ? "images/heroimagemobile.png" : "images/heroimage.png"} alt="Munch preview" className="hero-image" />
       </div>
 
       <div className={`waitlist-box ${!showBottomVersion ? 'fade-rise-delay-2' : ''}`}>
         <div className="waitlist-left-panel">
           <h2 className="waitlist-header" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
             <span>Be the <strong>first</strong> to try munch when we launch</span>
-            <SendIcon 
-              size={typeof window !== 'undefined' && window.innerWidth <= 768 ? 55 : 80}
-              color="#214221" 
-              className="mb-[0px]"
-            />
           </h2>
+          <div className="waitlist-send-icons">
+            <SendIcon 
+              size={typeof window !== 'undefined' && window.innerWidth <= 768 ? 55 : 280}
+              color="#d5f2d4" 
+              className="waitlist-send-icon"
+            />
+            <SendIcon 
+              size={typeof window !== 'undefined' && window.innerWidth <= 768 ? 55 : 280}
+              color="#bdebbb" 
+              className="waitlist-send-icon"
+            />
+            <SendIcon 
+              size={typeof window !== 'undefined' && window.innerWidth <= 768 ? 55 : 280}
+              color="#a0e69d" 
+              className="waitlist-send-icon"
+            />
+          </div>
+        </div>
+        <div className="waitlist-right-panel">
           <form onSubmit={onSubmit} noValidate>
             <input
               type="text"
@@ -342,9 +238,6 @@ function Waitlist({
               </button>
             </div>
           </form>
-        </div>
-        <div className="waitlist-right-panel">
-          <img src="images/waitlistfoodimage.webp" alt="Food" className="waitlist-food-image" />
         </div>
       </div>
     </div>
