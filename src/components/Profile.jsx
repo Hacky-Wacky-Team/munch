@@ -252,7 +252,7 @@ function Profile() {
                 <article className="profile-info-card">
                     <div className="profile-info-content">
                         <h3 className="profile-info-title">Stickers</h3>
-                        <p className="profile-info-description">Express your personality with unique and customizable stickers.</p>
+                        <p className="profile-info-description">Express your personality with customizable stickers.</p>
                     </div>
                     <div className="profile-info-media">
                         <div className="profile-info-images profile-info-images-stickers" aria-hidden="true">

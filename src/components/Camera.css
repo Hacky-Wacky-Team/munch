@@ -101,7 +101,7 @@ background-clip: text;
 @media (max-width: 768px) {
     .camera-pill {
         padding: 0.15rem 0.7rem;
-    margin-top: 4rem;
+    margin-top: 5.5rem;
     margin-bottom: 0.5 rem;
       border: 1px solid #98e094;
   }
