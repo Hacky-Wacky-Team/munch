@@ -3,8 +3,6 @@ import SendIcon from "@/components/ui/send-icon";
 import './Waitlist.css'
 
 const CYCLING_WORDS = ['cravings', 'ingredients', 'scrolls', 'scraps', 'leftovers', 'recipes', 'groceries', 'no ideas', 'inspiration']
-// Duplicate first word at end for seamless loop
-const DISPLAY_WORDS = [...CYCLING_WORDS, CYCLING_WORDS[0]]
 
 function Waitlist({
   name,
@@ -21,38 +19,45 @@ function Waitlist({
   showBottomVersion = false
 }) {
   const [currentWordIndex, setCurrentWordIndex] = useState(0)
-  const [shouldTransition, setShouldTransition] = useState(true)
+  const [previousWordIndex, setPreviousWordIndex] = useState(null)
+  const [isWordAnimating, setIsWordAnimating] = useState(false)
+  const [cyclingWordWidth, setCyclingWordWidth] = useState(null)
   const [isMobile, setIsMobile] = useState(
     () => (typeof window !== 'undefined' ? window.innerWidth <= 768 : false)
   )
   const [heroFlattenProgress, setHeroFlattenProgress] = useState(0)
   const titleContainerRef = useRef(null)
   const heroImageContainerRef = useRef(null)
+  const cyclingWordMeasureRef = useRef(null)
+  const wordAnimationTimeoutRef = useRef(null)
 
   // Cycle through words every 3 seconds
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentWordIndex(prev => prev + 1)
-    }, 3000)
-    return () => clearInterval(interval)
-  }, [])
+      setCurrentWordIndex(prev => {
+        const next = (prev + 1) % CYCLING_WORDS.length
+        setPreviousWordIndex(prev)
+        setIsWordAnimating(true)
 
-  // Handle seamless loop: when we land on the duplicate last word, snap back to 0
-  useEffect(() => {
-    if (currentWordIndex === CYCLING_WORDS.length) {
-      const timeout = setTimeout(() => {
-        setShouldTransition(false)
-        setCurrentWordIndex(0)
-        // Re-enable transition after browser paints the reset position
-        requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-            setShouldTransition(true)
-          })
-        })
-      }, 600) // wait for current transition to finish
-      return () => clearTimeout(timeout)
+        if (wordAnimationTimeoutRef.current) {
+          clearTimeout(wordAnimationTimeoutRef.current)
+        }
+
+        wordAnimationTimeoutRef.current = setTimeout(() => {
+          setPreviousWordIndex(null)
+          setIsWordAnimating(false)
+        }, 620)
+
+        return next
+      })
+    }, 3000)
+    return () => {
+      clearInterval(interval)
+      if (wordAnimationTimeoutRef.current) {
+        clearTimeout(wordAnimationTimeoutRef.current)
+      }
     }
-  }, [currentWordIndex])
+  }, [])
 
   // Check mobile size on mount and resize
   useEffect(() => {
@@ -63,6 +68,21 @@ function Waitlist({
     window.addEventListener('resize', checkMobile)
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
+
+  useEffect(() => {
+    const updateCyclingWordWidth = () => {
+      const measureEl = cyclingWordMeasureRef.current
+      if (!measureEl) return
+
+      const measuredWidth = measureEl.getBoundingClientRect().width
+      const horizontalPadding = isMobile ? 60 : 100
+      setCyclingWordWidth(Math.ceil(measuredWidth + horizontalPadding))
+    }
+
+    updateCyclingWordWidth()
+    window.addEventListener('resize', updateCyclingWordWidth)
+    return () => window.removeEventListener('resize', updateCyclingWordWidth)
+  }, [currentWordIndex, isMobile])
 
   // Subtle perspective at top that eases to flat while scrolling down.
   useEffect(() => {
@@ -140,21 +160,32 @@ function Waitlist({
           
 
           
-          <h1 className="hero-title-line" style={{ color: '#aab2aa' }}>move from</h1>
+          <h1 className="hero-title-line" style={{ color: '#d6dba0' }}>move from</h1>
           <div className="hero-title-line">
             <span className="hero-title-for-desktop">{' '}</span>
-            <span className="cycling-word-wrapper">
+            <span
+              className="cycling-word-wrapper"
+              style={cyclingWordWidth ? { width: `${cyclingWordWidth}px` } : undefined}
+            >
               <span className="cycling-word-bg" aria-hidden="true" />
-              <span
-                className="cycling-word-track"
-                style={{
-                  transform: `translateY(-${currentWordIndex * (100 / DISPLAY_WORDS.length)}%)`,
-                  transition: shouldTransition ? 'transform 0.6s cubic-bezier(0.65, 0, 0.35, 1)' : 'none'
-                }}
-              >
-                {DISPLAY_WORDS.map((word, i) => (
-                  <span key={`${word}-${i}`} className="cycling-word-item">{word}</span>
-                ))}
+              <span className="cycling-word-stage">
+                {previousWordIndex !== null && isWordAnimating && (
+                  <span
+                    key={`out-${previousWordIndex}-${currentWordIndex}`}
+                    className="cycling-word-item cycling-word-out"
+                  >
+                    {CYCLING_WORDS[previousWordIndex]}
+                  </span>
+                )}
+                <span
+                  key={`in-${currentWordIndex}`}
+                  className={`cycling-word-item ${isWordAnimating ? 'cycling-word-in' : 'cycling-word-steady'}`}
+                >
+                  {CYCLING_WORDS[currentWordIndex]}
+                </span>
+              </span>
+              <span ref={cyclingWordMeasureRef} className="cycling-word-measure" aria-hidden="true">
+                {CYCLING_WORDS[currentWordIndex]}
               </span>
             </span>
           </div>

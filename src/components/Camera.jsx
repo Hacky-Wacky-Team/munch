@@ -106,7 +106,9 @@ function Camera() {
             {/* IMMERSIVE FEATURE SECTION */}
             <ImmersiveFeature />
             <div className="camera-section" style={{ marginBottom: isMobile ? '-3.5rem' : '0' }}>
-                <h2 className="camera-title" style={{ fontSize: isMobile ? '2.8rem' : '4rem', color: '#b0c6b0' }}>Stress <DrawUnderline>less</DrawUnderline></h2>
+                <h2 className="camera-title" style={{ fontSize: isMobile ? '2.8rem' : '4.2rem', color: '#152b15', marginTop: '3rem' }}>
+                    Stress <DrawUnderline>less</DrawUnderline>,{isMobile && <br />} <span style={{ color: '#b0c6b0' }}>let AI handle it</span>
+                </h2>
             </div>
             <BounceCards
                 features={features}
