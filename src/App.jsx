@@ -10,6 +10,7 @@ import Camera from './components/Camera'
 import RecipeInstructions from './components/RecipeInstructions'
 import Student from './components/Student'
 import FeaturesCarousel from './components/FeaturesCarousel'
+import FAQ from './components/FAQ'
 import Footer from './components/Footer'
 import Profile from './components/Profile'
 
@@ -420,6 +421,9 @@ function App() {
         carouselRef={carouselRef}
         scrollToFeature={scrollToFeature}
       />
+
+      {/* FAQ SECTION */}
+      <FAQ />
 
       {/* FOOTER */}
       <Footer 

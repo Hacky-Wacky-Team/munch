@@ -356,6 +356,7 @@
         min-height: 25rem;
         border-radius: 1.8rem;
         padding: 1rem 0.8rem 0;
+        margin-top: -1.5rem;
     }
 
     .profile-info-grid {

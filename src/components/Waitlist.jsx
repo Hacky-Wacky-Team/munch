@@ -160,7 +160,7 @@ function Waitlist({
           
 
           
-          <h1 className="hero-title-line" style={{ color: '#d6dba0' }}>move from</h1>
+          <h1 className="hero-title-line" style={{ color: '#c3d3b8' }}>move from</h1>
           <div className="hero-title-line">
             <span className="hero-title-for-desktop">{' '}</span>
             <span
