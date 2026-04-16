@@ -1,8 +1,9 @@
 import { useRef, useEffect, useState } from 'react'
 import SendIcon from "@/components/ui/send-icon";
 import './Waitlist.css'
+import DrawUnderline from '@/components/ui/DrawUnderline'
 
-const CYCLING_WORDS = ['cravings', 'ingredients', 'scrolls', 'scraps', 'leftovers', 'recipes', 'groceries', 'no ideas', 'inspiration']
+// const CYCLING_WORDS = ['cravings', 'ingredients', 'scrolls', 'scraps', 'leftovers', 'recipes', 'groceries', 'no ideas', 'inspiration']
 
 function Waitlist({
   name,
@@ -32,32 +33,32 @@ function Waitlist({
   const wordAnimationTimeoutRef = useRef(null)
 
   // Cycle through words every 3 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentWordIndex(prev => {
-        const next = (prev + 1) % CYCLING_WORDS.length
-        setPreviousWordIndex(prev)
-        setIsWordAnimating(true)
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setCurrentWordIndex(prev => {
+  //       const next = (prev + 1) % CYCLING_WORDS.length
+  //       setPreviousWordIndex(prev)
+  //       setIsWordAnimating(true)
 
-        if (wordAnimationTimeoutRef.current) {
-          clearTimeout(wordAnimationTimeoutRef.current)
-        }
+  //       if (wordAnimationTimeoutRef.current) {
+  //         clearTimeout(wordAnimationTimeoutRef.current)
+  //       }
 
-        wordAnimationTimeoutRef.current = setTimeout(() => {
-          setPreviousWordIndex(null)
-          setIsWordAnimating(false)
-        }, 620)
+  //       wordAnimationTimeoutRef.current = setTimeout(() => {
+  //         setPreviousWordIndex(null)
+  //         setIsWordAnimating(false)
+  //       }, 620)
 
-        return next
-      })
-    }, 3000)
-    return () => {
-      clearInterval(interval)
-      if (wordAnimationTimeoutRef.current) {
-        clearTimeout(wordAnimationTimeoutRef.current)
-      }
-    }
-  }, [])
+  //       return next
+  //     })
+  //   }, 3000)
+  //   return () => {
+  //     clearInterval(interval)
+  //     if (wordAnimationTimeoutRef.current) {
+  //       clearTimeout(wordAnimationTimeoutRef.current)
+  //     }
+  //   }
+  // }, [])
 
   // Check mobile size on mount and resize
   useEffect(() => {
@@ -69,20 +70,20 @@ function Waitlist({
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
-  useEffect(() => {
-    const updateCyclingWordWidth = () => {
-      const measureEl = cyclingWordMeasureRef.current
-      if (!measureEl) return
+  // useEffect(() => {
+  //   const updateCyclingWordWidth = () => {
+  //     const measureEl = cyclingWordMeasureRef.current
+  //     if (!measureEl) return
 
-      const measuredWidth = measureEl.getBoundingClientRect().width
-      const horizontalPadding = isMobile ? 60 : 100
-      setCyclingWordWidth(Math.ceil(measuredWidth + horizontalPadding))
-    }
+  //     const measuredWidth = measureEl.getBoundingClientRect().width
+  //     const horizontalPadding = isMobile ? 60 : 100
+  //     setCyclingWordWidth(Math.ceil(measuredWidth + horizontalPadding))
+  //   }
 
-    updateCyclingWordWidth()
-    window.addEventListener('resize', updateCyclingWordWidth)
-    return () => window.removeEventListener('resize', updateCyclingWordWidth)
-  }, [currentWordIndex, isMobile])
+  //   updateCyclingWordWidth()
+  //   window.addEventListener('resize', updateCyclingWordWidth)
+  //   return () => window.removeEventListener('resize', updateCyclingWordWidth)
+  // }, [currentWordIndex, isMobile])
 
   // Subtle perspective at top that eases to flat while scrolling down.
   useEffect(() => {
@@ -118,6 +119,16 @@ function Waitlist({
   const tiltDegrees = (isMobile ? 30 : 20) * (1 - heroFlattenProgress)
   const liftPixels = (isMobile ? 20 : 10) * (1 - heroFlattenProgress)
   const scaleY = 0.985 + (0.015 * heroFlattenProgress)
+
+  const scrollToWaitlistBox = () => {
+    const waitlistBox = document.getElementById('waitlist-box')
+    if (!waitlistBox) return
+
+    waitlistBox.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    })
+  }
 
   return (
     <div id="waitlist" className="waitlist-container">
@@ -159,9 +170,22 @@ function Waitlist({
           </div>
           
 
-          
-          <h1 className="hero-title-line" style={{ color: '#c3d3b8' }}>move from</h1>
-          <div className="hero-title-line">
+          <div className="hero-title">
+            <h1 className="hero-title-line hero-title-line-desktop">Turn <span style={{ color: '#bac5ba' }}>what you have</span></h1>
+            <h1 className="hero-title-line hero-title-line-desktop">into what you <DrawUnderline>crave</DrawUnderline></h1>
+            <h1 className="hero-title-line hero-title-line-mobile">
+              Turn <span style={{ color: '#bac5ba' }}>what you have</span> into what you <DrawUnderline>crave</DrawUnderline>
+            </h1>
+            <p className="hero-subtitle">The only feed that takes you from scrolling to cooking.</p>
+            <button
+              type="button"
+              className="hero-waitlist-button"
+              onClick={scrollToWaitlistBox}
+            >
+              Join Waitlist
+            </button>
+          </div>
+          {/* <div className="hero-title-line">
             <span className="hero-title-for-desktop">{' '}</span>
             <span
               className="cycling-word-wrapper"
@@ -188,8 +212,7 @@ function Waitlist({
                 {CYCLING_WORDS[currentWordIndex]}
               </span>
             </span>
-          </div>
-          <h1 className="hero-title-line">to real meals</h1>
+          </div> */}
           {/* <div className="hero-subtitle">See what real people are munching everyday.</div> */}
         </div>
       )}
@@ -203,14 +226,14 @@ function Waitlist({
       <div
         className="hero-image-container"
         ref={heroImageContainerRef}
-        style={{
-          transform: `perspective(1400px) rotateX(${tiltDegrees}deg) translateY(${liftPixels}px) scaleY(${scaleY})`
-        }}
+          // style={{
+          //   transform: `perspective(1400px) rotateX(${tiltDegrees}deg) translateY(${liftPixels}px) scaleY(${scaleY})`
+          // }}
       >
         <img src={isMobile ? "images/heroimagemobile.png" : "images/heroimage.png"} alt="Munch preview" className="hero-image" />
       </div>
 
-      <div className={`waitlist-box ${!showBottomVersion ? 'fade-rise-delay-2' : ''}`}>
+      <div id="waitlist-box" className={`waitlist-box ${!showBottomVersion ? 'fade-rise-delay-2' : ''}`}>
         <div className="waitlist-left-panel">
           <h2 className="waitlist-header" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
             <span>Be the <strong>first</strong> to try munch when we launch</span>

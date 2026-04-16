@@ -2,6 +2,16 @@ import { FiSend, FiClock } from 'react-icons/fi'
 import './Navbar.css'
 
 function Navbar({ isDarkSection }) {
+  const scrollToWaitlistBox = () => {
+    const waitlistBox = document.getElementById('waitlist-box')
+    if (!waitlistBox) return
+
+    waitlistBox.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    })
+  }
+
   return (
     <nav className={`navbar ${isDarkSection ? 'navbar-dark' : ''}`}>
       <div className="nav-left">
@@ -19,12 +29,10 @@ function Navbar({ isDarkSection }) {
             <span>Instagram</span>
           </button>
         </a>
-        <a href="#waitlist">
-          <button className="nav-button">
+        <button type="button" className="nav-button" onClick={scrollToWaitlistBox}>
             <FiClock className="button-icon" />
             <span>Join Waitlist</span>
-          </button>
-        </a>
+        </button>
       </div>
     </nav>
   )

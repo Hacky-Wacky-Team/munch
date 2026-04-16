@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { FiUser, FiHome, FiEdit3, FiCamera, FiBookmark, FiCalendar, FiShoppingCart } from 'react-icons/fi'
+import { FiUser, FiHome, FiEdit3, FiCamera, FiBookmark } from 'react-icons/fi'
 import './FeaturesCarousel.css'
 import DrawUnderline from '@/components/ui/DrawUnderline'
 
@@ -107,7 +107,7 @@ function FeaturesCarousel({
           </div>
           <div className="feature4">
             <div className="showcase-container">
-              <img src= "mockups/recipe.png" alt="App mockup" className="mockup-image" />
+              <img src= "mockups/camera.png" alt="App mockup" className="mockup-image" />
               <div className="showcase-content">
                 <h2>Scan with your <strong>camera</strong>.<br></br>Get recipes based off your pantry.</h2>
               </div>
@@ -133,33 +133,19 @@ function FeaturesCarousel({
 
           <div className="feature6">
             <div className="showcase-container">
-              <img src="mockups/mealprep.webp" alt="App mockup" className="mockup-image" />
+              <img src= "mockups/recipe.png" alt="App mockup" className="mockup-image" />
               <div className="showcase-content">
-                <h2>No time?<br></br>Let us help you <strong>plan your meals</strong>.</h2>
+                <h2>Explore and <strong>search</strong> the vast selection of recipes made by the community.</h2>
               </div>
               <div className="feature-label">
-                <p>Meal prep</p>
-                <FiCalendar className="feature-label-icon" />
-              </div>
-            </div>
-          </div>
-
-          <div className="feature7">
-            <div className="showcase-container">
-              <img src="mockups/grocery.webp" alt="App mockup" className="mockup-image" />
-              <div className="showcase-content">
-                <h2>Plan your meals efficiently with<br></br>our built in <strong>grocery list</strong>.</h2>
-              </div>
-              <div className="feature-label">
-                <p>Grocery list</p>
-                <FiShoppingCart className="feature-label-icon" />
+                <p>Explore page</p>
               </div>
             </div>
           </div>
 
         </div>
         <div className="carousel-indicators">
-          {[0, 1, 2, 3, 4, 5, 6, 7].map((index) => (
+          {[0, 1, 2, 3, 4, 5, 6].map((index) => (
             <span
               key={index}
               className={`carousel-dot ${activeFeature === index ? 'active' : ''}`}
