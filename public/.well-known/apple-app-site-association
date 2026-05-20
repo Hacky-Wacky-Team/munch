@@ -1,0 +1,14 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "99KWT739F7.com.anonymous.munchapp",
+        "paths": ["/post/*"]
+      }
+    ]
+  },
+  "webcredentials": {
+    "apps": ["99KWT739F7.com.anonymous.munchapp"]
+  }
+}

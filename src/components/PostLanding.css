@@ -1,0 +1,120 @@
+.post-landing-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  padding-top: 6rem;
+  box-sizing: border-box;
+}
+
+.post-landing-card {
+  background: white;
+  border-radius: 2rem;
+  padding: 3rem;
+  max-width: 28rem;
+  width: 100%;
+  text-align: center;
+}
+
+.post-landing-icon-wrapper {
+  width: 8rem;
+  height: 8rem;
+  border-radius: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+}
+
+.post-landing-icon {
+  width: 100%;
+  height: 100%;
+  border-radius: 2rem;
+  object-fit: contain;
+  box-shadow: 0 0 2rem rgba(0, 0, 0, 0.07);
+}
+
+.post-landing-title {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #242924;
+  margin: 0 0 0.75rem;
+}
+
+.post-landing-subtitle {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #6b7280;
+  margin: 0 0 2rem;
+  line-height: 1.5;
+}
+
+.post-landing-button {
+  width: 100%;
+  background: #152b15;
+  border: none;
+  border-radius: 1rem;
+  padding: 1.1rem 2rem;
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.post-landing-button:hover {
+  transform: translateY(-0.125rem);
+}
+
+.post-landing-button:active {
+  transform: translateY(0);
+}
+
+.post-landing-footer {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #9ca3af;
+  margin: 1.5rem 0 0;
+}
+
+@media (max-width: 768px) {
+  .post-landing-container {
+    padding: 1rem;
+    padding-top: 5rem;
+  }
+
+  .post-landing-card {
+    padding: 2rem 1.5rem;
+    border-radius: 1.5rem;
+  }
+
+  .post-landing-icon-wrapper {
+    width: 6.5rem;
+    height: 6.5rem;
+    border-radius: 1.5rem;
+  }
+
+  .post-landing-icon {
+    width: 100%;
+    height: 100%;
+    border-radius: 2rem;
+  }
+
+  .post-landing-title {
+    font-size: 1.5rem;
+  }
+
+  .post-landing-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .post-landing-button {
+    font-size: 1.1rem;
+    padding: 1rem 1.5rem;
+  }
+}

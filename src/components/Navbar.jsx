@@ -1,7 +1,11 @@
 import { FiSend, FiClock } from 'react-icons/fi'
+import { Link, useLocation } from 'react-router-dom'
 import './Navbar.css'
 
 function Navbar({ isDarkSection }) {
+  const location = useLocation()
+  const isHomePage = location.pathname === '/'
+
   const scrollToWaitlistBox = () => {
     const waitlistBox = document.getElementById('waitlist-box')
     if (!waitlistBox) return
@@ -15,12 +19,12 @@ function Navbar({ isDarkSection }) {
   return (
     <nav className={`navbar ${isDarkSection ? 'navbar-dark' : ''}`}>
       <div className="nav-left">
-        <a href="/" className="nav-logo-link">
+        <Link to="/" className="nav-logo-link">
           <div className="nav-logo-container">
-            <img src="images/munchmascot.png" alt="Munch Mascot" className="nav-icon" />
+            <img src="/images/munchmascot.png" alt="Munch Mascot" className="nav-icon" />
             <span className="nav-logo">MUNCH</span>
           </div>
-        </a>
+        </Link>
       </div>
       <div className="nav-right">
         <a href="https://instagram.com/jointhemunch" target="_blank" rel="noopener noreferrer">
@@ -29,10 +33,12 @@ function Navbar({ isDarkSection }) {
             <span>Instagram</span>
           </button>
         </a>
-        <button type="button" className="nav-button" onClick={scrollToWaitlistBox}>
+        {isHomePage && (
+          <button type="button" className="nav-button" onClick={scrollToWaitlistBox}>
             <FiClock className="button-icon" />
             <span>Join Waitlist</span>
-        </button>
+          </button>
+        )}
       </div>
     </nav>
   )
