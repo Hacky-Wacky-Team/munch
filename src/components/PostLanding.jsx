@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import Navbar from './Navbar'
 import './PostLanding.css'
 
-const APP_SCHEME = 'munch://'
+const APP_SCHEME = 'munchapp://'
 const IOS_APP_STORE = 'https://apps.apple.com/app/munch/id123456789' // Replace with actual App Store ID
 const ANDROID_PLAY_STORE = 'https://play.google.com/store/apps/details?id=com.anonymous.munchapp'
 
