@@ -3,7 +3,8 @@ import './components/global.css'
 
 // Import components
 import Navbar from './components/Navbar'
-import Waitlist from './components/Waitlist'
+import HeroSection from './components/HeroSection'
+import WaitlistBox from './components/WaitlistBox'
 import Endorsement from './components/Endorsement'
 import ScrollingFeature from './components/ScrollingFeature'
 import Camera from './components/Camera'
@@ -24,16 +25,8 @@ function App() {
   const [activeFeature, setActiveFeature] = useState(0)
   const [isDarkSection, setIsDarkSection] = useState(false)
   const [carouselCursor, setCarouselCursor] = useState({ show: false, x: 0, y: 0, direction: 'right' })
-  const [waitlistCount, setWaitlistCount] = useState(200)
-  const [digitOffsets, setDigitOffsets] = useState([])
-  const [isAnimating, setIsAnimating] = useState(false)
   const featuresTrackRef = useRef(null)
   const carouselRef = useRef(null)
-
-  // Helper function to split number into digits
-  const getDigits = (num) => {
-    return num.toString().split('').map(d => parseInt(d))
-  }
 
   // Toast auto-dismiss after 5 seconds with exit animation
   useEffect(() => {
@@ -49,38 +42,6 @@ function App() {
       return () => clearTimeout(timer)
     }
   }, [showToast])
-
-  // Animate waitlist count with slot machine effect
-  useEffect(() => {
-    if (waitlistCount === 0) return
-
-    const finalDigits = getDigits(waitlistCount)
-    const numDigits = finalDigits.length
-    
-    // Initialize at 0 position for all digits
-    setDigitOffsets(finalDigits.map(() => 0))
-    
-    // Trigger animation after a brief delay
-    setTimeout(() => {
-      // Each digit will scroll through multiple full cycles (0-9) before landing on final digit
-      const offsets = finalDigits.map((digit, index) => {
-        // Number of full 0-9 cycles to scroll through (stagger for visual effect)
-        // Keep it reasonable to not exceed array bounds
-        const numCycles = Math.min(3 + (numDigits - index - 1), 8)
-        // Position = (full cycles * 10) + final digit
-        // This ensures we land exactly on the target digit
-        return (numCycles * 10) + digit
-      })
-      
-      setIsAnimating(true)
-      setDigitOffsets(offsets)
-      
-      // Reset animation flag after animation completes
-      setTimeout(() => {
-        setIsAnimating(false)
-      }, 2000)
-    }, 100)
-  }, [waitlistCount])
 
   // Detect when user is in dark section for navbar color change
   useEffect(() => {
@@ -378,20 +339,18 @@ function App() {
       <Navbar isDarkSection={isDarkSection} />
       <div className="main-content">
 
-        {/* WAITLIST SECTION */}
-        <Waitlist
+        {/* HERO SECTION */}
+        <HeroSection />
+
+        {/* WAITLIST BOX SECTION */}
+        <WaitlistBox
           name={name}
           email={email}
           isSubmitting={isSubmitting}
-          waitlistCount={waitlistCount}
-          digitOffsets={digitOffsets}
-          isAnimating={isAnimating}
-          getDigits={getDigits}
           onNameChange={(e) => setName(e.target.value)}
           onEmailChange={(e) => setEmail(e.target.value)}
           onSubmit={handleJoinWaitlist}
           onGoogleSignup={handleGoogleSignup}
-          showBottomVersion={false}
         />
 
         {/* SCROLLING FEATURE SECTION */}

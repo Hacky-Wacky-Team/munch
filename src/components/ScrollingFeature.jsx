@@ -2,8 +2,6 @@ import { useState, useEffect } from 'react'
 import './ScrollingFeature.css'
 import { ThreeDScrollTriggerContainer, ThreeDScrollTriggerRow } from '@/components/ui/ThreeDScrollTrigger'
 import DrawUnderline from '@/components/ui/DrawUnderline'
-import WorldIcon from "@/components/ui/world-icon";
-import SoupIcon from "@/components/ui/soup-icon";
 
 function ScrollingFeature() {
   const [isMobile, setIsMobile] = useState(false)
