@@ -113,10 +113,10 @@
   }
 
   .student-pill {
-        padding: 0.15rem 0.7rem;
+    padding: 0.2rem 0.8rem;
+    border-width: 2px;
     margin-top: 1rem;
     margin-bottom: 0.5 rem;
-      border: 1px solid #98e094;
   }
 
   .student-pill-text {
@@ -167,7 +167,7 @@
 }
 
 .fc-arrow {
-    display: block;
+  display: block;
   width: 100%;
   height: 100px;
   object-fit: cover;
@@ -178,7 +178,7 @@
 }
 
 .fc-sticker {
-    display: block;
+  display: block;
   width: 100%;
   height: 240px;
   object-fit: cover;
@@ -291,7 +291,10 @@
     top: 0% !important;
     z-index: 5;
   }
-  .fc-wavystar img { height: 90px !important; }
+
+  .fc-wavystar img {
+    height: 90px !important;
+  }
 
   .fc-tangulu {
     left: 0% !important;
@@ -304,7 +307,10 @@
     top: 18% !important;
     z-index: 6;
   }
-  .fc-fireicon img { height: 80px !important; }
+
+  .fc-fireicon img {
+    height: 80px !important;
+  }
 
   /* ── Row 2: wings underlaps tangulu ── */
   .fc-wings {
@@ -329,7 +335,10 @@
     max-width: 170px;
     rotate: 7deg !important;
   }
-  .fc-textraw .fc-text { font-size: 1.1rem; }
+
+  .fc-textraw .fc-text {
+    font-size: 1.1rem;
+  }
 
   /* ── Row 3: bear pizza underlaps wings ── */
   .fc-bearpizza {
@@ -347,7 +356,8 @@
     rotate: 5deg !important;
   }
 
-  .fc-text-body, .fc-text-heading {
+  .fc-text-body,
+  .fc-text-heading {
     font-size: 0.85rem !important;
     padding: -0.1rem 0rem !important;
   }
@@ -371,7 +381,10 @@
     z-index: 3;
     rotate: -10deg !important;
   }
-  .fc-logosticker img { height: 130px !important; }
+
+  .fc-logosticker img {
+    height: 130px !important;
+  }
 
   /* Badge near mochi */
   .fc-badgeyellow {
