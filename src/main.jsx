@@ -4,6 +4,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './index.css'
 import App from './App.jsx'
 import PostLanding from './components/PostLanding.jsx'
+import PrivacyPolicy from './components/PrivacyPolicy.jsx'
+import TermsOfService from './components/TermsOfService.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -11,6 +13,8 @@ createRoot(document.getElementById('root')).render(
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/post/:postId" element={<PostLanding />} />
+        <Route path="/privacy" element={<PrivacyPolicy />} />
+        <Route path="/tos" element={<TermsOfService />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,

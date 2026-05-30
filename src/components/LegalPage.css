@@ -1,0 +1,71 @@
+.legal-page {
+  min-height: 100vh;
+  padding: 6rem 2rem 3rem;
+  box-sizing: border-box;
+  background-color: #f6f8f6;
+}
+
+.legal-page-content {
+  max-width: 42rem;
+  margin: 0 auto;
+}
+
+.legal-page-title {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  color: #242924;
+  margin: 0 0 1.5rem;
+}
+
+.legal-card {
+  background: white;
+  border-radius: 1.25rem;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 0 2rem rgba(0, 0, 0, 0.07);
+}
+
+.legal-updated {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #6b7280;
+  margin: 0 0 1rem;
+}
+
+.legal-paragraph {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #374151;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.legal-section {
+  margin-bottom: 1.5rem;
+}
+
+.legal-section-title {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #242924;
+  margin: 0 0 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .legal-page {
+    padding: 5rem 1rem 2rem;
+  }
+
+  .legal-page-title {
+    font-size: 1.5rem;
+  }
+
+  .legal-card {
+    padding: 1.25rem;
+    border-radius: 1rem;
+  }
+}
