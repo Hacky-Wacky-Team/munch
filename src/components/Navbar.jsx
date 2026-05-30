@@ -21,8 +21,8 @@ function Navbar({ isDarkSection }) {
       <div className="nav-left">
         <Link to="/" className="nav-logo-link">
           <div className="nav-logo-container">
-            <img src="/images/munchmascot.png" alt="Munch Mascot" className="nav-icon" />
-            <span className="nav-logo">MUNCH</span>
+            <img src="/images/logo.png" alt="Munch Mascot" className="nav-icon" />
+            <span className="nav-logo">munch</span>
           </div>
         </Link>
       </div>

@@ -14,19 +14,17 @@
   font-family: 'Nunito Sans', sans-serif;
   font-weight: 700;
   font-size: 0.95rem;
-  color: #242924;
+  color: #272727;
   letter-spacing: 0.02rem;
   display: inline-flex;
   align-items: center;
-  gap: 0.1rem;
 }
 
 .scrolling-pill {
-  background: #f3fff2;
-  box-shadow: 0rem 0.2rem 0.2rem rgba(0, 0, 0, 0.035);
-  border: 2px solid #98e094;
+  background: #f1f1f1;
+  border: 3px solid #dadada;
   border-radius: 50px;
-  padding: 0.35rem 1.2rem;
+  padding: 0.55rem 1.3rem;
   margin-top: 6rem;
   opacity: 1;
   overflow: hidden;

@@ -26,29 +26,22 @@ function ScrollingFeature() {
 
   return (
     <div className="scrolling-section">
-            <div className="scrolling-pill">
+      <div className="scrolling-pill">
         <span className="scrolling-pill-text">YOUR SOCIAL APP</span>
       </div>
       <div className="scrolling-text">
-        {/* <div className="scrolling-icon-left" style={{ transform: 'rotate(-15deg)' }}>
-          <WorldIcon size={isMobile ? 60 : 120} color="#98e094" strokeWidth={1.7} />
-        </div>
-        <div className="scrolling-icon-right" style={{ transform: 'rotate(12deg)' }}>
-          <SoupIcon size={isMobile ? 60 : 120} color="#98e094" strokeWidth={1.7} />
-        </div> */}
         <div className="scrolling-title">
-          <h2 className="scrolling-title-text">Get all the </h2>
-          <h2 className="scrolling-title-text"><DrawUnderline>inspiration</DrawUnderline> you need</h2>
+          <h2 className="scrolling-title-text">Munch gets you <span className="accent-text"><DrawUnderline>inspired</DrawUnderline></span></h2>
         </div>
         <p className="scrolling-subtitle">A space for real meals, real people, and real recipes.</p>
       </div>
       <ThreeDScrollTriggerContainer>
         <ThreeDScrollTriggerRow baseVelocity={3} direction={1} className="scroll-row">
           {images.map((img, idx) => (
-            <div 
-              key={idx} 
+            <div
+              key={idx}
               className="scroll-box"
-              style={{ 
+              style={{
                 backgroundImage: `url('${img}')`,
                 marginRight: '2rem'
               }}
@@ -62,10 +55,10 @@ function ScrollingFeature() {
           style={{ marginTop: isMobile ? '0.5rem' : '1.5rem' }}
         >
           {images.map((img, idx) => (
-            <div 
-              key={idx} 
+            <div
+              key={idx}
               className="scroll-box"
-              style={{ 
+              style={{
                 backgroundImage: `url('${img}')`,
                 marginRight: '2rem'
               }}

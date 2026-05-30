@@ -31,25 +31,25 @@
   align-items: center;
   gap: 0.9rem;
   background: rgb(255, 255, 255);
-  filter: drop-shadow(0rem 0.2rem 0.2rem rgba(0, 0, 0, 0.075));
-  padding: 0.6rem 1.2rem;
+  padding: 0.4rem 1.2rem;
   border-radius: 1.25rem;
+  border: 1px solid rgb(237, 237, 237);
+    filter: drop-shadow(0rem 0rem 0.2rem rgba(0, 0, 0, 0.05));
 }
 
 .nav-icon {
-  height: 2rem;
+  height: 1.8rem;
   width: auto;
-  filter: brightness(0) saturate(100%) invert(13%) sepia(8%) saturate(1234%) hue-rotate(73deg) brightness(96%) contrast(92%);
   border-radius: 0.5rem;
-  margin-top: -0.3rem;
   margin-left: -0.3rem;
+  margin-right: -0.2rem;
 }
 
 .nav-logo {
-  font-weight: 850;
-  font-size: 1.5rem;
+  font-weight: 800;
+  font-size: 1.6rem;
   font-family: 'Nunito Sans', sans-serif;
-  color: #242924;
+  color: #242424;
 }
 
 .nav-right {
@@ -59,15 +59,15 @@
 
 .nav-button {
   background: rgb(255, 255, 255);
-  filter: drop-shadow(0rem 0.2rem 0.2rem rgba(0, 0, 0, 0.075));
+  border: 1px solid rgb(237, 237, 237);
+    filter: drop-shadow(0rem 0rem 0.2rem rgba(0, 0, 0, 0.05));
   padding: 0.8rem 1.4rem;
   border-radius: 1.25rem;
-  border: none;
   outline: none;
   font-family: 'Nunito Sans', sans-serif;
   font-weight: 700;
   font-size: 1.2rem;
-  color: #242924;
+  color: #242424;
   cursor: pointer;
   transition: all 0.2s ease;
   margin-left: 0.5rem;
@@ -91,28 +91,6 @@
 .nav-button:focus-visible {
   outline: none;
   box-shadow: none;
-}
-
-/* Dark section navbar styles */
-.navbar-dark .nav-logo-container {
-  background: rgba(47, 47, 47, 0.5);
-}
-
-.navbar-dark .nav-logo {
-  color: #e6f5e3;
-}
-
-.navbar-dark .nav-icon {
-  filter: brightness(100) saturate(0%);
-}
-
-.navbar-dark .nav-button {
-  background: rgba(47, 47, 47, 0.5);
-  color: #e6f5e3;
-}
-
-.navbar-dark .button-icon {
-  color: #e6f5e3;
 }
 
 /* Mobile */

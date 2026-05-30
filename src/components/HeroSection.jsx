@@ -25,7 +25,7 @@ function HeroSection() {
           <span className="hero-title-line">A social app</span>
           <span className="hero-title-line">that helps</span>
           <span className="hero-title-line">
-            you <span className="hero-accent"><DrawUnderline>cook</DrawUnderline></span>
+            you <span className="accent-text"><DrawUnderline>cook</DrawUnderline></span>
           </span>
         </h1>
 
