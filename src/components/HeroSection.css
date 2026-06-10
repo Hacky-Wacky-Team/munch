@@ -59,11 +59,12 @@
 .hero-title {
   margin: 0;
   font-family: 'Nunito Sans', sans-serif;
-  font-size: clamp(2.8rem, 6vw, 7.5rem);
-  font-weight: 400;
+  font-size: clamp(2.8rem, 5.8vw, 7.2rem);
+  font-weight: 600;
   line-height: 1.05;
   letter-spacing: -0.03em;
   animation: fadeRise 0.3s ease-out forwards;
+  color: #181818;
 }
 
 .hero-title-line {
@@ -71,7 +72,7 @@
 }
 
 .accent-text {
-  font-weight: 800;
+  font-weight: 900;
 }
 
 .hero-subtitle {
@@ -184,7 +185,7 @@
 @media (max-width: 768px) {
   .hero-content {
     min-height: 100svh;
-    padding: 12rem 1rem 0;
+    padding: 10rem 1rem 0;
     max-width: 32rem;
   }
 
@@ -206,14 +207,14 @@
   }
 
   .hero-gradient {
-    top: calc(45vh + 40vw);
+    top: calc(45vh + 33vw);
     width: 260vw;
     height: 260vw;
     filter: blur(22px);
   }
 
   .hero-star-shape {
-    top: 23vh;
+    top: 19vh;
     width: 120vw;
     opacity: 1;
   }

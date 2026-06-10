@@ -1,0 +1,230 @@
+.referral-landing-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  padding-top: 6rem;
+  box-sizing: border-box;
+}
+
+.referral-landing-card {
+  background: white;
+  border-radius: 2rem;
+  padding: 3rem;
+  max-width: 28rem;
+  width: 100%;
+  text-align: center;
+}
+
+.referral-landing-icon-wrapper {
+  width: 8rem;
+  height: 8rem;
+  border-radius: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+}
+
+.referral-landing-icon {
+  width: 100%;
+  height: 100%;
+  border-radius: 2rem;
+  object-fit: contain;
+  box-shadow: 0 0 2rem rgba(0, 0, 0, 0.07);
+}
+
+.referral-landing-title {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #242924;
+  margin: 0 0 0.75rem;
+}
+
+.referral-landing-subtitle {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #6b7280;
+  margin: 0 0 2rem;
+  line-height: 1.5;
+}
+
+.referral-code-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.referral-code-box {
+  flex: 1;
+  background: #f3f4f6;
+  border: 2px solid #e5e7eb;
+  border-radius: 1rem;
+  padding: 0.7rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  position: relative;
+}
+
+.referral-code-text {
+    font-family: 'Nunito Sans', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: #152b15;
+  letter-spacing: 0.1em;
+}
+
+.referral-paste-button {
+  background: none;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  width: auto;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  position: absolute;
+  right: 0.75rem;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.referral-paste-button:hover {
+  background: rgba(209, 213, 219, 0.5);
+  border-radius: 0.5rem;
+}
+
+.referral-paste-button:focus {
+  outline: none;
+}
+
+.referral-paste-button:active {
+  transform: scale(0.95);
+}
+
+.paste-icon {
+  width: 2rem;
+  height: 2rem;
+  object-fit: contain;
+}
+
+.checkmark-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: #059669;
+}
+
+.copy-feedback {
+  position: absolute;
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #059669;
+  margin-top: -1.5rem;
+}
+
+.referral-landing-button {
+  width: 100%;
+  background: #152b15;
+  border: none;
+  border-radius: 1rem;
+  padding: 1.1rem 2rem;
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.referral-landing-button:hover {
+  transform: translateY(-0.125rem);
+}
+
+.referral-landing-button:focus {
+  outline: none;
+}
+
+.referral-landing-button:active {
+  transform: translateY(0);
+}
+
+.referral-landing-footer {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #9ca3af;
+  margin: 1.5rem 0 0;
+}
+
+@media (max-width: 768px) {
+  .referral-landing-container {
+    padding: 1rem;
+    padding-top: 5rem;
+  }
+
+  .referral-landing-card {
+    padding: 2rem 1.5rem;
+    border-radius: 1.5rem;
+  }
+
+  .referral-landing-icon-wrapper {
+    width: 6.5rem;
+    height: 6.5rem;
+    border-radius: 1.5rem;
+  }
+
+  .referral-landing-icon {
+    width: 100%;
+    height: 100%;
+    border-radius: 2rem;
+  }
+
+  .referral-landing-title {
+    font-size: 1.5rem;
+  }
+
+  .referral-landing-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .referral-code-container {
+    margin-top: -0.7rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .referral-code-box {
+    padding: 0.75rem 1rem;
+  }
+
+  .referral-code-text {
+    font-size: 1.5rem;
+  }
+
+  .referral-paste-button {
+    width: 3rem;
+    height: 3rem;
+    padding: 0.5rem;
+  }
+
+  .paste-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .referral-landing-button {
+    font-size: 1.1rem;
+    padding: 1rem 1.5rem;
+  }
+}
