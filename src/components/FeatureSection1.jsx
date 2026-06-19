@@ -69,7 +69,7 @@ function FeatureSection1({
 
 
 	return (
-		<section className="feature-section-1" aria-label="Feature section 1">
+		<section id="features" className="feature-section-1" aria-label="Feature section 1">
 			<div className="feature-section-1__inner">
 				<div className="feature-section-1__copy">
 					<h2 className="feature-section-1__title" aria-label="A better way to find recipes">

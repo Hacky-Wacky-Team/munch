@@ -34,7 +34,7 @@ function FAQ() {
   }
 
   return (
-    <section className="faq-section" aria-labelledby="faq-heading">
+    <section id="faq" className="faq-section" aria-labelledby="faq-heading">
       <div className="faq-header">
         <div className="faq-pill">
           <span className="faq-pill-text">FAQ</span>
