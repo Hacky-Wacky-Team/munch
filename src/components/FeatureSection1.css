@@ -1,6 +1,6 @@
 .feature-section-1 {
 	position: relative;
-	overflow: hidden;
+	overflow: visible;
 	width: 100%;
 	padding: 5rem 1.25rem 4rem;
 }
@@ -8,7 +8,7 @@
 .feature-section-1__inner {
 	position: relative;
 	z-index: 1;
-	max-width: 1180px;
+	max-width: 1280px;
 	margin: 0 auto;
 	display: grid;
 	grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
@@ -105,8 +105,9 @@
 
 .feature-section-1__card-shell {
 	position: absolute;
-	width: 12rem;
-	height: 13rem;
+	aspect-ratio: 256/279;
+	width: 14rem;
+	height: auto;
 	transition: transform 280ms ease, filter 280ms ease;
 	will-change: transform;
     border-radius: 0.8rem;

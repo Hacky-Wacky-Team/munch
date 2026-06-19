@@ -1,5 +1,24 @@
 import './FeatureSection3.css'
 
+const featureCards = [
+    {
+        id: 'ingredient-checklist',
+        image: '/mockups/ingredientchecklistmockup.png',
+        title: 'ingredient checklist',
+    },
+    {
+        id: 'step-by-step-instructions',
+        image: '/mockups/stepinstructionsmockup.png',
+        title: 'step by step instructions',
+    },
+    {
+        id: 'meal-plan',
+        image: '/mockups/mealplanmockup.png',
+        title: 'plan your meals',
+        subtitle: 'coming soon',
+    },
+]
+
 function FeatureSection3() {
     return (
         <section className="feature-section-3" aria-label="Feature section 3">
@@ -34,6 +53,20 @@ function FeatureSection3() {
                         </video>
                     </div>
                 </div>
+            </div>
+
+            <div className="feature-section-3__cards-row" aria-label="Feature cards">
+                {featureCards.map((card) => (
+                    <article key={card.id} className="feature-section-3__feature-card">
+                        <div className="feature-section-3__feature-card-copy">
+                            {card.subtitle && <div className="feature-section-3__feature-card-subtitle">{card.subtitle}</div>}
+                            <div className="feature-section-3__feature-card-pill">{card.title}</div>
+                        </div>
+                        <div className="feature-section-3__feature-card-image-wrap">
+                            <img src={card.image} alt={card.title} className="feature-section-3__feature-card-image" />
+                        </div>
+                    </article>
+                ))}
             </div>
         </section>
     )

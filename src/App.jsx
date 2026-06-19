@@ -7,9 +7,10 @@ import HeroSection from './components/HeroSection'
 import FeatureSection1 from './components/FeatureSection1'
 import FeatureSection2 from './components/FeatureSection2'
 import FeatureSection3 from './components/FeatureSection3'
+import FeatureSection4 from './components/FeatureSection4'
+import FeatureSection5 from './components/FeatureSection5'
 import FAQ from './components/FAQ'
 import Footer from './components/Footer'
-import Profile from './components/Profile'
 
 function App() {
   const [name, setName] = useState('')
@@ -183,10 +184,13 @@ function App() {
 
         {/* FEATURE SECTION 3 */}
         <FeatureSection3 />
-      </div>
 
-      {/* PROFILE SECTION */}
-      <Profile />
+        {/* FEATURE SECTION 4 */}
+        <FeatureSection4 />
+
+        {/* FEATURE SECTION 5 */}
+        <FeatureSection5 />
+      </div>
 
       {/* FAQ SECTION */}
       <FAQ />

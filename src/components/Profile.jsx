@@ -1,51 +1,69 @@
 import { useEffect, useRef, useState } from 'react'
 import './Profile.css'
-import DrawUnderline from '@/components/ui/DrawUnderline'
 
 const STICKER_ASSETS = {
-    boba: 'foodicons/boba.png',
-    cake: 'foodicons/cake.png',
-    pie: 'foodicons/pie.png',
-    wavystarshape: 'images/wavystarshape.svg',
-    greenbadge: 'images/greenbadge.svg',
-    yellowbadge: 'images/yellowbadge.svg',
+    boba: 'stickers/bobasticker.svg',
+    cake: 'stickers/cakesticker.svg',
+    pizza: 'stickers/pizzasticker.svg',
+    sushi: 'stickers/sushisticker.svg',
+    ambassador: 'badges/ambassador.svg',
+    celebrity: 'badges/celebrity.svg',
+    engagedchef: 'badges/engagedchef.svg',
+    friendly: 'badges/friendly.svg',
+    og: 'badges/og.svg',
+    popularchef: 'badges/popularchef.svg',
+    recipemaster: 'badges/recipemaster.svg',
+    socialbutterfly: 'badges/socialbutterfly.svg',
+    tablefor6: 'badges/tablefor6.svg',
 }
 
 const PROFILES = [
     {
-        id: 'alex',
-        label: 'Alex',
-        image: 'mockups/alexprofile.png',
-        mobileImage: 'mockups/alexprofilemobile.png',
+        id: 'sam',
+        label: 'Sam',
+        image: 'mockups/samprofile.png',
+        mobileImage: 'mockups/samprofile.png',
         stickers: [
-            { id: 'alex-boba-1', asset: 'boba', x: 14, y: 34, size: 262, rotate: -14, z: 12, delay: 0 },
-            { id: 'alex-boba-2', asset: 'boba', x: 84, y: 31, size: 166, rotate: 11, z: 12, delay: 80 },
-            { id: 'alex-boba-3', asset: 'boba', x: 76, y: 78, size: 224, rotate: -8, z: 16, delay: 140 },
-            { id: 'alex-star-1', asset: 'wavystarshape', x: 20, y: 82, size: 164, rotate: 7, z: 18, delay: 190 },
+            { id: 'sam-sushi-1', asset: 'sushi', x: 11, y: 37, size: 130, rotate: -7, z: 12, delay: 0 },
+            { id: 'sam-recipemaster-2', asset: 'recipemaster', x: 84, y: 36, size: 120, rotate: 11, z: 12, delay: 80 },
+            { id: 'sam-sushi-3', asset: 'sushi', x: 85, y: 82, size: 160, rotate: 8, z: 16, delay: 140 },
+            { id: 'sam-og', asset: 'og', x: 15, y: 78, size: 120, rotate: 7, z: 18, delay: 190 },
+        ],
+    },
+    {
+        id: 'jonny',
+        label: 'Jonny',
+        image: 'mockups/jonnyprofile.png',
+        mobileImage: 'mockups/jonnyprofile.png',
+        stickers: [
+            { id: 'jonny-pizza-1', asset: 'pizza', x: 14, y: 38, size: 130, rotate: 0, z: 12, delay: 0 },
+            { id: 'jonny-pizza-2', asset: 'pizza', x: 85, y: 74, size: 110, rotate: 10, z: 12, delay: 80 },
+            { id: 'jonny-engagedchef', asset: 'engagedchef', x: 16, y: 80, size: 150, rotate: 20, z: 16, delay: 140 },
+            { id: 'jonny-celebrity', asset: 'celebrity', x: 85, y: 35, size: 132, rotate: -10, z: 18, delay: 190 },
+        ],
+    },
+    {
+        id: 'isha',
+        label: 'Isha',
+        image: 'mockups/ishaprofile.png',
+        mobileImage: 'mockups/ishaprofile.png',
+        stickers: [
+            { id: 'isha-popularchef', asset: 'popularchef', x: 17, y: 34, size: 132, rotate: -10, z: 12, delay: 0 },
+            { id: 'isha-boba-2', asset: 'boba', x: 85, y: 35, size: 130, rotate: 30, z: 12, delay: 80 },
+            { id: 'isha-boba-3', asset: 'boba', x: 14, y: 78, size: 150, rotate: -4, z: 16, delay: 140 },
+            { id: 'isha-socialbutterfly', asset: 'socialbutterfly', x: 80, y: 80, size: 150, rotate: 10, z: 18, delay: 190 },
         ],
     },
     {
         id: 'eric',
         label: 'Eric',
         image: 'mockups/ericprofile.png',
-        mobileImage: 'mockups/ericprofilemobile.png',
+        mobileImage: 'mockups/ericprofile.png',
         stickers: [
-            { id: 'eric-cake-1', asset: 'cake', x: 19, y: 38, size: 222, rotate: -12, z: 12, delay: 0 },
-            { id: 'eric-cake-2', asset: 'cake', x: 80, y: 84, size: 190, rotate: -10, z: 12, delay: 80 },
-            { id: 'eric-cake-3', asset: 'cake', x: 14, y: 74, size: 182, rotate: 20, z: 16, delay: 140 },
-            { id: 'eric-greenbadge', asset: 'greenbadge', x: 79, y: 29, size: 222, rotate: 16, z: 18, delay: 190 },
-        ],
-    },
-    {
-        id: 'amanda',
-        label: 'Amanda',
-        image: 'mockups/amandaprofile.png',
-        mobileImage: 'mockups/amandaprofilemobile.png',
-        stickers: [
-            { id: 'amanda-pie-1', asset: 'pie', x: 17, y: 34, size: 152, rotate: -10, z: 12, delay: 0 },
-            { id: 'amanda-pie-2', asset: 'pie', x: 77, y: 30, size: 182, rotate: 15, z: 12, delay: 80 },
-            { id: 'amanda-pie-3', asset: 'pie', x: 21, y: 78, size: 202, rotate: -4, z: 16, delay: 140 },
-            { id: 'amanda-yellowbadge', asset: 'yellowbadge', x: 80, y: 80, size: 222, rotate: 10, z: 18, delay: 190 },
+            { id: 'eric-cake-1', asset: 'cake', x: 14, y: 38, size: 130, rotate: -12, z: 12, delay: 0 },
+            { id: 'eric-cake-2', asset: 'cake', x: 80, y: 84, size: 160, rotate: 0, z: 12, delay: 80 },
+            { id: 'eric-tablefor6', asset: 'tablefor6', x: 17, y: 82, size: 130, rotate: 20, z: 16, delay: 140 },
+            { id: 'eric-ambassador', asset: 'ambassador', x: 85, y: 38, size: 140, rotate: 16, z: 18, delay: 190 },
         ],
     },
 ]
@@ -133,7 +151,7 @@ function Profile() {
             const activeIndex = PROFILES.findIndex((profile) => profile.id === activeProfile.id)
             const nextIndex = (activeIndex + 1) % PROFILES.length
             transitionToProfile(PROFILES[nextIndex])
-        }, 6000)
+        }, 5000)
 
         return () => {
             clearTimeout(autoAdvanceTimeout)
@@ -172,11 +190,6 @@ function Profile() {
 
     return (
         <div className="profile-section" ref={sectionRef}>
-            <div className="profile-pill">
-                <span className="profile-pill-text">YOUR PERSONAL APP</span>
-            </div>
-            <h2 className="profile-title">A profile as <DrawUnderline>unique</DrawUnderline> as your recipes.</h2>
-            {/* <p className="profile-subtitle">Share your culinary creations, follow friends, and discover new favorites.</p> */}
             <div className="profile-mockup-shell">
                 <div className="profile-selector-pill" style={{ '--active-index': PROFILES.findIndex((profile) => profile.id === activeProfile.id) }}>
                     <div className="profile-selector-highlight" aria-hidden="true" />
@@ -232,48 +245,6 @@ function Profile() {
                         className={`profile-mockup ${outgoingProfile ? 'profile-mockup--enter' : ''}`}
                     />
                 </div>
-            </div>
-
-            <div className="profile-info-grid">
-                <article className="profile-info-card">
-                    <div className="profile-info-content">
-                        <h3 className="profile-info-title">Badges</h3>
-                        <p className="profile-info-description">Gain achievements and collect badges to personalize your profile.</p>
-                    </div>
-                    <div className="profile-info-media">
-                        <div className="profile-info-images profile-info-images-badges" aria-hidden="true">
-                            <img src="images/yellowbadge.svg" alt="" className="profile-info-image" />
-                            <img src="images/greenbadge.svg" alt="" className="profile-info-image" />
-                            <img src="images/bluebadge.svg" alt="" className="profile-info-image" />
-                        </div>
-                    </div>
-                </article>
-
-                <article className="profile-info-card">
-                    <div className="profile-info-content">
-                        <h3 className="profile-info-title">Stickers</h3>
-                        <p className="profile-info-description">Express your personality with customizable stickers.</p>
-                    </div>
-                    <div className="profile-info-media">
-                        <div className="profile-info-images profile-info-images-stickers" aria-hidden="true">
-                            <img src="foodicons/sushi.png" alt="" className="profile-info-image" />
-                            <img src="foodicons/salad.png" alt="" className="profile-info-image" />
-                            <img src="foodicons/pie.png" alt="" className="profile-info-image" />
-                        </div>
-                    </div>
-                </article>
-
-                <article className="profile-info-card">
-                    <div className="profile-info-content">
-                        <h3 className="profile-info-title">Verified</h3>
-                        <p className="profile-info-description">Become a verfied creator and receive exclusive benefits.</p>
-                    </div>
-                    <div className="profile-info-media">
-                        <div className="profile-info-images profile-info-images-verified" aria-hidden="true">
-                            <img src="images/verifiedbadge.svg" alt="" className="profile-info-image" />
-                        </div>
-                    </div>
-                </article>
             </div>
         </div>
     )

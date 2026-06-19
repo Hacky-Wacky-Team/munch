@@ -92,15 +92,9 @@ function HeroSection() {
     }
   }, [])
 
-  const scrollToWaitlistBox = () => {
-    const waitlistBox = document.getElementById('waitlist-box')
-    if (!waitlistBox) return
-
-    waitlistBox.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start'
-    })
-  }
+const goToWebsite = () => {
+  window.location.href = "https://apps.apple.com/us/app/munch-your-social-recipe-app/id6767927842"
+}
 
   return (
     <section className="hero-section" aria-label="Hero section">
@@ -126,7 +120,7 @@ function HeroSection() {
         <img src="/herostars/heroarrow.svg" className="hero-arrow" alt="" />
 
         <div className="hero-button-container">
-          <button className="hero-button" type="button" onClick={scrollToWaitlistBox}>
+          <button className="hero-button" type="button" onClick={goToWebsite}>
             <img src="/herostars/applelogo.svg" alt="Apple" className="hero-button-icon" />
             Get the app
           </button>
