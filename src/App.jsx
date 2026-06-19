@@ -4,13 +4,9 @@ import './components/global.css'
 // Import components
 import Navbar from './components/Navbar'
 import HeroSection from './components/HeroSection'
-import WaitlistBox from './components/WaitlistBox'
-import Endorsement from './components/Endorsement'
-import ScrollingFeature from './components/ScrollingFeature'
-import Camera from './components/Camera'
-import RecipeInstructions from './components/RecipeInstructions'
-import Student from './components/Student'
-import FeaturesCarousel from './components/FeaturesCarousel'
+import FeatureSection1 from './components/FeatureSection1'
+import FeatureSection2 from './components/FeatureSection2'
+import FeatureSection3 from './components/FeatureSection3'
 import FAQ from './components/FAQ'
 import Footer from './components/Footer'
 import Profile from './components/Profile'
@@ -22,11 +18,8 @@ function App() {
   const [message, setMessage] = useState('')
   const [showToast, setShowToast] = useState(false)
   const [toastExiting, setToastExiting] = useState(false)
-  const [activeFeature, setActiveFeature] = useState(0)
   const [isDarkSection, setIsDarkSection] = useState(false)
-  const [carouselCursor, setCarouselCursor] = useState({ show: false, x: 0, y: 0, direction: 'right' })
-  const featuresTrackRef = useRef(null)
-  const carouselRef = useRef(null)
+
 
   // Toast auto-dismiss after 5 seconds with exit animation
   useEffect(() => {
@@ -173,167 +166,7 @@ function App() {
     }
   }
 
-  // Carousel functionality
-  useEffect(() => {
-    const handleScroll = () => {
-      const track = featuresTrackRef.current
-      if (!track) return
-
-      const scrollLeft = track.scrollLeft
-      const scrollWidth = track.scrollWidth
-      const clientWidth = track.clientWidth
-      const features = track.children
-
-      // Check if at the very start (first feature)
-      if (scrollLeft <= 10) {
-        setActiveFeature(0)
-        return
-      }
-
-      // Check if at the very end (last feature)
-      if (scrollLeft >= scrollWidth - clientWidth - 10) {
-        setActiveFeature(features.length - 1)
-        return
-      }
-
-      // For middle positions, use center-based detection
-      const trackRect = track.getBoundingClientRect()
-      const trackCenter = trackRect.left + trackRect.width / 2
-
-      let closestFeature = 0
-      let minDistance = Infinity
-
-      for (let i = 0; i < features.length; i++) {
-        const feature = features[i]
-        const featureRect = feature.getBoundingClientRect()
-        const featureCenter = featureRect.left + featureRect.width / 2
-        const distance = Math.abs(featureCenter - trackCenter)
-
-        if (distance < minDistance) {
-          minDistance = distance
-          closestFeature = i
-        }
-      }
-
-      setActiveFeature(closestFeature)
-    }
-
-    const track = featuresTrackRef.current
-    if (track) {
-      track.addEventListener('scroll', handleScroll)
-      handleScroll() // Initial call
-    }
-
-    return () => {
-      if (track) {
-        track.removeEventListener('scroll', handleScroll)
-      }
-    }
-  }, [])
-
-  const scrollToFeature = (index) => {
-    const track = featuresTrackRef.current
-    if (!track) return
-
-    const feature = track.children[index]
-    if (feature) {
-      const trackRect = track.getBoundingClientRect()
-      const featureRect = feature.getBoundingClientRect()
-      const scrollLeft = track.scrollLeft + featureRect.left - trackRect.left - (trackRect.width - featureRect.width) / 2
-
-      track.scrollTo({
-        left: scrollLeft,
-        behavior: 'smooth'
-      })
-    }
-  }
-
-  const scrollToNextFeature = () => {
-    if (activeFeature < 6) {
-      scrollToFeature(activeFeature + 1)
-    }
-  }
-
-  const scrollToPrevFeature = () => {
-    if (activeFeature > 0) {
-      scrollToFeature(activeFeature - 1)
-    }
-  }
-
-  const handleCarouselMouseMove = (e) => {
-    const carousel = carouselRef.current
-    if (!carousel) return
-
-    const rect = carousel.getBoundingClientRect()
-    const x = e.clientX - rect.left
-    const y = e.clientY - rect.top
-    
-    // Don't show cursor if mouse is below the features track (in the indicators area)
-    const featuresTrack = featuresTrackRef.current
-    if (featuresTrack) {
-      const trackRect = featuresTrack.getBoundingClientRect()
-      if (e.clientY > trackRect.bottom) {
-        setCarouselCursor({ show: false, x: 0, y: 0, direction: 'right' })
-        return
-      }
-    }
-    
-    const midPoint = rect.width / 2
-    const direction = x < midPoint ? 'left' : 'right'
-
-    setCarouselCursor({
-      show: true,
-      x: e.clientX,
-      y: e.clientY,
-      direction
-    })
-  }
-
-  const handleCarouselMouseLeave = () => {
-    setCarouselCursor({ show: false, x: 0, y: 0, direction: 'right' })
-  }
-
-  const handleCarouselClick = () => {
-    if (carouselCursor.direction === 'right') {
-      scrollToNextFeature()
-    } else {
-      scrollToPrevFeature()
-    }
-  }
-
-  // Handle wheel events for better scroll behavior
-  useEffect(() => {
-    const track = featuresTrackRef.current
-    if (!track) return
-
-    const handleWheel = (e) => {
-      // Only intercept Shift+wheel for mouse users
-      // Let trackpad horizontal scrolling work naturally
-      if (e.shiftKey && Math.abs(e.deltaY) > 0) {
-        e.preventDefault()
-        
-        // Temporarily disable smooth scrolling for instant response
-        const originalBehavior = track.style.scrollBehavior
-        track.style.scrollBehavior = 'auto'
-        
-        // Apply mouse wheel scroll (convert vertical to horizontal)
-        track.scrollLeft += e.deltaY * 3
-        
-        // Restore smooth scrolling after a brief delay
-        requestAnimationFrame(() => {
-          track.style.scrollBehavior = originalBehavior
-        })
-      }
-      // For trackpad horizontal (deltaX) and vertical scroll, let browser handle naturally
-    }
-
-    track.addEventListener('wheel', handleWheel, { passive: false })
-    
-    return () => {
-      track.removeEventListener('wheel', handleWheel)
-    }
-  }, [])
-
+  
   return (
     <>
       <Navbar isDarkSection={isDarkSection} />
@@ -342,44 +175,18 @@ function App() {
         {/* HERO SECTION */}
         <HeroSection />
 
-        {/* WAITLIST BOX SECTION */}
-        <WaitlistBox
-          name={name}
-          email={email}
-          isSubmitting={isSubmitting}
-          onNameChange={(e) => setName(e.target.value)}
-          onEmailChange={(e) => setEmail(e.target.value)}
-          onSubmit={handleJoinWaitlist}
-          onGoogleSignup={handleGoogleSignup}
-        />
+        {/* FEATURE SECTION */}
+        <FeatureSection1 />
 
-        {/* SCROLLING FEATURE SECTION */}
-        <ScrollingFeature />
+        {/* FEATURE SECTION 2 */}
+        <FeatureSection2 />
+
+        {/* FEATURE SECTION 3 */}
+        <FeatureSection3 />
       </div>
 
       {/* PROFILE SECTION */}
       <Profile />
-
-      {/* RECIPE INSTRUCTIONS SECTION */}
-      <RecipeInstructions />
-
-      {/* BIG FEATURES SECTION */}
-      <Camera />
-
-      {/* STUDENT SECTION */}
-      <Student />
-
-      {/* FEATURE CAROUSEL */}
-      <FeaturesCarousel
-        activeFeature={activeFeature}
-        carouselCursor={carouselCursor}
-        onMouseMove={handleCarouselMouseMove}
-        onMouseLeave={handleCarouselMouseLeave}
-        onClick={handleCarouselClick}
-        featuresTrackRef={featuresTrackRef}
-        carouselRef={carouselRef}
-        scrollToFeature={scrollToFeature}
-      />
 
       {/* FAQ SECTION */}
       <FAQ />
