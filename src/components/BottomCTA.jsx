@@ -30,6 +30,7 @@ function BottomCTA({
             <div className="hero-bottom-container bottom-cta-fade bottom-cta-fade--bottom" aria-hidden="true" />
 
             <div className="bottom-cta-content">
+                <img src="/images/icon.png" alt="Munch icon" className="bottom-cta-icon" />
                 <div className="section-header-bottom-cta">
                     <h2 className='feature-title-bottom-cta'>Ready to <DrawUnderline>munch</DrawUnderline>?</h2>
                 </div>

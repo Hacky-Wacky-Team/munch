@@ -77,13 +77,12 @@
   z-index: 1;
 }
 
-.bottom-cta-arrow {
-  margin-top: 2cap;
-  width: clamp(20px, 4.5vw, 55px);
+.bottom-cta-icon {
+  width: 8rem;
   height: auto;
-  animation: fadeRise 0.3s ease-out forwards;
-  animation-delay: 0.12s;
-  opacity: 0;
+  object-fit: contain;
+  margin-bottom: 2rem;
+  border-radius: 2.2rem;
 }
 
 .bottom-cta-button-container {
@@ -92,7 +91,7 @@
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  margin-top: 1rem;
+  margin-top: 0rem;
 }
 
 .bottom-cta-button {
