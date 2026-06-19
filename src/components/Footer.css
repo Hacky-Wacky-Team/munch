@@ -1,13 +1,13 @@
 .footer {
   background: transparent;
   color: white;
-  margin-top: 7rem;
+  margin-top: 0rem;
   padding-bottom: 0rem;
   margin-bottom: 0rem;
   overflow: hidden;
   opacity: 1;
   position: relative;
-  padding-top: 5rem;
+  padding-top: 0rem;
 }
 
 .footer-content {
@@ -19,7 +19,8 @@
   width: 100%;
   max-width: 1100px;
   margin: 0 auto;
-  padding: 2rem 1rem;
+  padding: 0rem 0rem;
+  padding-bottom: 2rem;
   box-sizing: border-box;
 }
 
@@ -40,220 +41,11 @@
   z-index: 1;
 }
 
-.waitlist-box-footer {
-  display: flex;
-  flex-direction: row;
-  gap: 0.2rem;
-  margin-bottom: 4rem;
-  padding-top: 2.5rem;
-  padding-bottom: 2.5rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  border-radius: 2.5rem;
-  background: #ffffff;
-  width: 100%;
-  max-width: 1100px;
-  margin-left: auto;
-  margin-right: auto;
-  box-sizing: border-box;
-  justify-content: space-between;
-  align-items: stretch;
-  border: 0.0625rem solid rgba(230, 230, 230, 0.18);
-  filter: drop-shadow(0 4px 15px rgba(0, 0, 0, 0.05));
-  overflow: hidden;
-}
-
-.waitlist-header-footer {
-  font-family: 'Nunito Sans', sans-serif;
-  font-weight: 500;
-  font-size: 2.4rem;
-  color: #214221;
-  margin-bottom: 2rem;
-  text-align: left;
-  margin-top: -0.5rem;
-  position: relative;
-  line-height: 2.5rem;
-  z-index: 1;
-  letter-spacing: -0.08rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
-.waitlist-right-panel-footer {
-  flex: 1;
-  background: #ffffff00;
-  border-radius: 1.5rem;
-  padding-left: 2rem;
-  padding-right: 1rem;
-  padding-bottom: 0rem;
-  padding-top: 0rem;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.waitlist-left-panel-footer {
-  flex: 1;
-  background: #ffffff00;
-  border-radius: 2.5rem;
-  padding-right: 0rem;
-  padding-left: 1rem;
-  padding-bottom: 0rem;
-  padding-top: 0rem;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.waitlist-send-icons-footer {
-  display: flex;
-  flex-direction: row;
-  gap: 0rem;
-  justify-content: center;
-  align-items: center;
-  padding-right: -1rem;
-  margin-left: -2rem;
-}
-
-.waitlist-send-icon-footer {
-  margin-top: -1rem;
-  margin-bottom: -8rem;
-  margin-left: -6rem;
-  margin-right: -1rem;
-}
-
-.waitlist-right-panel-footer form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  align-items: stretch;
-  width: 100%;
-  max-width: 500px;
-}
-
-.waitlist-right-panel-footer input {
-  padding: 1.2rem 1.5rem;
-  border-radius: 1rem;
-  border: none;
-  font-size: 1.2em;
-  width: 100%;
-  background: #f3f3f3;
-  box-sizing: border-box;
-  border: 0.0625rem solid rgba(255, 255, 255, 0.18);
-  outline: none;
-  color: rgb(0, 0, 0);
-  text-align: left;
-  font-family: 'Nunito Sans', sans-serif;
-  font-weight: 600;
-}
-
-.waitlist-right-panel-footer button[type="submit"] {
-  padding: 1.2rem 2rem;
-  border-radius: 1rem;
-  border: none;
-  outline: none;
-  background-color: #98e094;
-  width: 100%;
-  color: #345233;
-  font-size: 1.3rem;
-  font-family: 'Nunito Sans', sans-serif;
-  font-weight: 700;
-  cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.1s ease;
-}
-
-.waitlist-right-panel-footer button[type="submit"]:hover {
-  background-color: #98e094;
-  color: #152b15;
-}
-
-.waitlist-right-panel-footer button[type="submit"]:active {
-  transform: scale(1);
-}
-
-.waitlist-button-row-footer {
-  display: flex;
-  flex-direction: row;
-  gap: 0.75rem;
-  width: 100%;
-  max-width: 500px;
-}
-
-.waitlist-button-row-footer button[type="submit"] {
-  flex: 1;
-}
-
-.google-signup-btn-footer {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 1.2rem 1rem;
-  border-radius: 1rem;
-  border: 0.0625rem solid #98e094;
-  outline: none;
-  background-color: #f5fff5;
-  color: #3c3c3c;
-  font-size: 1.3rem;
-  font-family: 'Nunito Sans', sans-serif;
-  font-weight: 700;
-  cursor: pointer;
-  transition: background-color 0.2s ease, border-color 0.2s ease;
-  white-space: nowrap;
-}
-
-.google-signup-btn-footer:hover {
-  background-color: #e5ffe5;
-  border-color: #e5ffe5;
-}
-
-.google-signup-btn-footer:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-.waitlist-right-panel-footer button[type="submit"]:focus,
-.waitlist-right-panel-footer button[type="submit"]:focus-visible,
-.google-signup-btn-footer:focus,
-.google-signup-btn-footer:focus-visible {
-  outline: none;
-  box-shadow: none;
-}
-
-.gradient-background-footer {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100vw;
-  height: 78vw;
-  min-height: 800px;
-  z-index: 0;
-  pointer-events: none;
-  overflow: visible;
-}
-
-.gradient-image-footer {
-  position: absolute;
-  bottom: -45%;
-  left: 50%;
-  transform: translateX(-50%) scaleY(-1);
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-
 .footer-title-section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 4rem;
+  margin-top: 0rem;
   margin-bottom: 2rem;
 }
 

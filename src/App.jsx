@@ -11,6 +11,7 @@ import FeatureSection4 from './components/FeatureSection4'
 import FeatureSection5 from './components/FeatureSection5'
 import FAQ from './components/FAQ'
 import Footer from './components/Footer'
+import BottomCTA from './components/BottomCTA'
 
 function App() {
   const [name, setName] = useState('')
@@ -195,6 +196,8 @@ function App() {
       {/* FAQ SECTION */}
       <FAQ />
 
+      {/* BOTTOM CTA */}
+      <BottomCTA />
       {/* FOOTER */}
       <Footer 
         name={name}

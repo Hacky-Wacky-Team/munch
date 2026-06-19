@@ -40,7 +40,7 @@ function FAQ() {
           <span className="faq-pill-text">FAQ</span>
         </div>
         <h2 id="faq-heading" className="faq-title">
-          Got <DrawUnderline>questions</DrawUnderline>?
+          Your questions, <DrawUnderline>answered</DrawUnderline>.
         </h2>
       </div>
 

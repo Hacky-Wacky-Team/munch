@@ -228,8 +228,8 @@
 .hero-title {
   margin: 0;
   font-family: 'Nunito Sans', sans-serif;
-  font-size: clamp(2.8rem, 5.8vw, 7.2rem);
-  font-weight: 600;
+  font-size: clamp(2.8rem, 5.7vw, 7.2rem);
+  font-weight: 700;
   line-height: 1.05;
   letter-spacing: -0.03em;
   animation: fadeRise 0.3s ease-out forwards;
@@ -241,7 +241,7 @@
 }
 
 .accent-text {
-  font-weight: 900;
+  font-weight: 1000;
 }
 
 .hero-arrow {
