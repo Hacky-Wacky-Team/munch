@@ -4,8 +4,8 @@ import Navbar from './Navbar'
 import './ReferralLanding.css'
 
 const APP_SCHEME = 'munchapp://'
-const IOS_APP_STORE = 'https://apps.apple.com/app/munch/id123456789' // Replace with actual App Store ID
-const ANDROID_PLAY_STORE = 'https://play.google.com/store/apps/details?id=com.anonymous.munchapp'
+const IOS_APP_STORE = 'https://apps.apple.com/us/app/munch-your-social-recipe-app/id6767927842' // Replace with actual App Store ID
+const ANDROID_PLAY_STORE = 'https://apps.apple.com/us/app/munch-your-social-recipe-app/id6767927842'
 
 function getOS() {
   const userAgent = navigator.userAgent || navigator.vendor || window.opera
