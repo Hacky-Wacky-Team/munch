@@ -6,9 +6,71 @@ function HeroSection() {
   const waveTimeoutRef = useRef(null)
   const wavePhaseTimeoutRef = useRef(null)
   const waveCycleTimeoutRef = useRef(null)
+  const heroSectionRef = useRef(null)
 
-  const triggerWave = () => {
-    // Clear any pending wave timer
+  const PHASE1_END_MS = 880
+  const PHASE2_START_MS = 1280
+  const middlePauseDuration = 0
+  const CYCLE_MS = 8000
+
+  const resetWave = () => {
+    const stars = document.querySelectorAll('.hero-star')
+    const stickers = document.querySelectorAll('.hero-sticker')
+
+    stars.forEach(star => {
+      star.classList.remove('star-animating', 'star-animating-in')
+      star.style.opacity = ''
+      star.style.transform = ''
+    })
+
+    stickers.forEach(sticker => {
+      sticker.classList.remove('sticker-animating', 'sticker-animating-in', 'sticker-held')
+      sticker.style.opacity = ''
+      sticker.style.left = ''
+      sticker.style.top = ''
+      sticker.style.transform = ''
+    })
+  }
+
+  const holdMiddleState = () => {
+    const stars = document.querySelectorAll('.hero-star')
+    const stickers = document.querySelectorAll('.hero-sticker')
+
+    stars.forEach(star => {
+      star.style.opacity = '0'
+      star.style.transform = 'translate(-50%, -50%) scale(0.9)'
+      star.classList.remove('star-animating')
+    })
+
+    stickers.forEach(sticker => {
+      sticker.classList.remove('sticker-animating')
+      sticker.classList.add('sticker-held')
+    })
+  }
+
+  const startPhase2 = () => {
+    const stars = document.querySelectorAll('.hero-star')
+    const stickers = document.querySelectorAll('.hero-sticker')
+
+    stickers.forEach(sticker => {
+      sticker.classList.add('sticker-animating-in')
+      sticker.classList.remove('sticker-held')
+    })
+
+    stars.forEach(star => {
+      star.classList.add('star-animating-in')
+    })
+  }
+
+  const startPhase1 = () => {
+    const stars = document.querySelectorAll('.hero-star')
+    const stickers = document.querySelectorAll('.hero-sticker')
+
+    stars.forEach(star => star.classList.add('star-animating'))
+    stickers.forEach(sticker => sticker.classList.add('sticker-animating'))
+  }
+
+  const triggerWave = ({ startAtPhase2 = false } = {}) => {
     if (waveTimeoutRef.current) {
       clearTimeout(waveTimeoutRef.current)
     }
@@ -19,62 +81,56 @@ function HeroSection() {
       clearTimeout(waveCycleTimeoutRef.current)
     }
 
-    // Get all hero stars except star1
-    const stars = document.querySelectorAll('.hero-star')
+    resetWave()
+    heroSectionRef.current?.classList.remove('hero-start-phase-2')
 
-    // Remove animation classes to reset
-    stars.forEach(star => {
-      star.classList.remove('star-animating', 'star-animating-in')
-      star.style.opacity = '' // Clear inline opacity
-      star.style.transform = '' // Clear inline transform
-    })
-
-    // Trigger reflow to restart animation
     void document.body.offsetHeight
 
-    // Phase 1: Fade-out wave (7→6→5→4→3→2)
-    stars.forEach(star => star.classList.add('star-animating'))
+    if (startAtPhase2) {
+      holdMiddleState()
+      void document.body.offsetHeight
+      startPhase2()
+    } else {
+      startPhase1()
 
-    // After Phase 1 completes (max delay 0.5s + animation 0.15s = 0.65s)
-    // Preserve opacity 0 and scale 0.9 for all stars
-    // TIMING TUNING: Phase 1 end time (in milliseconds)
-    wavePhaseTimeoutRef.current = setTimeout(() => {
-      stars.forEach(star => {
-        star.style.opacity = '0' // Explicitly preserve opacity
-        star.style.transform = 'translate(-50%, -50%) scale(0.9)' // Preserve scale
-        star.classList.remove('star-animating')
-      })
-    }, 880)
+      wavePhaseTimeoutRef.current = setTimeout(holdMiddleState, PHASE1_END_MS)
 
-    // Middle delay: pause at opacity 0 (adjust this value to change middle pause duration)
-    // TIMING TUNING: Middle pause duration (currently 1000ms = 1s)
-    const middlePauseDuration = 0
-    
-    // Phase 2: Fade-in wave (2→3→4→5→6→7) - starts after middle pause
-    // Total: 0.65s (Phase 1) + 1s (middle pause) = 1.65s before Phase 2 starts
-    waveTimeoutRef.current = setTimeout(() => {
-      stars.forEach(star => {
-        star.classList.add('star-animating-in')
-      })
-    }, 1280 + middlePauseDuration)
+      waveTimeoutRef.current = setTimeout(
+        startPhase2,
+        PHASE2_START_MS + middlePauseDuration
+      )
+    }
 
-    // Schedule next wave cycle
-    // TIMING TUNING: Total cycle duration (currently 5300ms = 5.3s)
-    // Formula: Phase1(0.65s) + MiddlePause(1s) + Phase2(0.65s) + buffer(3s) = ~5.3s
-    waveCycleTimeoutRef.current = setTimeout(triggerWave, 6000)
+    waveCycleTimeoutRef.current = setTimeout(() => triggerWave(), CYCLE_MS)
   }
 
   useEffect(() => {
-    // Trigger wave on component mount
-    triggerWave()
+    triggerWave({ startAtPhase2: true })
 
-    // Add hover listener to hero button
+    const heroButtonEnter = document.querySelector('.hero-button-enter')
     const heroButton = document.querySelector('.hero-button')
+
+    const finishButtonIntro = () => {
+      heroButtonEnter?.classList.add('hero-button-ready')
+      heroButton?.classList.add('hero-button-ready')
+    }
+
+    const onButtonIntroEnd = (event) => {
+      if (
+        event.animationName === 'buttonInMotion' ||
+        event.animationName === 'buttonInColors'
+      ) {
+        finishButtonIntro()
+      }
+    }
+
+    heroButtonEnter?.addEventListener('animationend', onButtonIntroEnd)
+    heroButton?.addEventListener('animationend', onButtonIntroEnd)
+
     if (heroButton) {
       heroButton.addEventListener('mouseenter', triggerWave)
     }
 
-    // Cleanup
     return () => {
       if (waveTimeoutRef.current) {
         clearTimeout(waveTimeoutRef.current)
@@ -85,10 +141,9 @@ function HeroSection() {
       if (waveCycleTimeoutRef.current) {
         clearTimeout(waveCycleTimeoutRef.current)
       }
-      const heroButton = document.querySelector('.hero-button')
-      if (heroButton) {
-        heroButton.removeEventListener('mouseenter', triggerWave)
-      }
+      heroButtonEnter?.removeEventListener('animationend', onButtonIntroEnd)
+      heroButton?.removeEventListener('animationend', onButtonIntroEnd)
+      heroButton?.removeEventListener('mouseenter', triggerWave)
     }
   }, [])
 
@@ -97,7 +152,7 @@ const goToWebsite = () => {
 }
 
   return (
-    <section className="hero-section" aria-label="Hero section">
+    <section ref={heroSectionRef} className="hero-section hero-start-phase-2" aria-label="Hero section">
       <div className="hero-background" aria-hidden="true">
         <img src="/herostars/star7.svg" className="hero-star hero-star-7" alt="" />
         <img src="/herostars/star6.svg" className="hero-star hero-star-6" alt="" />
@@ -106,6 +161,13 @@ const goToWebsite = () => {
         <img src="/herostars/star3.svg" className="hero-star hero-star-3" alt="" />
         <img src="/herostars/star2.svg" className="hero-star hero-star-2" alt="" />
         <img src="/herostars/star1.svg" className="hero-star hero-star-1" alt="" />
+
+        <img src="/images/heropost1.png" className="hero-sticker hero-sticker-post1" alt="" />
+        <img src="/stickers/nigiristicker.svg" className="hero-sticker hero-sticker-nigiri" alt="" />
+        <img src="/images/heroimagestack.png" className="hero-sticker hero-sticker-stack" alt="" />
+        <img src="/stickers/cakesticker.svg" className="hero-sticker hero-sticker-cake" alt="" />
+        <img src="/images/heropost2.png" className="hero-sticker hero-sticker-post2" alt="" />
+        <img src="/images/heroprofile.png" className="hero-sticker hero-sticker-profile" alt="" />
       </div>
 
       <div className="hero-content">
@@ -120,10 +182,12 @@ const goToWebsite = () => {
         <img src="/herostars/heroarrow.svg" className="hero-arrow" alt="" />
 
         <div className="hero-button-container">
-          <button className="hero-button" type="button" onClick={goToWebsite}>
-            <img src="/herostars/applelogo.svg" alt="Apple" className="hero-button-icon" />
-            Get the app
-          </button>
+          <div className="hero-button-enter">
+            <button className="hero-button" type="button" onClick={goToWebsite}>
+              <img src="/herostars/applelogo.svg" alt="Apple" className="hero-button-icon" />
+              Get the app
+            </button>
+          </div>
         </div>
 
         <div className="hero-bottom-container" aria-hidden="true" />
