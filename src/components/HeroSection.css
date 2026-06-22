@@ -137,10 +137,10 @@
     left: calc(var(--sticker-left) + var(--sticker-jump-x));
     top: calc(var(--sticker-top) + var(--sticker-jump-y));
     opacity: 1;
-    transform: translate(-50%, -50%) rotate(var(--sticker-rotate, 0deg)) scale(1.05);
+    transform: translate(-50%, -50%) rotate(var(--sticker-rotate, 0deg)) scale(1.025);
   }
 
-  80% {
+  45% {
     opacity: 0;
   }
 
@@ -160,7 +160,7 @@
     transform: translate(-50%, -50%) rotate(var(--sticker-rotate, 0deg)) scale(0.95);
   }
 
-  20% {
+  10% {
     /* left: calc(var(--sticker-inward-left) + (var(--sticker-left) - var(--sticker-inward-left)) * 0.55 + var(--sticker-bounce-x) * 0.5);
     top: calc(var(--sticker-inward-top) + (var(--sticker-top) - var(--sticker-inward-top)) * 0.55 + var(--sticker-bounce-y) * 0.5); */
     opacity: 0;
@@ -171,7 +171,7 @@
     left: calc(var(--sticker-left) + var(--sticker-bounce-x));
     top: calc(var(--sticker-top) + var(--sticker-bounce-y));
     opacity: 1;
-    transform: translate(-50%, -50%) rotate(var(--sticker-rotate, 0deg)) scale(1.05);
+    transform: translate(-50%, -50%) rotate(var(--sticker-rotate, 0deg)) scale(1.025);
   }
 
   100% {
@@ -362,8 +362,8 @@
   filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.14));
   z-index: 8;
   pointer-events: none;
-  --sticker-out-duration: 0.5s;
-  --sticker-in-duration: 0.5s;
+  --sticker-out-duration: 0.7s;
+  --sticker-in-duration: 0.7s;
   /* Set --sticker-out-delay / --sticker-in-delay on each .hero-sticker-* class */
   /* Inward hold position — tune with --sticker-inward-factor (0.5 = halfway to center)
      or override --sticker-inward-left / --sticker-inward-top per sticker
@@ -374,12 +374,12 @@
   /* Outward "jump" (phase 1) and "bounce" (phase 2) — auto-directed away from center */
   --sticker-jump-x: calc((var(--sticker-left) - 50%) * 0.06);
   --sticker-jump-y: calc((var(--sticker-top) - 50%) * 0.06);
-  --sticker-bounce-x: calc((var(--sticker-left) - 50%) * 0.06);
-  --sticker-bounce-y: calc((var(--sticker-top) - 50%) * 0.06);
+  --sticker-bounce-x: calc((var(--sticker-left) - 50%) * 0.02);
+  --sticker-bounce-y: calc((var(--sticker-top) - 50%) * 0.02);
 }
 
 .hero-sticker.sticker-animating {
-  animation: stickerWaveOut var(--sticker-out-duration) ease-out both;
+  animation: stickerWaveOut var(--sticker-out-duration) cubic-bezier(0.1, 0.3, 0.8, 1) both;
   animation-delay: var(--sticker-out-delay, 0s);
 }
 
@@ -391,7 +391,7 @@
 }
 
 .hero-sticker.sticker-animating-in {
-  animation: stickerWaveIn var(--sticker-in-duration) ease-out both;
+  animation: stickerWaveIn var(--sticker-in-duration) cubic-bezier(0.1, 0.7, 0.3, 1) both;
   animation-delay: var(--sticker-in-delay, 0s);
 }
 
@@ -400,7 +400,7 @@
   --sticker-top: 62%;
   --sticker-size: clamp(90px, 13vw, 260px);
   --sticker-rotate: -8deg;
-  --sticker-out-delay: 0.25s;
+  --sticker-out-delay: 0.15s;
   --sticker-in-delay: 0.3s;
 }
 
@@ -409,7 +409,7 @@
   --sticker-top: 35%;
   --sticker-size: clamp(70px, 8vw, 160px);
   --sticker-rotate: 12deg;
-  --sticker-out-delay: 0.2s;
+  --sticker-out-delay: 0.12s;
   --sticker-in-delay: 0.35s;
 }
 
@@ -418,7 +418,7 @@
   --sticker-top: 18%;
   --sticker-size: clamp(110px, 11vw, 220px);
   --sticker-rotate: -15deg;
-  --sticker-out-delay: 0.15s;
+  --sticker-out-delay: 0.09s;
   --sticker-in-delay: 0.4s;
 }
 
@@ -427,7 +427,7 @@
   --sticker-top: 16%;
   --sticker-size: clamp(75px, 7vw, 140px);
   --sticker-rotate: 10deg;
-  --sticker-out-delay: 0.1s;
+  --sticker-out-delay: 0.06s;
   --sticker-in-delay: 0.45s;
 }
 
@@ -436,7 +436,7 @@
   --sticker-top: 35%;
   --sticker-size: clamp(90px, 12vw, 260px);
   --sticker-rotate: 6deg;
-  --sticker-out-delay: 0.05s;
+  --sticker-out-delay: 0.03s;
   --sticker-in-delay: 0.5s;
 }
 

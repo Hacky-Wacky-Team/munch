@@ -39,9 +39,9 @@
 }
 
 .faq-title {
-  font-size: 4.2rem;
+  font-size: clamp(2.3rem, 4.8vw, 4.9rem);
   margin: 0;
-  color: #152b15;
+  color: #181818;
   text-align: left;
   font-family: 'Nunito Sans', sans-serif;
   font-weight: 700;

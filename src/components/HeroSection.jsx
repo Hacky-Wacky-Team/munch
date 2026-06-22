@@ -11,7 +11,7 @@ function HeroSection() {
   const PHASE1_END_MS = 880
   const PHASE2_START_MS = 1280
   const middlePauseDuration = 0
-  const CYCLE_MS = 8000
+  const CYCLE_MS = 10000
 
   const resetWave = () => {
     const stars = document.querySelectorAll('.hero-star')
