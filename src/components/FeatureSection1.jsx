@@ -40,6 +40,8 @@ const defaultImages = [
 	},
 ]
 
+const isMobile = window.innerWidth < 768
+
 function FeatureSection1({
 	images = defaultImages,
 }) {
@@ -97,7 +99,7 @@ function FeatureSection1({
 					<div className="feature-section-1__carousel-perspective">
 						{images.map((image, index) => {
 							const angle = (rotatingCards[index] || 0) * (Math.PI / 180)
-							const radius = isHovering ? 240 : 200
+							const radius = isHovering ? isMobile ? 160 : 240 : isMobile ? 120 : 200
 							const x = Math.cos(angle) * radius
 							const y = Math.sin(angle) * radius
 							const rotateX = (mousePosition.y - 0.5) * 18

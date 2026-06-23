@@ -42,7 +42,7 @@
 .feature-section-1__title {
 	margin: 0;
 	color: #181818;
-	font-size: clamp(2.3rem, 5.2vw, 5.8rem);
+	font-size: clamp(3rem, 5.2vw, 5.8rem);
 	font-weight: 700;
 	line-height: 0.92;
 	letter-spacing: -0.05em;
@@ -78,7 +78,7 @@
 }
 
 .feature-section-1__title-badge-text {
-	font-size: clamp(2.1rem, 4.8vw, 5.5rem);
+	font-size: clamp(2.4rem, 4.8vw, 5.5rem);
 }
 
 .feature-section-1__title-badge > span {
@@ -134,7 +134,7 @@
 	inset: 0;
 	background: linear-gradient(135deg, rgba(255, 255, 255, 0.24), transparent 55%);
 	opacity: 0.95;
-        border-radius: 2rem;
+    border-radius: 2rem;
 }
 
 .feature-section-1__content {
@@ -161,29 +161,60 @@
 	}
 
 	.feature-section-1__copy {
+		order: 1;
 		max-width: 36rem;
 	}
 
 	.feature-section-1__carousel-shell {
+		order: 2;
 		min-height: 28rem;
 	}
 }
 
 @media (max-width: 640px) {
+	.feature-section-1 {
+		padding: 3rem 1rem 2.5rem;
+	}
+
+	.feature-section-1__inner {
+		gap: 1.5rem;
+	}
+
 	.feature-section-1__carousel-shell {
-		min-height: 24rem;
+		min-height: 22rem;
 	}
 
 	.feature-section-1__card-shell {
-		width: 6.75rem;
-		height: 9.25rem;
+		aspect-ratio: 256/279;
+		width: 8rem;
+		height: auto;
+		border-radius: 0.4rem;
 	}
 
-	.feature-section-1__title {
-		font-size: clamp(1.9rem, 9vw, 2.9rem);
+	.feature-section-1__title-badge {
+		padding: 0.5rem 1.2rem 0.5rem 0.9rem;
+		margin-left: 0.5rem;
+		margin-bottom: -0.5rem;
+		border-radius: 1.3rem;
+	}
+
+	.feature-section-1__title-badge-icon {
+		width: 2.5rem;
+		height: 2.5rem;
 	}
 
 	.feature-section-1__subtitle {
+		margin-top: 1.25rem;
 		max-width: 22rem;
+		font-size: 1rem;
+		line-height: 1.2;
+	}
+
+	.feature-section-1__image {
+		border-radius: 1.2rem;
+	}
+
+	.feature-section-1__shine {
+		border-radius: 1.3rem;
 	}
 }

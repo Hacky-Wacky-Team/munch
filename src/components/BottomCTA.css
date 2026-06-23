@@ -68,7 +68,7 @@
 .feature-title-bottom-cta {
   font-family: 'Nunito Sans', sans-serif;
   font-weight: 700;
-  font-size: 4.5rem;
+  font-size: clamp(3rem, 4.5vw, 4.5rem);
   color: #181818;
   margin: 0;
   line-height: 1.1;
@@ -135,12 +135,17 @@
 
 @media (max-width: 768px) {
   .bottom-cta {
-    height: 50vh;
-    min-height: 24rem;
+    height: auto;
+    min-height: 22rem;
+    margin-bottom: 0rem;
+    padding: 5rem 0 2rem;
   }
 
   .bottom-cta-hero-background {
     margin-top: 0;
+    height: 85svh;
+    transform: translateY(-50%) scale(0.88);
+    transform-origin: center center;
   }
 
   .bottom-cta .hero-bottom-container.bottom-cta-fade {
@@ -153,5 +158,37 @@
 
   .bottom-cta .hero-bottom-container.bottom-cta-fade--bottom {
     background: radial-gradient(74.35% 48.63% at 50.04% 51.37%, #F6F8F6 73.56%, rgba(246, 248, 246, 0.00) 100%);
+  }
+
+  .bottom-cta-content {
+    height: auto;
+    padding: 1.5rem 1rem;
+  }
+
+  .bottom-cta-icon {
+    width: 5rem;
+    margin-bottom: 1.25rem;
+    border-radius: 1.5rem;
+  }
+
+  .section-header-bottom-cta {
+    margin-bottom: 1.25rem;
+  }
+
+  .feature-title-bottom-cta {
+padding-left: 2rem;
+padding-right: 2rem;
+  }
+
+  .bottom-cta-button {
+    width: min(100%, 18rem);
+    font-size: 1.3rem;
+    padding: 0.8rem 1.6rem;
+    border-radius: 1.3rem;
+  }
+
+  .bottom-cta-button-icon {
+    width: 1.25rem;
+    height: 1.25rem;
   }
 }

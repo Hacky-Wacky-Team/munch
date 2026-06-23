@@ -25,7 +25,7 @@
 .feature-section-4__title {
 	margin: 0;
 	color: #181818;
-	font-size: clamp(2.3rem, 5.2vw, 5.8rem);
+	font-size: clamp(3rem, 5.2vw, 5.8rem);
 	font-weight: 700;
 	line-height: 0.85;
 	letter-spacing: -0.05em;
@@ -62,14 +62,14 @@
 	justify-content: center;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 768px) {
 	.feature-section-4 {
-		padding: 4rem 1rem 3.5rem;
+		padding: 3rem 1rem 2.5rem;
 	}
 
 	.feature-section-4__inner {
 		grid-template-columns: 1fr;
-		gap: 2rem;
+		gap: 1.5rem;
 		min-height: auto;
 	}
 
@@ -79,26 +79,26 @@
 	}
 
 	.feature-section-4__copy {
+		order: 1;
 		max-width: 36rem;
+	}
+
+	.feature-section-4__mockup-shell {
+		order: 2;
+		min-width: 0;
+		max-width: 100%;
+		overflow: hidden;
 	}
 
 	.feature-section-4__mockup-card {
 		max-width: 100%;
 		min-height: 0;
 	}
-}
-
-@media (max-width: 640px) {
-	.feature-section-4__title {
-		font-size: clamp(1.9rem, 9vw, 2.9rem);
-	}
 
 	.feature-section-4__subtitle {
+		margin-top: 1.25rem;
 		max-width: 22rem;
-	}
-
-	.feature-section-4__title-badge-icon {
-		width: 3rem;
-		height: 3rem;
+		font-size: 1rem;
 	}
 }
+

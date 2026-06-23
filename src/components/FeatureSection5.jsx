@@ -4,6 +4,7 @@ function getCardStyle(card) {
     const media = card.media ?? {}
 
     return {
+        '--card-mobile-height': card.mobileHeight ?? '28rem',
         '--card-subtitle-max-width': card.subtitleMaxWidth ?? '30rem',
         '--card-media-padding-top': media.paddingTop ?? media.padding ?? '1rem',
         '--card-media-padding-right': media.paddingRight ?? media.padding ?? '1.7rem',
@@ -29,6 +30,7 @@ const cardRows = [
                 subtitle:
                     'Instead of losing your recipes across various apps, munch lets you consolidate them all into a single app. Gather everything you need and organize them into collections.',
                 image: '/mockups/collectionsmockup.png',
+                mobileHeight: '26rem',
                 subtitleMaxWidth: '50ch',
                 media: {
                     paddingTop: '0rem',
@@ -43,6 +45,7 @@ const cardRows = [
                 title: 'explore',
                 subtitle: 'Discover recipes by scrolling or delve deeper into specific food categories',
                 image: '/mockups/exploremockup.png',
+                mobileHeight: '30rem',
                 subtitleMaxWidth: '28ch',
                 media: {
                     paddingTop: '1.25rem',
@@ -64,6 +67,7 @@ const cardRows = [
                 subtitle:
                     'Uploading your recipe has never been easier. Just paste your recipe onto Munch and it will auto format everything for you into individual ingredients and steps using AI.',
                 video: '/mockups/autorecipeformatvideo.mp4',
+                mobileHeight: '33rem',
                 subtitleMaxWidth: '40ch',
                 media: {
                     paddingTop: '1.5rem',
@@ -81,6 +85,7 @@ const cardRows = [
                 subtitle:
                     'Reach certain milestones and receive exclusive badges. Create your own stickers to express yourself',
                 video: '/mockups/editprofilevideo.mp4',
+                mobileHeight: '24rem',
                 subtitleMaxWidth: '40ch',
                 media: {
                     paddingTop: '0rem',

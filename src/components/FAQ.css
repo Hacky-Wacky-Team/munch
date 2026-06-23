@@ -39,7 +39,7 @@
 }
 
 .faq-title {
-  font-size: clamp(2.3rem, 4.9vw, 4.9rem);
+  font-size: clamp(3rem, 4.9vw, 4.9rem);
   margin: 0;
   color: #181818;
   text-align: left;
@@ -147,10 +147,31 @@
 
 @media (max-width: 768px) {
   .faq-section {
-    margin-top: 7rem;
+    margin-top: 4rem;
     padding: 0 1rem;
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 1.5rem;
+    box-sizing: border-box;
+    max-width: 100%;
+    width: 100%;
+    overflow-x: clip;
+  }
+
+  .faq-header {
+    order: 1;
+    gap: 0.85rem;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .faq-list {
+    order: 2;
+    justify-self: stretch;
+    max-width: 100%;
+    min-width: 0;
+    width: 100%;
+    gap: 0.75rem;
+    box-sizing: border-box;
   }
 
   .faq-pill {
@@ -162,24 +183,25 @@
     font-size: 0.8rem;
   }
 
-  .faq-title {
-    font-size: 2.8rem;
-    letter-spacing: -0.08rem;
-    max-width: 96%;
+  .faq-item {
+    border-radius: 1.25rem;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   .faq-question {
     font-size: 1rem;
     padding: 1rem 1.25rem;
+    box-sizing: border-box;
+  }
+
+  .faq-question > span:first-child {
+    min-width: 0;
   }
 
   .faq-answer p {
     font-size: 0.95rem;
     padding: 0 1.25rem 1rem;
-  }
-
-  .faq-list {
-    justify-self: stretch;
-    max-width: none;
+    box-sizing: border-box;
   }
 }
