@@ -8,13 +8,6 @@ function FeatureSection4() {
                 <div className="feature-section-4__copy">
                     <h2 className="feature-section-4__title" aria-label="Share your art with the world">
                         <span>Express</span>
-                        {/* <span className="feature-section-4__title-line">
-                            <span className="feature-section-4__title-badge">
-                                <img src="/badges/cakebadge.png" alt="" aria-hidden="true" className="feature-section-4__title-badge-icon-cake" />
-                                <span className="feature-section-4__title-badge-text-art">art</span>
-                            </span>
-                            <span className="feature-section-4__title-badge-text-with">with</span>
-                        </span> */}
                         <span>your inner</span>
                         <span>big back</span>
                     </h2>

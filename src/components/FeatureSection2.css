@@ -25,7 +25,7 @@
 .feature-section-2__title {
 	margin: 0;
 	color: #181818;
-	font-size: clamp(2.3rem, 4.8vw, 5.8rem);
+	font-size: clamp(2.3rem, 5.2vw, 5.8rem);
 	font-weight: 700;
 	line-height: 0.85;
 	letter-spacing: -0.05em;
@@ -67,7 +67,7 @@
 }
 
 .feature-section-2__title-badge-text-art {
-	font-size: clamp(2.1rem, 4.1vw, 5.4rem);
+	font-size: clamp(2.1rem, 4.8vw, 5.4rem);
     color: #E2E2E2;
     font-weight: 800;
 
@@ -81,7 +81,7 @@
 
 .feature-section-2__title-badge-icon-cake {
 	display: block;
-	width: 6rem;
+	width: clamp(4rem, 5.8vw, 6rem);
 	height: auto;
 	object-fit: contain;
 	flex: 0 0 auto;
