@@ -10,19 +10,19 @@ const faqItems = [
       'A social app for sharing food, recipes, and cravings. We are building a community of food lovers who want to eat better and waste less.'
   },
   {
-    question: 'When is Munch launching?',
+    question: 'Do I need cooking experience to use Munch?',
     answer:
-      'We are preparing for an early-access beta release by the end of April 2026. Join the waitlist to be the first to know when we launch and receive beta access.'
+      'Not at all. Whether you’re cooking your first meal or your hundredth, Munch helps you discover recipes, learn new skills, and find inspiration in the kitchen.'
   },
   {
     question: 'Is Munch free?',
     answer:
-      'Yes. The core experience will be free to use.'
+      'Yes. Munch is free to download and use.'
   },
   {
     question: 'How is this different from Instagram or TikTok?',
     answer:
-      'Munch is centered on food and cooking without the extra noise. Just recipes, inspiration, and meals that help you eat better and waste less.'
+      'Munch is built specifically for food and cooking without the extra noise. Discover recipes, share your creations, and get inspired to cook without the distractions of a general social media feed.'
   },
 ]
 
