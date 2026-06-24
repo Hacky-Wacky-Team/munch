@@ -196,6 +196,7 @@
 
 .feature-section-3__feature-card-image-wrap {
 	margin-top: auto;
+	margin-bottom: -6rem;
 	display: flex;
 	align-items: flex-end;
 	justify-content: center;
@@ -203,6 +204,22 @@
 	padding-top: 0.75rem;
 	padding-left: 1.5rem;
 	padding-right: 1.5rem;
+	transition: margin-bottom 650ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.feature-section-3--cards-in-view .feature-section-3__feature-card:nth-child(1) .feature-section-3__feature-card-image-wrap {
+	margin-bottom: 0rem;
+	transition-delay: 0ms;
+}
+
+.feature-section-3--cards-in-view .feature-section-3__feature-card:nth-child(2) .feature-section-3__feature-card-image-wrap {
+	margin-bottom: 0rem;
+	transition-delay: 120ms;
+}
+
+.feature-section-3--cards-in-view .feature-section-3__feature-card:nth-child(3) .feature-section-3__feature-card-image-wrap {
+	margin-bottom: 0rem;
+	transition-delay: 240ms;
 }
 
 .feature-section-3__feature-card-image {
@@ -212,6 +229,7 @@
 	max-height: 100%;
 	object-fit: contain;
 	object-position: bottom center;
+	
 }
 
 

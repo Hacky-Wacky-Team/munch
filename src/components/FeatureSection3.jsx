@@ -22,7 +22,9 @@ const featureCards = [
 
 function FeatureSection3() {
     const sectionRef = useRef(null)
+    const cardsRowRef = useRef(null)
     const [isInView, setIsInView] = useState(false)
+    const [cardsInView, setCardsInView] = useState(false)
 
     useEffect(() => {
         const section = sectionRef.current
@@ -44,10 +46,30 @@ function FeatureSection3() {
         return () => observer.disconnect()
     }, [])
 
+    useEffect(() => {
+        const cardsRow = cardsRowRef.current
+        if (!cardsRow) return
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        setCardsInView(true)
+                        observer.disconnect()
+                    }
+                })
+            },
+            { threshold: 0.7 },
+        )
+
+        observer.observe(cardsRow)
+        return () => observer.disconnect()
+    }, [])
+
     return (
         <section
             ref={sectionRef}
-            className={`feature-section-3${isInView ? ' feature-section-3--in-view' : ''}`}
+            className={`feature-section-3${isInView ? ' feature-section-3--in-view' : ''}${cardsInView ? ' feature-section-3--cards-in-view' : ''}`}
             aria-label="Feature section 3"
         >
             <div className="feature-section-3__inner">
@@ -83,7 +105,7 @@ function FeatureSection3() {
                 </div>
             </div>
 
-            <div className="feature-section-3__cards-row" aria-label="Feature cards">
+            <div ref={cardsRowRef} className="feature-section-3__cards-row" aria-label="Feature cards">
                 {featureCards.map((card) => (
                     <article key={card.id} className="feature-section-3__feature-card">
                         <div className="feature-section-3__feature-card-copy">
