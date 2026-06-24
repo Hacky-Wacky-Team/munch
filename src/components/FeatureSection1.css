@@ -70,15 +70,25 @@
 	border-radius: 2.2rem;
 	background: #ffffff;
 	box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
-	transform: rotate(-2deg);
+	transform: rotate(0deg);
 	transform-origin: center;
+	transition: transform 400ms ease 0.5s;
 	white-space: nowrap;
     margin-left: 1rem;
     margin-bottom: -1rem;
 }
 
+.feature-section-1--in-view .feature-section-1__title-badge {
+	transform: rotate(-4deg);
+}
+
+.feature-section-1__title-badge:hover {
+	transform: rotate(0deg);
+	transition-delay: 0s;
+}
+
 .feature-section-1__title-badge-text {
-	font-size: clamp(2.4rem, 4.8vw, 5.5rem);
+	font-size: clamp(2.6rem, 4.8vw, 5.5rem);
 }
 
 .feature-section-1__title-badge > span {
@@ -108,9 +118,13 @@
 	aspect-ratio: 256/279;
 	width: 14rem;
 	height: auto;
-	transition: transform 280ms ease, filter 280ms ease;
+	transition: none;
 	will-change: transform;
     border-radius: 0.8rem;
+}
+
+.feature-section-1--in-view .feature-section-1__card-shell {
+	transition: transform 280ms ease, filter 280ms ease;
 }
 
 .feature-section-1__card {
@@ -144,14 +158,14 @@
 
 
 
-@media (max-width: 900px) {
+@media (max-width: 768px) {
 	.feature-section-1 {
-		padding: 4rem 1rem 3.5rem;
+		padding: 3rem 1rem 2.5rem;
 	}
 
 	.feature-section-1__inner {
 		grid-template-columns: 1fr;
-		gap: 2rem;
+		gap: 1.5rem;
 		min-height: auto;
 	}
 
@@ -167,26 +181,12 @@
 
 	.feature-section-1__carousel-shell {
 		order: 2;
-		min-height: 28rem;
-	}
-}
-
-@media (max-width: 640px) {
-	.feature-section-1 {
-		padding: 3rem 1rem 2.5rem;
-	}
-
-	.feature-section-1__inner {
-		gap: 1.5rem;
-	}
-
-	.feature-section-1__carousel-shell {
 		min-height: 22rem;
+		margin-top: 1rem;
 	}
-
 	.feature-section-1__card-shell {
 		aspect-ratio: 256/279;
-		width: 8rem;
+		width: 9rem;
 		height: auto;
 		border-radius: 0.4rem;
 	}
@@ -218,3 +218,4 @@
 		border-radius: 1.3rem;
 	}
 }
+

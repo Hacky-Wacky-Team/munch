@@ -1,8 +1,36 @@
+import { useEffect, useRef, useState } from 'react'
 import './FeatureSection2.css'
 
 function FeatureSection2() {
+    const sectionRef = useRef(null)
+    const [isInView, setIsInView] = useState(false)
+
+    useEffect(() => {
+        const section = sectionRef.current
+        if (!section) return
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        setIsInView(true)
+                        observer.disconnect()
+                    }
+                })
+            },
+            { threshold: 0.4 },
+        )
+
+        observer.observe(section)
+        return () => observer.disconnect()
+    }, [])
+
     return (
-        <section className="feature-section-2" aria-label="Feature section 2">
+        <section
+            ref={sectionRef}
+            className={`feature-section-2${isInView ? ' feature-section-2--in-view' : ''}`}
+            aria-label="Feature section 2"
+        >
             <div className="feature-section-2__inner">
                 <div className="feature-section-2__copy">
                     <h2 className="feature-section-2__title" aria-label="Share your art with the world">
@@ -17,7 +45,7 @@ function FeatureSection2() {
                         <span>the world</span>
                     </h2>
                     <p className="feature-section-2__subtitle">
-                        Don’t keep your creations hidden in your notes. Let others experience and try out your recipes. Cooking is better together.
+                        Don’t keep your creations hidden in your notes. Turn your favorite dishes into posts worth sharing. Publish recipes, showcase your creations, and inspire cooks around the globe.
                     </p>
                 </div>
 

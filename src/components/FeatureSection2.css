@@ -52,14 +52,24 @@
 	border-radius: 2.2rem;
 	background: #000000;
 	box-shadow: 0 0 12.261px 0 rgba(0, 0, 0, 0.08);
-	transform: rotate(-3deg);
+	transform: rotate(0deg);
 	transform-origin: center;
+	transition: transform 400ms ease 0.5s;
 	white-space: nowrap;
 	margin-left: 0rem;
 	margin-right: 1rem;
 	margin-bottom: -2rem;
 	border: 1.592px solid #E0E0E0;
 	background: linear-gradient(257deg, #3D3519 5.01%, #000 56.46%, #353E35 88.99%);
+}
+
+.feature-section-2--in-view .feature-section-2__title-badge {
+	transform: rotate(-4deg);
+}
+
+.feature-section-2__title-badge:hover {
+	transform: rotate(0deg);
+	transition-delay: 0s;
 }
 
 .feature-section-2__title-badge>span {

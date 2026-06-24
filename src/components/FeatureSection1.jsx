@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import './FeatureSection1.css'
 
 const defaultImages = [
@@ -45,21 +45,47 @@ const isMobile = window.innerWidth < 768
 function FeatureSection1({
 	images = defaultImages,
 }) {
+	const sectionRef = useRef(null)
 	const [mousePosition, setMousePosition] = useState({ x: 0.5, y: 0.5 })
 	const [isHovering, setIsHovering] = useState(false)
+	const [isInView, setIsInView] = useState(false)
 	const [rotatingCards, setRotatingCards] = useState([])
 
 	useEffect(() => {
-		setRotatingCards(images.map((_, index) => index * (360 / images.length)))
-	}, [images])
+		const section = sectionRef.current
+		if (!section) return
+
+		const observer = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((entry) => {
+					if (entry.isIntersecting) {
+						setIsInView(true)
+						observer.disconnect()
+					}
+				})
+			},
+			{ threshold: 0.4 },
+		)
+
+		observer.observe(section)
+		return () => observer.disconnect()
+	}, [])
 
 	useEffect(() => {
+		if (!isInView) return
+
+		setRotatingCards(images.map((_, index) => index * (360 / images.length)))
+	}, [images, isInView])
+
+	useEffect(() => {
+		if (!isInView) return
+
 		const interval = window.setInterval(() => {
 			setRotatingCards((previous) => previous.map((angle) => (angle + 0.5) % 360))
 		}, 50)
 
 		return () => window.clearInterval(interval)
-	}, [])
+	}, [isInView])
 
 	const handleMouseMove = (event) => {
 		const rect = event.currentTarget.getBoundingClientRect()
@@ -71,7 +97,12 @@ function FeatureSection1({
 
 
 	return (
-		<section id="features" className="feature-section-1" aria-label="Feature section 1">
+		<section
+			ref={sectionRef}
+			id="features"
+			className={`feature-section-1${isInView ? ' feature-section-1--in-view' : ''}`}
+			aria-label="Feature section 1"
+		>
 			<div className="feature-section-1__inner">
 				<div className="feature-section-1__copy">
 					<h2 className="feature-section-1__title" aria-label="A better way to find recipes">
@@ -99,7 +130,7 @@ function FeatureSection1({
 					<div className="feature-section-1__carousel-perspective">
 						{images.map((image, index) => {
 							const angle = (rotatingCards[index] || 0) * (Math.PI / 180)
-							const radius = isHovering ? isMobile ? 160 : 240 : isMobile ? 120 : 200
+							const radius = isHovering ? isMobile ? 160 : 240 : isMobile ? 130 : 200
 							const x = Math.cos(angle) * radius
 							const y = Math.sin(angle) * radius
 							const rotateX = (mousePosition.y - 0.5) * 18

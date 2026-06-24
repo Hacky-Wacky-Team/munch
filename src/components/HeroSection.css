@@ -674,21 +674,21 @@
   .hero-sticker-stack {
     --sticker-left: 22%;
     --sticker-top: 24%;
-    --sticker-size: clamp(80px, 24vw, 130px);
-    --sticker-rotate: -4deg;
+    --sticker-size: clamp(80px, 26vw, 130px);
+    --sticker-rotate: -13deg;
   }
 
   .hero-sticker-cake {
-    --sticker-left: 64%;
+    --sticker-left: 55%;
     --sticker-top: 16%;
-    --sticker-size: clamp(58px, 17vw, 100px);
+    --sticker-size: clamp(58px, 18vw, 100px);
     --sticker-rotate: 10deg;
   }
 
   .hero-sticker-post2 {
-    --sticker-left: 88%;
-    --sticker-top: 32%;
-    --sticker-size: clamp(72px, 22vw, 120px);
+    --sticker-left: 80%;
+    --sticker-top: 27%;
+    --sticker-size: clamp(72px, 23vw, 130px);
     --sticker-rotate: 6deg;
   }
 

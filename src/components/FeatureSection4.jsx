@@ -12,7 +12,7 @@ function FeatureSection4() {
                         <span>big back</span>
                     </h2>
                     <p className="feature-section-4__subtitle">
-                        Don’t keep your creations hidden in your notes. Let others experience and try out your recipes. Cooking is better together.
+                        Build your profile, collect badges, and show off your personality. Whether you're a meal prep master or a midnight muncher, there's a place for you on Munch.
                     </p>
                 </div>
 
