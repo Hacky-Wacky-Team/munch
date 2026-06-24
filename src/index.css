@@ -16,6 +16,16 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #f6f8f6;
+  overflow-x: hidden;
+}
+
+html {
+  overflow-x: hidden;
+  overscroll-behavior-x: none;
+  margin-bottom: 0rem;
+  padding-bottom: 0rem;
+  background-color: #f6f8f6;
+  align-items: center;
 }
 
 a {
@@ -29,10 +39,8 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
-  min-height: 100vh;
+  overflow-x: hidden;
 }
 
 h1 {

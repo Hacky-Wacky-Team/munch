@@ -1,7 +1,6 @@
 import { useRef, useEffect, useState } from 'react'
 import { gsap } from 'gsap'
-import SendIcon from "@/components/ui/send-icon";
-import DrawUnderline from '@/components/ui/DrawUnderline'
+import FooterCurvedMarquee from './FooterCurvedMarquee'
 import './Footer.css'
 
 function Footer({
@@ -67,24 +66,27 @@ function Footer({
 
   return (
     <footer className="footer">
-      
+      <FooterCurvedMarquee />
       <div className="footer-content">
         <div className="footer-title-section" ref={titleSectionRef}>
-          <p className="footer-built-by-text">built by the</p>
-          <div className="footer-title-row">
-            <span 
-              ref={el => titleBoxesRef.current[0] = el}
-              className="footer-title-box" 
-              style={{ opacity: 0 }}
-              data-final-rotate="2"
-            >munch</span>
-            <span 
-              ref={el => titleBoxesRef.current[1] = el}
-              className="footer-title-box" 
-              style={{ opacity: 0 }}
-              data-final-rotate="-2"
-            >team</span>
-          </div>
+          <p className="footer-built-by-text">© 2026 munch</p>
+          <a
+            className="footer-built-by-text footer-link"
+            href="https://jointhemunch.app/tos"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            terms
+          </a>
+          <a
+            className="footer-built-by-text footer-link"
+            href="https://jointhemunch.app/privacy"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            privacy
+          </a>
+          <p className="footer-built-by-text">made with ♥ in toronto</p>
         </div>
       </div>
     </footer>

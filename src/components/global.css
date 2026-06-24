@@ -71,19 +71,19 @@ body {
   background-color: #f6f8f6;
   margin-bottom: 0rem;
   padding-bottom: 0rem;
-  align-items: center;
-  overflow-x: hidden;
   width: 100%;
+  overflow-x: hidden;
+  overflow-y: visible;
   font-family: 'Nunito Sans', Arial, sans-serif;
 }
 
 html {
-  overflow-x: hidden;
+  overflow-x: clip;
+  overflow-y: auto;
   overscroll-behavior-x: none;
   margin-bottom: 0rem;
   padding-bottom: 0rem;
   background-color: #f6f8f6;
-  align-items: center;
   font-family: 'Nunito Sans', Arial, sans-serif;
 }
 
@@ -94,12 +94,10 @@ a {
 #root {
   width: 100%;
   min-height: 100vh;
-  overflow-x: hidden;
-  overflow-y: visible;
+  overflow: visible;
   margin-bottom: 0rem;
   padding-bottom: 0rem;
   background-color: #f6f8f6;
-  align-items: center;
 }
 
 .container {

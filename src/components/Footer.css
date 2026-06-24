@@ -4,10 +4,69 @@
   margin-top: 0rem;
   padding-bottom: 0rem;
   margin-bottom: 0rem;
-  overflow: hidden;
   opacity: 1;
   position: relative;
+  z-index: 2;
   padding-top: 0rem;
+  overflow-x: hidden;
+  overflow-y: visible;
+}
+
+/* Fine-tune curved marquee: larger radius = gentler arc, speed in px/s */
+.footer-curved-marquee {
+  --footer-marquee-curve-radius: 3800;
+  --footer-marquee-speed: 50;
+  --footer-marquee-item-gap: 16rem;
+  --footer-marquee-overlap: 0;
+
+  position: relative;
+  width: 120%;
+  height: 2rem;
+  left: -10%;
+  overflow-x: hidden;
+  overflow-y: visible;
+  margin-top: 0;
+  margin-bottom: -4rem;
+  padding-top: 17rem;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.footer-curved-marquee-track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.footer-curved-marquee-item {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  will-change: transform;
+  transform-origin: center center;
+}
+
+.footer-curved-marquee-logo {
+  width: 4.5rem;
+  height: 4.5rem;
+  object-fit: contain;
+  flex-shrink: 0;
+  margin-top: 0.5rem;
+  margin-right: 0.5rem;
+  /* filter: saturate(0) brightness(0.3); */
+}
+
+.footer-curved-marquee-text {
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 800;
+  font-size: 6rem;
+  color: #1a1a1a;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  white-space: nowrap;
 }
 
 .footer-content {
@@ -17,73 +76,100 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  max-width: 1100px;
+  max-width: 1300px;
   margin: 0 auto;
   padding: 0rem 0rem;
   padding-bottom: 2rem;
   box-sizing: border-box;
 }
 
-.section-header-footer {
-  margin-bottom: 2rem;
-  text-align: center;
-}
-
-.feature-title-footer {
-  font-family: 'Nunito Sans', sans-serif;
-  font-weight: 700;
-  font-size: 4.5rem;
-  color: #152b15;
-  margin: 0;
-  line-height: 1.1;
-  text-align: center;
-  letter-spacing: -0.15rem;
-  z-index: 1;
-}
-
 .footer-title-section {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  gap: 2.5rem;
   align-items: center;
+  justify-content: center;
   margin-top: 0rem;
-  margin-bottom: 2rem;
+  margin-bottom: 0rem;
+  width: 100%;
 }
 
 .footer-built-by-text {
   font-family: 'Nunito Sans', sans-serif;
-  font-weight: 600;
-  font-size: 1.6rem;
-  color: #242924;
-  margin-bottom: 1rem;
+  font-weight: 400;
+  font-size: 1rem;
+  color: #474747;
+  margin-bottom: 0rem;
   text-align: center;
+  letter-spacing: -0.03rem;
 }
 
-.footer-title-row {
-  display: flex;
-  gap: 1.5rem;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
+.footer-link {
+  cursor: pointer;
+  user-select: none;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  margin-bottom: -1rem;
 }
 
-.footer-title-box {
-  background-color: #98e094;
-  color: #214221;
-  font-family: 'Nunito Sans', sans-serif;
-  font-weight: 600;
-  font-size: 2.5rem;
-  padding: 0.6rem 2.8rem;
-  border-radius: 2rem;
-  display: inline-block;
-  text-align: center;
-  position: relative;
-  z-index: 10;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  will-change: transform, opacity;
+.footer-link:hover {
+  color: #a6a6a6;
+}
+
+
+
+@media (max-width: 1800px) {
+  .footer-curved-marquee {
+    --footer-marquee-curve-radius: 2900;
+    --footer-marquee-item-gap: 15rem;
+    padding-top: 14rem;
+    margin-bottom: -3rem;
+  }
+  .footer-curved-marquee-text {
+    font-size: 5.5rem;
+  }
+  .footer-curved-marquee-logo {
+    width: 4rem;
+    height: 4rem;
+  }
+}
+
+
+@media (max-width: 1600px) {
+  .footer-curved-marquee {
+    --footer-marquee-curve-radius: 2700;
+    --footer-marquee-item-gap: 14rem;
+    padding-top: 13rem;
+    margin-bottom: -2rem;
+  }
+  .footer-curved-marquee-text {
+    font-size: 4.5rem;
+  }
+  .footer-curved-marquee-logo {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
 }
 
 @media (max-width: 768px) {
+  .footer-curved-marquee {
+    --footer-marquee-curve-radius: 320;
+    --footer-marquee-speed: 50;
+    --footer-marquee-overlap: 6rem;
+    height: 4rem;
+    margin-bottom: 1rem;
+    padding-top: 6rem;
+  }
+
+  .footer-curved-marquee-logo {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .footer-curved-marquee-text {
+    font-size: 1.4rem;
+  }
+
   .footer {
     margin-top: 2rem;
   }
