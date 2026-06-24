@@ -86,7 +86,7 @@ function Footer({
           >
             privacy
           </a>
-          <p className="footer-built-by-text">made with ♥ in toronto</p>
+          <p className="footer-built-by-text footer-tagline">made with ♥ in toronto</p>
         </div>
       </div>
     </footer>

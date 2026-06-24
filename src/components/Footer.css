@@ -153,25 +153,28 @@
 
 @media (max-width: 768px) {
   .footer-curved-marquee {
-    --footer-marquee-curve-radius: 320;
-    --footer-marquee-speed: 50;
-    --footer-marquee-overlap: 6rem;
-    height: 4rem;
-    margin-bottom: 1rem;
-    padding-top: 6rem;
+    --footer-marquee-curve-radius: 500;
+    --footer-marquee-speed: 30;
+    --footer-marquee-item-gap: 5.8rem;
+    height: 3rem;
+    margin-bottom: -2rem;
+    padding-top: 4rem;
+    width: 130%;
+    left: -15%;
   }
 
   .footer-curved-marquee-logo {
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 2rem;
+    height: 2rem;
+    margin-right:-0.2rem;
   }
 
   .footer-curved-marquee-text {
-    font-size: 1.4rem;
+    font-size: 2.5rem;
   }
 
   .footer {
-    margin-top: 2rem;
+    margin-top: 1rem;
   }
 
   .footer-content {
@@ -182,22 +185,19 @@
   }
 
   .footer-title-section {
-    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.5rem;
+    margin-bottom: 0rem;
+  }
+
+  .footer-tagline {
+    flex-basis: 100%;
+    text-align: center;
   }
 
   .footer-built-by-text {
     margin-top: 0;
-    margin-bottom: 0.75rem;
-    font-size: 1.1rem;
-  }
-
-  .footer-title-box {
-    font-size: 1.7rem;
-    padding: 0.5rem 1.5rem;
-    border-radius: 1.5rem;
-  }
-
-  .footer-title-row {
-    gap: 0.75rem;
+    margin-bottom: 0rem;
+    font-size: 0.9rem;
   }
 }
